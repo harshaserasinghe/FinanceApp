@@ -41,6 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Contact.cs" />
+    <Compile Include="Entities\Event.cs" />
+    <Compile Include="Entities\Frequency.cs" />
+    <Compile Include="Entities\RecurringEvent.cs" />
+    <Compile Include="Entities\RecurringTransaction.cs" />
+    <Compile Include="Entities\Transaction.cs" />
+    <Compile Include="Entities\TranType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
