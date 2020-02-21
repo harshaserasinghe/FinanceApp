@@ -13,5 +13,8 @@ namespace Finance.Core.Entities
         public bool IsRecurring { get; set; }
         public int ContactId { get; set; }
         public int TranRecId { get; set; }
+
+        public Contact Contact { get; set; }
+        public RecurringTransaction RecurringTransaction { get; set; }
     }
 }

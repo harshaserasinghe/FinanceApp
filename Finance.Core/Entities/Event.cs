@@ -11,5 +11,7 @@ namespace Finance.Core.Entities
         public bool IsActive { get; set; }
         public bool IsRecurring { get; set; }
         public int EventRecId { get; set; }
+
+        public RecurringEvent RecurringEvent { get; set; }
     }
 }
