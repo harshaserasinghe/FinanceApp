@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\CreateTransaction.cs" />
     <Compile Include="Entities\Contact.cs" />
     <Compile Include="Entities\Event.cs" />
     <Compile Include="Entities\Frequency.cs" />
@@ -48,7 +52,12 @@
     <Compile Include="Entities\RecurringTransaction.cs" />
     <Compile Include="Entities\Transaction.cs" />
     <Compile Include="Entities\TranType.cs" />
+    <Compile Include="Mappers\EntityMappingConfig.cs" />
+    <Compile Include="Mappers\TransactionMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

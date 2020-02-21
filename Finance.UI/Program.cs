@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Autofac;
+using Finance.Data;
+using Finance.Service;
+using System;
 using System.Windows.Forms;
 
 namespace Finance.UI
@@ -11,10 +14,14 @@ namespace Finance.UI
         [STAThread]
         private static void Main()
         {
+            //RegisterDependancies();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
 
         }
+
+
+ 
     }
 }
