@@ -4,6 +4,6 @@ namespace Finance.Service
 {
     public interface ITransactionService
     {
-        void AddTransaction(CreateTransaction transactionDTO);
+        void AddTransaction(CreateTransactionDTO transactionDTO);
     }
 }

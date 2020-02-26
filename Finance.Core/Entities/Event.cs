@@ -10,7 +10,7 @@ namespace Finance.Core.Entities
         public DateTime EventDate { get; set; }
         public bool IsActive { get; set; }
         public bool IsRecurring { get; set; }
-        public int EventRecId { get; set; }
+        public int? EventRecId { get; set; }
 
         public RecurringEvent RecurringEvent { get; set; }
     }

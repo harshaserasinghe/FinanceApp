@@ -12,8 +12,15 @@ namespace Finance.Core.Mappers
         {
             mapperConfig = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<CreateTransaction, Transaction>();
+                cfg.CreateMap<CreateTransactionDTO, Transaction>();
 
+                cfg.CreateMap<Transaction, TransactionDTO>()
+                .ForMember(dest => dest.ContactName, opt => opt.MapFrom(src => src.Contact.Name))
+                .ForMember(dest => dest.TranRecName, opt => opt.MapFrom(src => src.RecurringTransaction.Name))
+                .ForMember(dest => dest.Frequency, opt => opt.MapFrom(src => src.RecurringTransaction.Frequency));
+
+                cfg.CreateMap<UpdateTransactionDTO, Transaction>()
+                .ForMember(dest => dest.TranId, opt => opt.Ignore());
             });
         }
     }

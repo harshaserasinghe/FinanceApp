@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTOs\CreateTransaction.cs" />
+    <Compile Include="DTOs\CreateTransactionDTO.cs" />
+    <Compile Include="DTOs\TransactionDTO.cs" />
+    <Compile Include="DTOs\UpdateTransactionDTO.cs" />
     <Compile Include="Entities\Contact.cs" />
     <Compile Include="Entities\Event.cs" />
     <Compile Include="Entities\Frequency.cs" />
@@ -53,7 +55,6 @@
     <Compile Include="Entities\Transaction.cs" />
     <Compile Include="Entities\TranType.cs" />
     <Compile Include="Mappers\EntityMappingConfig.cs" />
-    <Compile Include="Mappers\TransactionMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

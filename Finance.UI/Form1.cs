@@ -1,5 +1,4 @@
-﻿using Autofac;
-using Finance.Core.DTOs;
+﻿using Finance.Core.DTOs;
 using Finance.Core.Entities;
 using Finance.Service;
 using System;
@@ -9,45 +8,47 @@ namespace Finance.UI
 {
     public partial class Form1 : Form
     {
-        private static IContainer Container { get; set; }
         public Form1()
         {
-            RegisterDependancies();
+
             InitializeComponent();
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            var tranService = new TransactionService();
 
-            using (var scope = Container.BeginLifetimeScope())
+            //var fromDate = DateTime.Now.AddDays(-2);
+            //var toDate = DateTime.Now;
+            //tranService.GetTransactionsByDate(fromDate, toDate);
+
+            //var createTransaction = new CreateTransactionDTO
+            //{
+            //    Name = "Transaction test 5",
+            //    TranDate = DateTime.Now.AddDays(-5),
+            //    TranType = TranType.Credit,
+            //    Amount = 5000,
+            //    IsRecurring = false,
+            //    ContactId = 1
+            //};
+
+            var updateTransactionDTO = new UpdateTransactionDTO
             {
-                var tranService = scope.Resolve<ITransactionService>();
+                TranId = 5,
+                Name = "Transaction test 5",
+                TranDate = DateTime.Now.AddDays(5),
+                TranType = TranType.Debet,
+                Amount = 2500,
+                IsRecurring = false,
+                ContactId = 1
+            };
 
-                var createTransaction = new CreateTransaction
-                {
-                    Name = "Transaction test",
-                    TranDate = DateTime.Now,
-                    TranType = TranType.Credit,
-                    Amount = 1000,
-                    IsRecurring = false,
-                    ContactId = 1
-                };
+            tranService.UpdateTransaction(updateTransactionDTO);
 
-                tranService.AddTransaction(createTransaction);
-            }
-        }
+            //tranService.AddTransaction(createTransaction);
 
-        private static void RegisterDependancies()
-        {
-            var builder = new ContainerBuilder();
-            builder.RegisterType<TransactionService>().As<ITransactionService>();
-            //builder.RegisterType<FinanceDbContext>();
-            Container = builder.Build();
+            //var tranDTO = tranService.GetTransaction(1);
 
         }
-
-
     }
 }
