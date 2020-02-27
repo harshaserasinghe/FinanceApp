@@ -30,27 +30,13 @@
         {
             this.FinanceTabControl = new System.Windows.Forms.TabControl();
             this.TransactionTab = new System.Windows.Forms.TabPage();
-            this.EventTab = new System.Windows.Forms.TabPage();
-            this.ContactTab = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbTranType = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dtpTranDate = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbContact = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txbAmount = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.chbRecurring = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txbDesc = new System.Windows.Forms.RichTextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txbRecTran = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cmbRecTranFreq = new System.Windows.Forms.ComboBox();
-            this.dgvTran = new System.Windows.Forms.DataGridView();
-            this.dtpTranFromDate = new System.Windows.Forms.DateTimePicker();
+            this.btnTranAdd = new System.Windows.Forms.Button();
+            this.btnTranSearch = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.dtpTranToDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpTranFromDate = new System.Windows.Forms.DateTimePicker();
+            this.dgvTran = new System.Windows.Forms.DataGridView();
             this.colTranName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTranType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,10 +44,24 @@
             this.colTranAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRec = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRecFreq = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.btnTranSearch = new System.Windows.Forms.Button();
-            this.btnTranAdd = new System.Windows.Forms.Button();
+            this.cmbRecTranFreq = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txbRecTran = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txbDesc = new System.Windows.Forms.RichTextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.chbRecurring = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txbAmount = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbContact = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dtpTranDate = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbTranType = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.EventTab = new System.Windows.Forms.TabPage();
+            this.ContactTab = new System.Windows.Forms.TabPage();
             this.FinanceTabControl.SuspendLayout();
             this.TransactionTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTran)).BeginInit();
@@ -112,175 +112,62 @@
             this.TransactionTab.UseVisualStyleBackColor = true;
             this.TransactionTab.UseWaitCursor = true;
             // 
-            // EventTab
+            // btnTranAdd
             // 
-            this.EventTab.Location = new System.Drawing.Point(4, 22);
-            this.EventTab.Name = "EventTab";
-            this.EventTab.Padding = new System.Windows.Forms.Padding(3);
-            this.EventTab.Size = new System.Drawing.Size(756, 613);
-            this.EventTab.TabIndex = 1;
-            this.EventTab.Text = "Events";
-            this.EventTab.UseVisualStyleBackColor = true;
+            this.btnTranAdd.Location = new System.Drawing.Point(142, 323);
+            this.btnTranAdd.Name = "btnTranAdd";
+            this.btnTranAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnTranAdd.TabIndex = 22;
+            this.btnTranAdd.Text = "Add";
+            this.btnTranAdd.UseVisualStyleBackColor = true;
+            this.btnTranAdd.UseWaitCursor = true;
+            this.btnTranAdd.Click += new System.EventHandler(this.AddTransaction);
             // 
-            // ContactTab
+            // btnTranSearch
             // 
-            this.ContactTab.Location = new System.Drawing.Point(4, 22);
-            this.ContactTab.Name = "ContactTab";
-            this.ContactTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ContactTab.Size = new System.Drawing.Size(756, 613);
-            this.ContactTab.TabIndex = 2;
-            this.ContactTab.Text = "Contacts";
-            this.ContactTab.UseVisualStyleBackColor = true;
+            this.btnTranSearch.Location = new System.Drawing.Point(544, 388);
+            this.btnTranSearch.Name = "btnTranSearch";
+            this.btnTranSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnTranSearch.TabIndex = 21;
+            this.btnTranSearch.Text = "Search";
+            this.btnTranSearch.UseVisualStyleBackColor = true;
+            this.btnTranSearch.UseWaitCursor = true;
             // 
-            // label1
+            // label10
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Transaction Type";
-            this.label1.UseWaitCursor = true;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(287, 394);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(20, 13);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "To";
+            this.label10.UseWaitCursor = true;
             // 
-            // cmbTranType
+            // label9
             // 
-            this.cmbTranType.FormattingEnabled = true;
-            this.cmbTranType.Location = new System.Drawing.Point(142, 21);
-            this.cmbTranType.Name = "cmbTranType";
-            this.cmbTranType.Size = new System.Drawing.Size(121, 21);
-            this.cmbTranType.TabIndex = 1;
-            this.cmbTranType.UseWaitCursor = true;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(32, 394);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(30, 13);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "From";
+            this.label9.UseWaitCursor = true;
             // 
-            // label2
+            // dtpTranToDate
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(295, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Transaction Date";
-            this.label2.UseWaitCursor = true;
+            this.dtpTranToDate.Location = new System.Drawing.Point(321, 390);
+            this.dtpTranToDate.Name = "dtpTranToDate";
+            this.dtpTranToDate.Size = new System.Drawing.Size(200, 20);
+            this.dtpTranToDate.TabIndex = 18;
+            this.dtpTranToDate.UseWaitCursor = true;
             // 
-            // dtpTranDate
+            // dtpTranFromDate
             // 
-            this.dtpTranDate.Location = new System.Drawing.Point(406, 22);
-            this.dtpTranDate.Name = "dtpTranDate";
-            this.dtpTranDate.Size = new System.Drawing.Size(200, 20);
-            this.dtpTranDate.TabIndex = 3;
-            this.dtpTranDate.UseWaitCursor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(32, 73);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Contact";
-            this.label3.UseWaitCursor = true;
-            // 
-            // cmbContact
-            // 
-            this.cmbContact.FormattingEnabled = true;
-            this.cmbContact.Location = new System.Drawing.Point(142, 73);
-            this.cmbContact.Name = "cmbContact";
-            this.cmbContact.Size = new System.Drawing.Size(121, 21);
-            this.cmbContact.TabIndex = 5;
-            this.cmbContact.UseWaitCursor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(295, 81);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Amount";
-            this.label4.UseWaitCursor = true;
-            // 
-            // txbAmount
-            // 
-            this.txbAmount.Location = new System.Drawing.Point(406, 74);
-            this.txbAmount.Name = "txbAmount";
-            this.txbAmount.Size = new System.Drawing.Size(200, 20);
-            this.txbAmount.TabIndex = 7;
-            this.txbAmount.UseWaitCursor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(32, 198);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Recurring";
-            this.label5.UseWaitCursor = true;
-            // 
-            // chbRecurring
-            // 
-            this.chbRecurring.AutoSize = true;
-            this.chbRecurring.Location = new System.Drawing.Point(142, 197);
-            this.chbRecurring.Name = "chbRecurring";
-            this.chbRecurring.Size = new System.Drawing.Size(15, 14);
-            this.chbRecurring.TabIndex = 9;
-            this.chbRecurring.UseVisualStyleBackColor = true;
-            this.chbRecurring.UseWaitCursor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(32, 125);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Description";
-            this.label6.UseWaitCursor = true;
-            // 
-            // txbDesc
-            // 
-            this.txbDesc.Location = new System.Drawing.Point(142, 122);
-            this.txbDesc.Name = "txbDesc";
-            this.txbDesc.Size = new System.Drawing.Size(464, 49);
-            this.txbDesc.TabIndex = 11;
-            this.txbDesc.Text = "";
-            this.txbDesc.UseWaitCursor = true;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(32, 245);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(86, 13);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Rec Transaction";
-            this.label7.UseWaitCursor = true;
-            // 
-            // txbRecTran
-            // 
-            this.txbRecTran.Location = new System.Drawing.Point(142, 238);
-            this.txbRecTran.Name = "txbRecTran";
-            this.txbRecTran.Size = new System.Drawing.Size(200, 20);
-            this.txbRecTran.TabIndex = 13;
-            this.txbRecTran.UseWaitCursor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(32, 282);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(81, 13);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Rec Frequence";
-            this.label8.UseWaitCursor = true;
-            // 
-            // cmbRecTranFreq
-            // 
-            this.cmbRecTranFreq.FormattingEnabled = true;
-            this.cmbRecTranFreq.Location = new System.Drawing.Point(142, 282);
-            this.cmbRecTranFreq.Name = "cmbRecTranFreq";
-            this.cmbRecTranFreq.Size = new System.Drawing.Size(121, 21);
-            this.cmbRecTranFreq.TabIndex = 15;
-            this.cmbRecTranFreq.UseWaitCursor = true;
+            this.dtpTranFromDate.Location = new System.Drawing.Point(71, 391);
+            this.dtpTranFromDate.Name = "dtpTranFromDate";
+            this.dtpTranFromDate.Size = new System.Drawing.Size(200, 20);
+            this.dtpTranFromDate.TabIndex = 17;
+            this.dtpTranFromDate.UseWaitCursor = true;
             // 
             // dgvTran
             // 
@@ -298,22 +185,6 @@
             this.dgvTran.Size = new System.Drawing.Size(745, 150);
             this.dgvTran.TabIndex = 16;
             this.dgvTran.UseWaitCursor = true;
-            // 
-            // dtpTranFromDate
-            // 
-            this.dtpTranFromDate.Location = new System.Drawing.Point(71, 391);
-            this.dtpTranFromDate.Name = "dtpTranFromDate";
-            this.dtpTranFromDate.Size = new System.Drawing.Size(200, 20);
-            this.dtpTranFromDate.TabIndex = 17;
-            this.dtpTranFromDate.UseWaitCursor = true;
-            // 
-            // dtpTranToDate
-            // 
-            this.dtpTranToDate.Location = new System.Drawing.Point(321, 390);
-            this.dtpTranToDate.Name = "dtpTranToDate";
-            this.dtpTranToDate.Size = new System.Drawing.Size(200, 20);
-            this.dtpTranToDate.TabIndex = 18;
-            this.dtpTranToDate.UseWaitCursor = true;
             // 
             // colTranName
             // 
@@ -350,43 +221,175 @@
             this.colRecFreq.HeaderText = "Frequency";
             this.colRecFreq.Name = "colRecFreq";
             // 
-            // label9
+            // cmbRecTranFreq
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(32, 394);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(30, 13);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "From";
-            this.label9.UseWaitCursor = true;
+            this.cmbRecTranFreq.FormattingEnabled = true;
+            this.cmbRecTranFreq.Location = new System.Drawing.Point(142, 282);
+            this.cmbRecTranFreq.Name = "cmbRecTranFreq";
+            this.cmbRecTranFreq.Size = new System.Drawing.Size(121, 21);
+            this.cmbRecTranFreq.TabIndex = 15;
+            this.cmbRecTranFreq.UseWaitCursor = true;
             // 
-            // label10
+            // label8
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(287, 394);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(20, 13);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "To";
-            this.label10.UseWaitCursor = true;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(32, 282);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(81, 13);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Rec Frequence";
+            this.label8.UseWaitCursor = true;
             // 
-            // btnTranSearch
+            // txbRecTran
             // 
-            this.btnTranSearch.Location = new System.Drawing.Point(544, 388);
-            this.btnTranSearch.Name = "btnTranSearch";
-            this.btnTranSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnTranSearch.TabIndex = 21;
-            this.btnTranSearch.Text = "Search";
-            this.btnTranSearch.UseVisualStyleBackColor = true;
+            this.txbRecTran.Location = new System.Drawing.Point(142, 238);
+            this.txbRecTran.Name = "txbRecTran";
+            this.txbRecTran.Size = new System.Drawing.Size(200, 20);
+            this.txbRecTran.TabIndex = 13;
+            this.txbRecTran.UseWaitCursor = true;
             // 
-            // btnTranAdd
+            // label7
             // 
-            this.btnTranAdd.Location = new System.Drawing.Point(142, 323);
-            this.btnTranAdd.Name = "btnTranAdd";
-            this.btnTranAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnTranAdd.TabIndex = 22;
-            this.btnTranAdd.Text = "Add";
-            this.btnTranAdd.UseVisualStyleBackColor = true;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(32, 245);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(86, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Rec Transaction";
+            this.label7.UseWaitCursor = true;
+            // 
+            // txbDesc
+            // 
+            this.txbDesc.Location = new System.Drawing.Point(142, 122);
+            this.txbDesc.Name = "txbDesc";
+            this.txbDesc.Size = new System.Drawing.Size(464, 49);
+            this.txbDesc.TabIndex = 11;
+            this.txbDesc.Text = "";
+            this.txbDesc.UseWaitCursor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(32, 125);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Description";
+            this.label6.UseWaitCursor = true;
+            // 
+            // chbRecurring
+            // 
+            this.chbRecurring.AutoSize = true;
+            this.chbRecurring.Location = new System.Drawing.Point(142, 197);
+            this.chbRecurring.Name = "chbRecurring";
+            this.chbRecurring.Size = new System.Drawing.Size(15, 14);
+            this.chbRecurring.TabIndex = 9;
+            this.chbRecurring.UseVisualStyleBackColor = true;
+            this.chbRecurring.UseWaitCursor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(32, 198);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Recurring";
+            this.label5.UseWaitCursor = true;
+            // 
+            // txbAmount
+            // 
+            this.txbAmount.Location = new System.Drawing.Point(406, 74);
+            this.txbAmount.Name = "txbAmount";
+            this.txbAmount.Size = new System.Drawing.Size(200, 20);
+            this.txbAmount.TabIndex = 7;
+            this.txbAmount.UseWaitCursor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(295, 81);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(43, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Amount";
+            this.label4.UseWaitCursor = true;
+            // 
+            // cmbContact
+            // 
+            this.cmbContact.FormattingEnabled = true;
+            this.cmbContact.Location = new System.Drawing.Point(142, 73);
+            this.cmbContact.Name = "cmbContact";
+            this.cmbContact.Size = new System.Drawing.Size(121, 21);
+            this.cmbContact.TabIndex = 5;
+            this.cmbContact.UseWaitCursor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(32, 73);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Contact";
+            this.label3.UseWaitCursor = true;
+            // 
+            // dtpTranDate
+            // 
+            this.dtpTranDate.Location = new System.Drawing.Point(406, 22);
+            this.dtpTranDate.Name = "dtpTranDate";
+            this.dtpTranDate.Size = new System.Drawing.Size(200, 20);
+            this.dtpTranDate.TabIndex = 3;
+            this.dtpTranDate.UseWaitCursor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(295, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(89, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Transaction Date";
+            this.label2.UseWaitCursor = true;
+            // 
+            // cmbTranType
+            // 
+            this.cmbTranType.FormattingEnabled = true;
+            this.cmbTranType.Location = new System.Drawing.Point(142, 21);
+            this.cmbTranType.Name = "cmbTranType";
+            this.cmbTranType.Size = new System.Drawing.Size(121, 21);
+            this.cmbTranType.TabIndex = 1;
+            this.cmbTranType.UseWaitCursor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(32, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Transaction Type";
+            this.label1.UseWaitCursor = true;
+            // 
+            // EventTab
+            // 
+            this.EventTab.Location = new System.Drawing.Point(4, 22);
+            this.EventTab.Name = "EventTab";
+            this.EventTab.Padding = new System.Windows.Forms.Padding(3);
+            this.EventTab.Size = new System.Drawing.Size(756, 613);
+            this.EventTab.TabIndex = 1;
+            this.EventTab.Text = "Events";
+            this.EventTab.UseVisualStyleBackColor = true;
+            // 
+            // ContactTab
+            // 
+            this.ContactTab.Location = new System.Drawing.Point(4, 22);
+            this.ContactTab.Name = "ContactTab";
+            this.ContactTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ContactTab.Size = new System.Drawing.Size(756, 613);
+            this.ContactTab.TabIndex = 2;
+            this.ContactTab.Text = "Contacts";
+            this.ContactTab.UseVisualStyleBackColor = true;
             // 
             // FinanceForm
             // 

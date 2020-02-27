@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\ContactDTO.cs" />
     <Compile Include="DTOs\CreateTransactionDTO.cs" />
     <Compile Include="DTOs\TransactionDTO.cs" />
     <Compile Include="DTOs\UpdateTransactionDTO.cs" />

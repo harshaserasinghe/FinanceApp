@@ -21,6 +21,8 @@ namespace Finance.Core.Mappers
 
                 cfg.CreateMap<UpdateTransactionDTO, Transaction>()
                 .ForMember(dest => dest.TranId, opt => opt.Ignore());
+
+                cfg.CreateMap<Contact, ContactDTO>();
             });
         }
     }
