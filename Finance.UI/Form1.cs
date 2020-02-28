@@ -11,16 +11,12 @@ namespace Finance.UI
         private ContactService contactService { get; }
         private TransactionService transactionService { get; }
 
-        //public CreateTransactionDTO createTranDTO { get; }
-
         public FinanceForm()
         {
             InitializeComponent();
             contactService = new ContactService();
             transactionService = new TransactionService();
             FormInit();
-            //createTranDTO = new CreateTransactionDTO();
-
         }
 
         private void FormInit()
@@ -30,14 +26,46 @@ namespace Finance.UI
             cmbContact.ValueMember = nameof(ContactDTO.ContactId);
 
             cmbTranType.DataSource = Enum.GetValues(typeof(TranType));
+            cmbTranTypeSearch.DataSource = Enum.GetValues(typeof(TranType));
             cmbRecTranFreq.DataSource = Enum.GetValues(typeof(Frequency));
 
-            //cmbTranType.DataBindings.Add("SelectedValue", createTranDTO, nameof(CreateTransactionDTO.TranType));
-            //dtpTranDate.DataBindings.Add("Value", createTranDTO, nameof(CreateTransactionDTO.TranDate));
-            //cmbContact.DataBindings.Add("SelectedValue", createTranDTO, nameof(CreateTransactionDTO.ContactId));
-            //txbAmount.DataBindings.Add("Text", createTranDTO, nameof(CreateTransactionDTO.Amount));
-            //txbDesc.DataBindings.Add("Text", createTranDTO, nameof(CreateTransactionDTO.Name));
-            //chbRecurring.DataBindings.Add("CheckState", createTranDTO, nameof(CreateTransactionDTO.IsRecurring));
+            dgvTran.AutoGenerateColumns = false;
+            dgvTran.AutoSize = true;
+            AddTexBoxColumn(nameof(TransactionDTO.Name), "Name", true);
+            AddComboBoxColumn(nameof(TransactionDTO.TranType), "Type", typeof(TranType), true);
+            AddTexBoxColumn(nameof(TransactionDTO.TranDate), "Date", true);
+            AddTexBoxColumn(nameof(TransactionDTO.Amount), "Amount", true);
+            AddCheckBoxColumn(nameof(TransactionDTO.IsRecurring), "Recurring", true);
+            AddTexBoxColumn(nameof(TransactionDTO.ContactName), "Contact", true);
+            AddComboBoxColumn(nameof(CreateTransactionDTO.Frequency), "Occurrence", typeof(Frequency), true);
+        }
+
+        private void AddTexBoxColumn(string propName, string colName, bool isReadOnly)
+        {
+            var col = new DataGridViewTextBoxColumn();
+            col.DataPropertyName = propName;
+            col.Name = colName;
+            col.ReadOnly = isReadOnly;
+            dgvTran.Columns.Add(col);
+        }
+
+        private void AddComboBoxColumn(string prop, string colName, Type enumType, bool isReadOnly)
+        {
+            var col = new DataGridViewComboBoxColumn();
+            col.DataSource = Enum.GetValues(enumType);
+            col.DataPropertyName = prop;
+            col.Name = colName;
+            col.ReadOnly = isReadOnly;
+            dgvTran.Columns.Add(col);
+        }
+
+        private void AddCheckBoxColumn(string prop, string colName, bool isReadOnly)
+        {
+            var col = new DataGridViewCheckBoxColumn();
+            col.DataPropertyName = prop;
+            col.Name = colName;
+            col.ReadOnly = isReadOnly;
+            dgvTran.Columns.Add(col);
         }
 
         private void AddTransaction(object sender, EventArgs e)
@@ -55,6 +83,24 @@ namespace Finance.UI
             };
 
             transactionService.AddTransaction(CreateTranDTO);
+        }
+
+        private void SearchTransaction(object sender, EventArgs e)
+        {
+            var tranType = (TranType)Enum.Parse(typeof(TranType), cmbTranType.SelectedValue.ToString());
+            var fromDate = dtpTranFromDate.Value;
+            var toDate = dtpTranToDate.Value;
+
+            dgvTran.DataBindings.Clear();
+            var tranDTOs = transactionService.GetTransactionsByDate(tranType, fromDate, toDate);
+            var bindingSource = new BindingSource(tranDTOs, null);
+            dgvTran.DataSource = bindingSource;
+
+        }
+
+        private void SelectedRow(object sender, EventArgs e)
+        {
+            var value = dgvTran.SelectedRows;
         }
     }
 }

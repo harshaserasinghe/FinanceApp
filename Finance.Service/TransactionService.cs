@@ -37,11 +37,11 @@ namespace Finance.Service
             return tranDTO;
         }
 
-        public List<TransactionDTO> GetTransactionsByDate(DateTime fromDate, DateTime toDate)
+        public List<TransactionDTO> GetTransactionsByDate(TranType tranType, DateTime fromDate, DateTime toDate)
         {
             var transactions = FinanaceDbContext.Transactions.Include(t => t.Contact)
                 .Include(t => t.RecurringTransaction)
-                .Where(t => DbFunctions.TruncateTime(t.TranDate) >= DbFunctions.TruncateTime(fromDate)
+                .Where(t => t.TranType == tranType && DbFunctions.TruncateTime(t.TranDate) >= DbFunctions.TruncateTime(fromDate)
                     && DbFunctions.TruncateTime(t.TranDate) <= DbFunctions.TruncateTime(toDate))
                 .OrderBy(t => t.TranDate)
                 .ToList();

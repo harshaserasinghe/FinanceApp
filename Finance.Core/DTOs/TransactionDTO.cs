@@ -14,7 +14,6 @@ namespace Finance.Core.DTOs
         public int ContactId { get; set; }
         public string ContactName { get; set; }
         public int? TranRecId { get; set; }
-        public string TranRecName { get; set; }
         public Frequency? Frequency { get; set; }
     }
 }
