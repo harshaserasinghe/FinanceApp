@@ -16,13 +16,15 @@ namespace Finance.Core.Mappers
 
                 cfg.CreateMap<Transaction, TransactionDTO>()
                 .ForMember(dest => dest.ContactName, opt => opt.MapFrom(src => src.Contact.Name))
-                .ForMember(dest => dest.TranRecName, opt => opt.MapFrom(src => src.RecurringTransaction.Name))
                 .ForMember(dest => dest.Frequency, opt => opt.MapFrom(src => src.RecurringTransaction.Frequency));
 
                 cfg.CreateMap<UpdateTransactionDTO, Transaction>()
                 .ForMember(dest => dest.TranId, opt => opt.Ignore());
 
                 cfg.CreateMap<Contact, ContactDTO>();
+
+                cfg.CreateMap<CreateTransactionDTO, RecurringTransaction>()
+               .ForMember(dest => dest.Frequency, opt => opt.MapFrom(src => src.Frequency));
             });
         }
     }

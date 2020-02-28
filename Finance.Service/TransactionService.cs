@@ -58,6 +58,14 @@ namespace Finance.Service
         public void AddTransaction(CreateTransactionDTO transactionDTO)
         {
             var transaction = Mapper.Map<Transaction>(transactionDTO);
+
+            if (transactionDTO.IsRecurring)
+            {
+                var recurringTransaction = Mapper.Map<RecurringTransaction>(transactionDTO);
+                FinanaceDbContext.RecurringTransactions.Add(recurringTransaction);
+                transaction.RecurringTransaction = recurringTransaction;
+            }
+
             FinanaceDbContext.Transactions.Add(transaction);
             FinanaceDbContext.SaveChanges();
         }

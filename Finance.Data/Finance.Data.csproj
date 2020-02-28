@@ -56,6 +56,10 @@
     <Compile Include="Migrations\202002210414587_Initial.designer.cs">
       <DependentUpon>202002210414587_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002280337378_updateEntities.cs" />
+    <Compile Include="Migrations\202002280337378_updateEntities.designer.cs">
+      <DependentUpon>202002280337378_updateEntities.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -72,6 +76,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202002210414587_Initial.resx">
       <DependentUpon>202002210414587_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002280337378_updateEntities.resx">
+      <DependentUpon>202002280337378_updateEntities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

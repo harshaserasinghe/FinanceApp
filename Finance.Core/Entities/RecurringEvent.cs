@@ -9,7 +9,6 @@ namespace Finance.Core.Entities
             Events = new HashSet<Event>();
         }
         public int EventRecId { get; set; }
-        public string Name { get; set; }
         public bool IsActive { get; set; }
         public Frequency Frequency { get; set; }
 
