@@ -1,4 +1,5 @@
 ﻿using Finance.Core.Entities;
+using Finance.Data.Migrations;
 using System.Data.Entity;
 
 namespace Finance.Data
@@ -7,7 +8,7 @@ namespace Finance.Data
     {
         public FinanceDbContext() : base("financeDbContext")
         {
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<FinanceDbContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<FinanceDbContext, Configuration>());
         }
 
         public DbSet<Transaction> Transactions { get; set; }

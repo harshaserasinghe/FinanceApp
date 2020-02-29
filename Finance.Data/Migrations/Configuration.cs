@@ -1,18 +1,15 @@
 ﻿namespace Finance.Data.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Finance.Data.FinanceDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<FinanceDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Finance.Data.FinanceDbContext context)
+        protected override void Seed(FinanceDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
