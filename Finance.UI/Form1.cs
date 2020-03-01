@@ -87,7 +87,7 @@ namespace Finance.UI
 
         private void SearchTransaction(object sender, EventArgs e)
         {
-            var tranType = (TranType)Enum.Parse(typeof(TranType), cmbTranType.SelectedValue.ToString());
+            var tranType = (TranType)Enum.Parse(typeof(TranType), cmbTranTypeSearch.SelectedValue.ToString());
             var fromDate = dtpTranFromDate.Value;
             var toDate = dtpTranToDate.Value;
 
@@ -101,6 +101,12 @@ namespace Finance.UI
         private void SelectedRow(object sender, EventArgs e)
         {
             var value = dgvTran.SelectedRows;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var data = transactionService.GetRecurringTransactions();
+            transactionService.HandleRecurringTransactions(data);
         }
     }
 }

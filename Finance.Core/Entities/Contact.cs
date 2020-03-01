@@ -6,6 +6,7 @@ namespace Finance.Core.Entities
     {
         public Contact()
         {
+            IsActive = true;
             Transactions = new HashSet<Transaction>();
         }
 
