@@ -1,6 +1,6 @@
 ﻿namespace Finance.UI.Views
 {
-    partial class EventForm
+    partial class EventView
     {
         /// <summary>
         /// Required designer variable.

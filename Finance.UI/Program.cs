@@ -15,7 +15,7 @@ namespace Finance.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var mainView = new MainForm();
+            var mainView = new MainView();
             var mainController = new MainController(mainView);
             mainController.LoadView();
             Application.Run();

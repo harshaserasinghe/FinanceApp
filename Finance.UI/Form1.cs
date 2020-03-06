@@ -83,6 +83,7 @@ namespace Finance.UI
             };
 
             transactionService.AddTransaction(CreateTranDTO);
+            MessageBox.Show("Transaction successfully added.");
         }
 
         private void SearchTransaction(object sender, EventArgs e)

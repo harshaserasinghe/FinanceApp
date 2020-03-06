@@ -3,11 +3,11 @@ using System.Windows.Forms;
 
 namespace Finance.UI.Views
 {
-    public partial class MainForm : Form
+    public partial class MainView : Form
     {
         private MainController controller { get; set; }
 
-        public MainForm()
+        public MainView()
         {
             InitializeComponent();
         }
@@ -24,13 +24,13 @@ namespace Finance.UI.Views
 
         private void btnClickOpenContactForm(object sender, System.EventArgs e)
         {
-            var contactForm = new ContactForm();
+            var contactForm = new ContactView();
             contactForm.Show();
         }
 
         private void btnClickOpenEvenForm(object sender, System.EventArgs e)
         {
-            var eventForm = new EventForm();
+            var eventForm = new EventView();
             eventForm.Show();
         }
     }

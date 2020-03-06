@@ -1,6 +1,6 @@
 ﻿namespace Finance.UI.Views
 {
-    partial class ContactForm
+    partial class ContactView
     {
         /// <summary>
         /// Required designer variable.

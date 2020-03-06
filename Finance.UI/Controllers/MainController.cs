@@ -4,9 +4,9 @@ namespace Finance.UI.Controllers
 {
     public class MainController
     {
-        private MainForm view { get; }
+        private MainView view { get; }
 
-        public MainController(MainForm view)
+        public MainController(MainView view)
         {
             this.view = view;
             this.view.SetController(this);
@@ -19,7 +19,7 @@ namespace Finance.UI.Controllers
 
         public void OpenTransactionForm()
         {
-            var transactionView = new TransactionForm();
+            var transactionView = new TransactionView();
             var transactionController = new TransactionController(transactionView);
             transactionController.LoadView();
         }

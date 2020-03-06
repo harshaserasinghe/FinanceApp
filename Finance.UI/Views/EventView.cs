@@ -2,9 +2,9 @@
 
 namespace Finance.UI.Views
 {
-    public partial class ContactForm : Form
+    public partial class EventView : Form
     {
-        public ContactForm()
+        public EventView()
         {
             InitializeComponent();
         }
