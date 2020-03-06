@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Views\ContactForm.cs">
       <SubType>Form</SubType>

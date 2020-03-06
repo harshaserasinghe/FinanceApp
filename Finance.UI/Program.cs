@@ -1,4 +1,5 @@
-﻿using Finance.UI.Views;
+﻿using Finance.UI.Controllers;
+using Finance.UI.Views;
 using System;
 using System.Windows.Forms;
 
@@ -14,7 +15,10 @@ namespace Finance.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            var mainView = new MainForm();
+            var mainController = new MainController(mainView);
+            mainController.LoadView();
+            Application.Run();
         }
     }
 }

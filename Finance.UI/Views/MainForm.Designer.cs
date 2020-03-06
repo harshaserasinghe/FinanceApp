@@ -41,7 +41,7 @@
             this.btnTransaction.TabIndex = 0;
             this.btnTransaction.Text = "Transactions";
             this.btnTransaction.UseVisualStyleBackColor = true;
-            this.btnTransaction.Click += new System.EventHandler(this.OpenTransactionForm);
+            this.btnTransaction.Click += new System.EventHandler(this.btnClickOpenTransactionForm);
             // 
             // btnContact
             // 
@@ -51,7 +51,7 @@
             this.btnContact.TabIndex = 1;
             this.btnContact.Text = "Contacts";
             this.btnContact.UseVisualStyleBackColor = true;
-            this.btnContact.Click += new System.EventHandler(this.OpenContactForm);
+            this.btnContact.Click += new System.EventHandler(this.btnClickOpenContactForm);
             // 
             // btnEvent
             // 
@@ -61,7 +61,7 @@
             this.btnEvent.TabIndex = 2;
             this.btnEvent.Text = "Events";
             this.btnEvent.UseVisualStyleBackColor = true;
-            this.btnEvent.Click += new System.EventHandler(this.OpenEvenForm);
+            this.btnEvent.Click += new System.EventHandler(this.btnClickOpenEvenForm);
             // 
             // MainForm
             // 
