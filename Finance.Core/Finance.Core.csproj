@@ -58,6 +58,7 @@
     <Compile Include="Entities\RecurringTransaction.cs" />
     <Compile Include="Entities\Transaction.cs" />
     <Compile Include="Entities\TranType.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Mappers\EntityMappingConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

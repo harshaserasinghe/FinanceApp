@@ -19,6 +19,9 @@ namespace Finance.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+                .HasKey(u => u.UserId);
+
             modelBuilder.Entity<Transaction>()
                 .HasKey(t => t.TranId)
                 .Property(t => t.TranRecId).IsOptional();
@@ -36,6 +39,11 @@ namespace Finance.Data
             modelBuilder.Entity<RecurringEvent>()
             .HasKey(re => re.EventRecId);
 
+            modelBuilder.Entity<Contact>()
+               .HasRequired(t => t.User)
+               .WithMany(u => u.Contacts)
+               .HasForeignKey(t => t.UserId);
+
             modelBuilder.Entity<Transaction>()
                 .HasRequired(t => t.Contact)
                 .WithMany(c => c.Transactions)
@@ -46,10 +54,20 @@ namespace Finance.Data
                 .WithMany(rt => rt.Transactions)
                 .HasForeignKey(t => t.TranRecId);
 
+            modelBuilder.Entity<Transaction>()
+                .HasRequired(t => t.User)
+                .WithMany(u => u.Transactions)
+                .HasForeignKey(t => t.UserId);
+
             modelBuilder.Entity<Event>()
                 .HasOptional(e => e.RecurringEvent)
                 .WithMany(re => re.Events)
                 .HasForeignKey(e => e.EventRecId);
+
+            modelBuilder.Entity<Event>()
+               .HasRequired(t => t.User)
+               .WithMany(u => u.Events)
+               .HasForeignKey(t => t.UserId);
         }
     }
 }

@@ -16,9 +16,11 @@ namespace Finance.Core.Entities
         public decimal Amount { get; set; }
         public bool IsActive { get; set; }
         public bool IsRecurring { get; set; }
+        public int UserId { get; set; }
         public int ContactId { get; set; }
         public int? TranRecId { get; set; }
         public Contact Contact { get; set; }
         public RecurringTransaction RecurringTransaction { get; set; }
+        public User User { get; set; }
     }
 }
