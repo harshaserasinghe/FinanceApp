@@ -13,5 +13,6 @@ namespace Finance.Core.DTOs
         public int ContactId { get; set; }
         public bool IsRecurring { get; set; }
         public Frequency Frequency { get; set; }
+        public int UserId { get; set; }
     }
 }

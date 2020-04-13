@@ -16,6 +16,7 @@ namespace Finance.Data
         public DbSet<Event> Events { get; set; }
         public DbSet<RecurringTransaction> RecurringTransactions { get; set; }
         public DbSet<RecurringEvent> RecurringEvents { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

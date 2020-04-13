@@ -51,6 +51,7 @@
     <Compile Include="DTOs\TransactionDTO.cs" />
     <Compile Include="DTOs\UpdateContactDTO.cs" />
     <Compile Include="DTOs\UpdateTransactionDTO.cs" />
+    <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="Entities\Contact.cs" />
     <Compile Include="Entities\Event.cs" />
     <Compile Include="Entities\Frequency.cs" />

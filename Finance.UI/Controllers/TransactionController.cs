@@ -11,12 +11,19 @@ namespace Finance.UI.Controllers
         private TransactionView view { get; set; }
         private ContactService contactService { get; }
         private TransactionService transactionService { get; }
+
+        private readonly UserService userService;
+
+        private readonly UserDTO loggedUser;
+
         public TransactionController(TransactionView view)
         {
             this.view = view;
             this.view.SetController(this);
             contactService = new ContactService();
             transactionService = new TransactionService();
+            userService = new UserService();
+            loggedUser = userService.GetUser(Environment.UserName);
         }
 
         public void LoadView()
@@ -43,6 +50,7 @@ namespace Finance.UI.Controllers
                 Amount = Decimal.Parse(this.view.Amount.Text),
                 IsRecurring = this.view.IsRecurring.Checked,
                 Frequency = (Frequency)Enum.Parse(typeof(Frequency), this.view.Frequency.SelectedValue.ToString()),
+                UserId = loggedUser.UserId
             };
 
             transactionService.AddTransaction(CreateTranDTO);

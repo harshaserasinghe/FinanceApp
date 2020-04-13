@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Finance.Service
 {
-    public class ContactService : IContactService
+    public class ContactService
     {
         private FinanceDbContext FinanaceDbContext { get; set; }
         private IMapper Mapper { get; set; }

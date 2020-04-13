@@ -6,7 +6,6 @@ namespace Finance.UI.Views
     public partial class MainView : Form
     {
         private MainController controller { get; set; }
-
         public MainView()
         {
             InitializeComponent();
@@ -19,7 +18,7 @@ namespace Finance.UI.Views
 
         private void btnClickOpenTransactionForm(object sender, System.EventArgs e)
         {
-            this.controller.OpenTransactionForm();            
+            this.controller.OpenTransactionForm();
         }
 
         private void btnClickOpenContactForm(object sender, System.EventArgs e)

@@ -27,6 +27,8 @@ namespace Finance.Core.Mappers
 
                 cfg.CreateMap<CreateContactDTO, Contact>();
                 cfg.CreateMap<UpdateContactDTO, Contact>();
+
+                cfg.CreateMap<User, UserDTO>();
             });
         }
     }

@@ -55,7 +55,7 @@ namespace Finance.UI.Views
         }
 
         public TransactionView()
-        {
+        {            
             InitializeComponent();
         }
 

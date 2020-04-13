@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace Finance.Service
 {
-    public class TransactionService : ITransactionService
+    public class TransactionService
     {
         private FinanceDbContext FinanaceDbContext { get; set; }
         private IMapper Mapper { get; set; }
@@ -21,12 +21,12 @@ namespace Finance.Service
             Mapper = new Mapper(new EntityMappingConfig().mapperConfig);
         }
 
-        public TransactionDTO GetTransaction(int transactionId)
+        public TransactionDTO GetTransaction(int transactionId, int userId)
         {
             var transaction = FinanaceDbContext.Transactions
                 .Include(t => t.Contact)
                 .Include(t => t.RecurringTransaction)
-                .FirstOrDefault(t => t.TranId == transactionId);
+                .FirstOrDefault(t => t.TranId == transactionId && t.UserId == userId);
 
             if (transaction == null)
             {
@@ -37,7 +37,7 @@ namespace Finance.Service
             return tranDTO;
         }
 
-        public List<TransactionDTO> GetTransactionsByDate(TranType tranType, DateTime fromDate, DateTime toDate)
+        public List<TransactionDTO> GetTransactionsByDate(int userId, TranType tranType, DateTime fromDate, DateTime toDate)
         {
             var transactionQuery = FinanaceDbContext.Transactions
                 .Include(t => t.Contact)
@@ -50,8 +50,9 @@ namespace Finance.Service
             }
 
             transactionQuery.Where(t => t.IsActive &&
-                DbFunctions.TruncateTime(t.TranDate) >= DbFunctions.TruncateTime(fromDate)
-                && DbFunctions.TruncateTime(t.TranDate) <= DbFunctions.TruncateTime(toDate)).AsQueryable();
+                t.UserId == userId &&
+                DbFunctions.TruncateTime(t.TranDate) >= DbFunctions.TruncateTime(fromDate) &&
+                DbFunctions.TruncateTime(t.TranDate) <= DbFunctions.TruncateTime(toDate)).AsQueryable();
 
             var transactions = transactionQuery.OrderBy(t => t.TranDate).ToList();
 
