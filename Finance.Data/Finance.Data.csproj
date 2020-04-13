@@ -60,9 +60,9 @@
     <Compile Include="Migrations\202002280337378_updateEntities.designer.cs">
       <DependentUpon>202002280337378_updateEntities.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004130613133_AddUser.cs" />
-    <Compile Include="Migrations\202004130613133_AddUser.designer.cs">
-      <DependentUpon>202004130613133_AddUser.cs</DependentUpon>
+    <Compile Include="Migrations\202004130758148_AddUser.cs" />
+    <Compile Include="Migrations\202004130758148_AddUser.designer.cs">
+      <DependentUpon>202004130758148_AddUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,8 +84,8 @@
     <EmbeddedResource Include="Migrations\202002280337378_updateEntities.resx">
       <DependentUpon>202002280337378_updateEntities.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004130613133_AddUser.resx">
-      <DependentUpon>202004130613133_AddUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004130758148_AddUser.resx">
+      <DependentUpon>202004130758148_AddUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

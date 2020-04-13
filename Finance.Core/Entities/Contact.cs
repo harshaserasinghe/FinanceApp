@@ -13,8 +13,6 @@ namespace Finance.Core.Entities
         public int ContactId { get; set; }
         public string Name { get; set; }
         public bool IsActive { get; set; }
-        public int UserId { get; set; }
-        public User User { get; set; }
 
         public ICollection<Transaction> Transactions { get; private set; }
     }
