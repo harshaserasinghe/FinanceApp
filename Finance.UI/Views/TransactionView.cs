@@ -9,8 +9,8 @@ namespace Finance.UI.Views
 
         public TextBox TranName
         {
-            get { return this.txbTranName; }
-            set { this.txbTranName = value; }
+            get { return this.txbTranManager; }
+            set { this.txbTranManager = value; }
         }
 
         public RichTextBox Description
@@ -21,8 +21,8 @@ namespace Finance.UI.Views
 
         public ComboBox TranType
         {
-            get { return this.cmbTranType; }
-            set { this.cmbTranType = value; }
+            get { return this.cmbTranTypeManage; }
+            set { this.cmbTranTypeManage = value; }
         }
 
         public DateTimePicker TranDate
@@ -55,13 +55,30 @@ namespace Finance.UI.Views
         }
 
         public TransactionView()
-        {            
+        {
             InitializeComponent();
         }
 
-        private void btnClickAddTransaction(object sender, System.EventArgs e)
+        public ComboBox TranTypeSearch
         {
-            this.controller.AddTransaction();
+            get { return this.cmbTranTypeManage; }
+            set { this.cmbTranTypeManage = value; }
+        }
+        public DateTimePicker FromDate
+        {
+            get { return this.dtpFromDate; }
+            set { this.dtpFromDate = value; }
+        }
+        public DateTimePicker ToDate
+        {
+            get { return this.dtpToDate; }
+            set { this.dtpToDate = value; }
+        }
+
+        public DataGridView TranView
+        {
+            get { return this.dgvTran; }
+            set { this.dgvTran = value; }
         }
 
         public void SetController(TransactionController controller)
@@ -72,6 +89,23 @@ namespace Finance.UI.Views
         public void ShowMessage(string msg)
         {
             MessageBox.Show(msg);
+        }
+
+        private void btnClickGetTran(object sender, System.EventArgs e)
+        {
+            this.controller.GetTransaction();
+        }
+        private void btnClickDeleteTran(object sender, System.EventArgs e)
+        {
+            this.controller.AddTransaction();
+        }
+        private void btnClickUpdateTran(object sender, System.EventArgs e)
+        {
+            this.controller.UpdateTransaction();
+        }
+        private void btnClickTranDelete(object sender, System.EventArgs e)
+        {
+            this.controller.DeleteTransaction();
         }
     }
 }
