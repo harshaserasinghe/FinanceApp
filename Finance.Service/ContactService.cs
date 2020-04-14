@@ -20,38 +20,38 @@ namespace Finance.Service
             Mapper = new Mapper(new EntityMappingConfig().mapperConfig);
         }
 
-        public ContactDTO GetContact(int contactId)
+        public ContactDto GetContact(int contactId)
         {
             var contact = FinanaceDbContext.Contacts.Find(contactId);
-            var contactDTO = Mapper.Map<ContactDTO>(contact);
+            var contactDTO = Mapper.Map<ContactDto>(contact);
             return contactDTO;
         }
 
-        public List<ContactDTO> GetContacts()
+        public List<ContactDto> GetContacts()
         {
             var contacts = FinanaceDbContext.Contacts.Where(c => c.IsActive).ToList();
-            var contactDTOs = Mapper.Map<List<ContactDTO>>(contacts);
+            var contactDTOs = Mapper.Map<List<ContactDto>>(contacts);
             return contactDTOs;
         }
 
-        public List<ContactDTO> GetContactsByName(string name)
+        public List<ContactDto> GetContactsByName(string name)
         {
             var contacts = FinanaceDbContext.Contacts
                 .Where(c => c.IsActive && c.Name.Contains(name))
                 .OrderBy(c => c.Name)
                 .ToList();
-            var contactDTOs = Mapper.Map<List<ContactDTO>>(contacts);
+            var contactDTOs = Mapper.Map<List<ContactDto>>(contacts);
             return contactDTOs;
         }
 
-        public void AddContact(CreateContactDTO createContactDTO)
+        public void AddContact(CreateContactDto createContactDTO)
         {
             var contact = Mapper.Map<Contact>(createContactDTO);
             FinanaceDbContext.Contacts.Add(contact);
             FinanaceDbContext.SaveChanges();
         }
 
-        public void UpdateContact(int contactId, UpdateContactDTO updateContactDTO)
+        public void UpdateContact(int contactId, UpdateContactDto updateContactDTO)
         {
             var contact = FinanaceDbContext.Contacts.Find(contactId);
             Mapper.Map(updateContactDTO, contact);

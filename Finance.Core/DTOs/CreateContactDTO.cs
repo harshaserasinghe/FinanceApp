@@ -1,6 +1,6 @@
 ﻿namespace Finance.Core.DTOs
 {
-    public class CreateContactDTO
+    public class CreateContactDto
     {
         public string Name { get; set; }
     }

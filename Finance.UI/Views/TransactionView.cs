@@ -5,80 +5,11 @@ namespace Finance.UI.Views
 {
     public partial class TransactionView : Form
     {
-        private TransactionController controller { get; set; }
-
-        public TextBox TranName
-        {
-            get { return this.txbTranManager; }
-            set { this.txbTranManager = value; }
-        }
-
-        public RichTextBox Description
-        {
-            get { return this.txbDescription; }
-            set { this.txbDescription = value; }
-        }
-
-        public ComboBox TranType
-        {
-            get { return this.cmbTranTypeManage; }
-            set { this.cmbTranTypeManage = value; }
-        }
-
-        public DateTimePicker TranDate
-        {
-            get { return this.dtpTranDate; }
-            set { this.dtpTranDate = value; }
-        }
-
-        public TextBox Amount
-        {
-            get { return this.txbAmount; }
-            set { this.txbAmount = value; }
-        }
-
-        public ComboBox Contact
-        {
-            get { return this.cmbContact; }
-            set { this.cmbContact = value; }
-        }
-
-        public CheckBox IsRecurring
-        {
-            get { return this.chbIsRecurring; }
-            set { this.chbIsRecurring = value; }
-        }
-        public ComboBox Frequency
-        {
-            get { return this.cmbFrequency; }
-            set { this.cmbFrequency = value; }
-        }
+        private TransactionController controller;
 
         public TransactionView()
         {
             InitializeComponent();
-        }
-
-        public ComboBox TranTypeSearch
-        {
-            get { return this.cmbTranTypeManage; }
-            set { this.cmbTranTypeManage = value; }
-        }
-        public DateTimePicker FromDate
-        {
-            get { return this.dtpFromDate; }
-            set { this.dtpFromDate = value; }
-        }
-        public DateTimePicker ToDate
-        {
-            get { return this.dtpToDate; }
-            set { this.dtpToDate = value; }
-        }
-
-        public DataGridView TranView
-        {
-            get { return this.dgvTran; }
-            set { this.dgvTran = value; }
         }
 
         public void SetController(TransactionController controller)
@@ -86,26 +17,120 @@ namespace Finance.UI.Views
             this.controller = controller;
         }
 
+        public TextBox Name1
+        {
+            get { return txbName; }
+            set { txbName = value; }
+        }
+
+        public RichTextBox Description
+        {
+            get { return txbDescription; }
+            set { txbDescription = value; }
+        }
+
+        public ComboBox TranTypeManage
+        {
+            get { return cmbTranTypeManage; }
+            set { cmbTranTypeManage = value; }
+        }
+
+        public DateTimePicker TranDate
+        {
+            get { return dtpTranDate; }
+            set { dtpTranDate = value; }
+        }
+
+        public TextBox Amount
+        {
+            get { return txbAmount; }
+            set { txbAmount = value; }
+        }
+
+        public ComboBox Contact
+        {
+            get { return cmbContact; }
+            set { cmbContact = value; }
+        }
+
+        public CheckBox IsRecurring
+        {
+            get { return chbIsRecurring; }
+            set { chbIsRecurring = value; }
+        }
+        public ComboBox Frequency
+        {
+            get { return cmbFrequency; }
+            set { cmbFrequency = value; }
+        }
+
+        public Panel RecSection
+        {
+            get { return panRecSection; }
+            set { panRecSection = value; }
+        }
+
+
+        public ComboBox TranTypeSearch
+        {
+            get { return cmbTranTypeSearch; }
+            set { cmbTranTypeSearch = value; }
+        }
+        public DateTimePicker FromDate
+        {
+            get { return dtpFromDate; }
+            set { dtpFromDate = value; }
+        }
+        public DateTimePicker ToDate
+        {
+            get { return dtpToDate; }
+            set { dtpToDate = value; }
+        }
+
+        public DataGridView TranTable
+        {
+            get { return dgvTranTable; }
+            set { dgvTranTable = value; }
+        }
+
         public void ShowMessage(string msg)
         {
             MessageBox.Show(msg);
         }
 
-        private void btnClickGetTran(object sender, System.EventArgs e)
+        private void btnSearchClick(object sender, System.EventArgs e)
         {
-            this.controller.GetTransaction();
+            controller.GetTrans();
         }
-        private void btnClickDeleteTran(object sender, System.EventArgs e)
+        private void btnCreateClick(object sender, System.EventArgs e)
         {
-            this.controller.AddTransaction();
+            controller.AddTran();
         }
-        private void btnClickUpdateTran(object sender, System.EventArgs e)
+        private void btnUpdateClick(object sender, System.EventArgs e)
         {
-            this.controller.UpdateTransaction();
+            controller.UpdateTran();
         }
-        private void btnClickTranDelete(object sender, System.EventArgs e)
+        private void btnDeleteClick(object sender, System.EventArgs e)
         {
-            this.controller.DeleteTransaction();
+            controller.DeleteTran();
+        }
+       
+        private void dgvTranListSelectionChange(object sender, System.EventArgs e)
+        {
+            controller.SetSelectedTran();
+        }
+
+        private void chbIsRecurringCheckedChanged(object sender, System.EventArgs e)
+        {
+            controller.IsReCurringTran();
+        }
+        private void btnClearTableClick(object sender, System.EventArgs e)
+        {
+            controller.ClearTable();
+        }
+        private void btnClearFromClick(object sender, System.EventArgs e)
+        {
+            controller.ClearForm();
         }
     }
 }

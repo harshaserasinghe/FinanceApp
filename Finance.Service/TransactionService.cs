@@ -12,86 +12,102 @@ namespace Finance.Service
 {
     public class TransactionService
     {
-        private FinanceDbContext FinanaceDbContext { get; set; }
-        private IMapper Mapper { get; set; }
+        public FinanceDbContext finanaceDbContext { get; }
+        public Mapper mapper { get; }
 
         public TransactionService()
         {
-            FinanaceDbContext = new FinanceDbContext();
-            Mapper = new Mapper(new EntityMappingConfig().mapperConfig);
+            finanaceDbContext = new FinanceDbContext();
+            mapper = new Mapper(new EntityMappingConfig().mapperConfig);
         }
 
-        public TransactionDTO GetTransaction(int transactionId, int userId)
+        public TransactionDTO GetTransaction(int tranId, int userId)
         {
-            var transaction = FinanaceDbContext.Transactions
+            var tran = finanaceDbContext.Transactions
                 .Include(t => t.Contact)
                 .Include(t => t.RecurringTransaction)
-                .FirstOrDefault(t => t.TranId == transactionId && t.UserId == userId);
+                .FirstOrDefault(t => t.TranId == tranId && t.UserId == userId);
 
-            if (transaction == null)
+            if (tran == null)
             {
                 return new TransactionDTO();
             }
 
-            var tranDTO = Mapper.Map<TransactionDTO>(transaction);
-            return tranDTO;
+            var tranDto = mapper.Map<TransactionDTO>(tran);
+            return tranDto;
         }
 
         public List<TransactionDTO> GetTransactionsByDate(int userId, TranType tranType, DateTime fromDate, DateTime toDate)
         {
-            var transactionQuery = FinanaceDbContext.Transactions
+            var tranQuery = finanaceDbContext.Transactions
                 .Include(t => t.Contact)
                 .Include(t => t.RecurringTransaction)
                 .AsQueryable();
 
-            if (TranType.Credit == tranType || TranType.Debet == tranType)
+            if (TranType.All != tranType)
             {
-                transactionQuery.Where(t => t.TranType == tranType).AsQueryable();
+                tranQuery = tranQuery.Where(t => t.TranType == tranType).AsQueryable();
             }
 
-            transactionQuery.Where(t => t.IsActive &&
+            tranQuery = tranQuery.Where(t => t.IsActive &&
                 t.UserId == userId &&
                 DbFunctions.TruncateTime(t.TranDate) >= DbFunctions.TruncateTime(fromDate) &&
                 DbFunctions.TruncateTime(t.TranDate) <= DbFunctions.TruncateTime(toDate)).AsQueryable();
 
-            var transactions = transactionQuery.OrderBy(t => t.TranDate).ToList();
+            var trans = tranQuery.OrderBy(t => t.TranDate).ToList();
 
-            if (transactions == null)
+            if (trans == null)
             {
                 return new List<TransactionDTO>();
             }
 
-            var transactionDTOs = Mapper.Map<List<TransactionDTO>>(transactions);
-            return transactionDTOs;
+            var tranDtos = mapper.Map<List<TransactionDTO>>(trans);
+            return tranDtos;
         }
 
-        public void AddTransaction(CreateTransactionDTO createTransactionDTO)
+        public void AddTransaction(CreateTransactionDto createTranDto)
         {
-            var transaction = Mapper.Map<Transaction>(createTransactionDTO);
+            var tran = mapper.Map<Transaction>(createTranDto);
 
-            if (createTransactionDTO.IsRecurring)
+            if (createTranDto.IsRecurring)
             {
-                var recurringTransaction = Mapper.Map<RecurringTransaction>(createTransactionDTO);
-                FinanaceDbContext.RecurringTransactions.Add(recurringTransaction);
-                transaction.RecurringTransaction = recurringTransaction;
+                var recTran = mapper.Map<RecurringTransaction>(createTranDto);
+                finanaceDbContext.RecurringTransactions.Add(recTran);
+                tran.RecurringTransaction = recTran;
             }
 
-            FinanaceDbContext.Transactions.Add(transaction);
-            FinanaceDbContext.SaveChanges();
+            finanaceDbContext.Transactions.Add(tran);
+            finanaceDbContext.SaveChanges();
         }
 
-        public void UpdateTransaction(int transactionId, UpdateTransactionDTO updateTransactionDTO)
+        public void UpdateTransaction(UpdateTransactionDto updateTranDto)
         {
-            var transaction = FinanaceDbContext.Transactions.Find(transactionId);
-            Mapper.Map(updateTransactionDTO, transaction);
-            FinanaceDbContext.Entry(transaction).State = EntityState.Modified;
-            FinanaceDbContext.SaveChanges();
+            var tran = finanaceDbContext.Transactions.Find(updateTranDto.TranId);
+            mapper.Map(updateTranDto, tran);
+
+            if (updateTranDto.IsRecurring)
+            {
+                var recTran = finanaceDbContext.RecurringTransactions.Find(updateTranDto.TranRecId);
+                mapper.Map(updateTranDto, recTran);
+                finanaceDbContext.Entry(recTran).State = EntityState.Modified;
+            }
+
+            finanaceDbContext.Entry(tran).State = EntityState.Modified;
+            finanaceDbContext.SaveChanges();
         }
 
-        public List<RecurringTransactionDTO> GetRecurringTransactions()
+        public void DeleteTran(int tranId)
         {
-            var recurringTransactions = FinanaceDbContext.RecurringTransactions
-                .Where(rt => rt.IsActive).Select(rt => new RecurringTransactionDTO
+            var tran = finanaceDbContext.Transactions.Find(tranId);
+            finanaceDbContext.Transactions.Remove(tran);
+            finanaceDbContext.SaveChanges();
+        }
+
+
+        public List<RecurringTransactionDto> GetRecurringTransactions()
+        {
+            var recurringTransactions = finanaceDbContext.RecurringTransactions
+                .Where(rt => rt.IsActive).Select(rt => new RecurringTransactionDto
                 {
                     TranRecId = rt.TranRecId,
                     Frequency = rt.Frequency,
@@ -102,7 +118,7 @@ namespace Finance.Service
             return recurringTransactions;
         }
 
-        public void HandleRecurringTransactions(List<RecurringTransactionDTO> recurringTransactionDTOs)
+        public void HandleRecurringTransactions(List<RecurringTransactionDto> recurringTransactionDTOs)
         {
             DateTime currentDate = new DateTime(2020, 04, 01);
             var monthStartDate = new DateTime(currentDate.Year, currentDate.Month, 1);
@@ -133,7 +149,7 @@ namespace Finance.Service
             }
         }
 
-        private void AddTracsaction(RecurringTransactionDTO recurringTransaction)
+        private void AddTracsaction(RecurringTransactionDto recurringTransaction)
         {
             var transaction = new Transaction();
             transaction.Name = recurringTransaction.Transaction.Name;
@@ -144,20 +160,20 @@ namespace Finance.Service
             transaction.IsRecurring = true;
             transaction.ContactId = recurringTransaction.Transaction.ContactId;
             transaction.TranRecId = recurringTransaction.TranRecId;
-            FinanaceDbContext.Transactions.Add(transaction);
-            FinanaceDbContext.SaveChanges();
+            finanaceDbContext.Transactions.Add(transaction);
+            finanaceDbContext.SaveChanges();
         }
 
-        private bool HasDaliy(RecurringTransactionDTO recurringTransaction, DateTime currentDate)
+        private bool HasDaliy(RecurringTransactionDto recurringTransaction, DateTime currentDate)
         {
-            return FinanaceDbContext.Transactions
+            return finanaceDbContext.Transactions
                 .Any(t => t.TranRecId == recurringTransaction.TranRecId &&
                 DbFunctions.TruncateTime(t.TranDate) == DbFunctions.TruncateTime(currentDate));
         }
 
-        private bool HasMonthly(RecurringTransactionDTO recurringTransaction, DateTime monthStartDate, DateTime monthEndDate)
+        private bool HasMonthly(RecurringTransactionDto recurringTransaction, DateTime monthStartDate, DateTime monthEndDate)
         {
-            return FinanaceDbContext.Transactions
+            return finanaceDbContext.Transactions
                 .Any(t => t.TranRecId == recurringTransaction.TranRecId &&
                 DbFunctions.TruncateTime(t.TranDate) >= DbFunctions.TruncateTime(monthStartDate) &&
                 DbFunctions.TruncateTime(t.TranDate) <= DbFunctions.TruncateTime(monthEndDate));

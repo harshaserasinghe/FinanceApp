@@ -3,7 +3,7 @@ using System;
 
 namespace Finance.Core.DTOs
 {
-    public class CreateTransactionDTO
+    public class CreateTransactionDto
     {
         public string Name { get; set; }
         public string Description { get; set; }

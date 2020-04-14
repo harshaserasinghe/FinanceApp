@@ -4,111 +4,187 @@ using Finance.Service;
 using Finance.UI.Views;
 using System;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace Finance.UI.Controllers
 {
     public class TransactionController
     {
-        private TransactionView view { get; set; }
-        private ContactService contactService { get; }
-        private TransactionService transactionService { get; }
-
+        private readonly TransactionView view;
+        private readonly ContactService contService;
+        private readonly TransactionService tranService;
         private readonly UserService userService;
+        private readonly UserDto loggedUser;
 
-        private readonly UserDTO loggedUser;
+        public TransactionDTO SelectedTranDto { get; set; }
 
         public TransactionController(TransactionView view)
         {
             this.view = view;
             this.view.SetController(this);
-            contactService = new ContactService();
-            transactionService = new TransactionService();
+            contService = new ContactService();
+            tranService = new TransactionService();
             userService = new UserService();
             loggedUser = userService.GetUser(Environment.UserName);
         }
 
-        public void LoadView()
+        public void Init()
         {
-            this.view.Contact.DataSource = contactService.GetContacts();
-            this.view.Contact.DisplayMember = nameof(ContactDTO.Name);
-            this.view.Contact.ValueMember = nameof(ContactDTO.ContactId);
+            view.Contact.DataSource = contService.GetContacts();
+            view.Contact.DisplayMember = nameof(ContactDto.Name);
+            view.Contact.ValueMember = nameof(ContactDto.ContactId);
+            view.TranTypeManage.DataSource = Enum.GetValues(typeof(TranType));
+            view.TranTypeSearch.DataSource = Enum.GetValues(typeof(TranType));
+            view.Frequency.DataSource = Enum.GetValues(typeof(Frequency));
 
-            this.view.TranType.DataSource = Enum.GetValues(typeof(TranType));
-            this.view.TranTypeSearch.DataSource = Enum.GetValues(typeof(TranType));
-            this.view.Frequency.DataSource = Enum.GetValues(typeof(Frequency));
+            view.TranTable.AutoGenerateColumns = false;
+            view.TranTable.AutoSize = true;
+            view.TranTable.MultiSelect = false;
+            view.TranTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            this.view.TranView.AutoGenerateColumns = false;
-            this.view.TranView.AutoSize = true;
-            //AddTexBoxColumn(nameof(TransactionDTO.TranId), "Id", true);
-            //AddTexBoxColumn(nameof(TransactionDTO.Name), "Name", false);
-            //AddComboBoxColumn(nameof(TransactionDTO.TranType), "Type", typeof(TranType), false);
-            //AddTexBoxColumn(nameof(TransactionDTO.TranDate), "Date", false);
-            //AddTexBoxColumn(nameof(TransactionDTO.Amount), "Amount", false);
-            //AddCheckBoxColumn(nameof(TransactionDTO.IsRecurring), "Recurring", false);
-            //AddTexBoxColumn(nameof(TransactionDTO.ContactName), "Contact", false);
-            //AddComboBoxColumn(nameof(CreateTransactionDTO.Frequency), "Occurrence", typeof(Frequency), false);
-
-            this.view.Show();
+            AddTexBoxColumn(nameof(TransactionDTO.TranId), "Id", true, false);
+            AddTexBoxColumn(nameof(TransactionDTO.Name), "Name", true, true);
+            AddTexBoxColumn(nameof(TransactionDTO.Description), "Description", true, true);
+            AddTexBoxColumn(nameof(TransactionDTO.ContactId), "ContactId", true, false);
+            AddTexBoxColumn(nameof(TransactionDTO.ContactName), "Contact", true, true);
+            AddTexBoxColumn(nameof(TransactionDTO.TranType), "Type", true, true);
+            AddTexBoxColumn(nameof(TransactionDTO.TranDate), "Date", true, true);
+            AddTexBoxColumn(nameof(TransactionDTO.Amount), "Amount", true, true);
+            AddTexBoxColumn(nameof(TransactionDTO.IsRecurring), "Recurring", true, true);
+            AddTexBoxColumn(nameof(TransactionDTO.TranRecId), "TranRecId", true, false);
+            AddTexBoxColumn(nameof(TransactionDTO.Frequency), "Occurrence", true, true);
+            IsReCurringTran();
         }
 
-        public void AddTransaction()
+        public void Show()
         {
-            var CreateTranDTO = new CreateTransactionDTO
+            view.Show();
+        }
+
+        public void AddTran()
+        {
+            var createTranDto = new CreateTransactionDto
             {
-                Name = this.view.TranName.Text,
-                Description = this.view.Description.Text,
-                TranType = (TranType)Enum.Parse(typeof(TranType), this.view.TranType.SelectedValue.ToString()),
-                TranDate = this.view.TranDate.Value,
-                ContactId = Int32.Parse(this.view.Contact.SelectedValue.ToString()),
-                Amount = Decimal.Parse(this.view.Amount.Text),
-                IsRecurring = this.view.IsRecurring.Checked,
-                Frequency = (Frequency)Enum.Parse(typeof(Frequency), this.view.Frequency.SelectedValue.ToString()),
+                Name = view.Name1.Text,
+                Description = view.Description.Text,
+                TranType = (TranType)Enum.Parse(typeof(TranType), view.TranTypeManage.SelectedValue.ToString()),
+                TranDate = view.TranDate.Value,
+                ContactId = Int32.Parse(view.Contact.SelectedValue.ToString()),
+                Amount = Decimal.Parse(view.Amount.Text),
+                IsRecurring = view.IsRecurring.Checked,
+                Frequency = (Frequency)Enum.Parse(typeof(Frequency), view.Frequency.SelectedValue.ToString()),
                 UserId = loggedUser.UserId
             };
 
-            transactionService.AddTransaction(CreateTranDTO);
-            RestFormFields();
-            this.view.ShowMessage("Transaction successfully added.");
+            tranService.AddTransaction(createTranDto);
+            GetTrans();
+            ClearForm();
+            view.ShowMessage("Transaction successfully added.");
         }
 
-        public void DeleteTransaction()
+        public void UpdateTran()
         {
-            throw new NotImplementedException();
+            var updateTranDto = new UpdateTransactionDto
+            {
+                TranId = SelectedTranDto.TranId,
+                Name = view.Name1.Text,
+                Description = view.Description.Text,
+                TranType = (TranType)Enum.Parse(typeof(TranType), view.TranTypeManage.SelectedValue.ToString()),
+                TranDate = view.TranDate.Value,
+                ContactId = Int32.Parse(view.Contact.SelectedValue.ToString()),
+                Amount = Decimal.Parse(view.Amount.Text),
+                IsRecurring = view.IsRecurring.Checked,
+                TranRecId = SelectedTranDto.TranRecId,
+                Frequency = (Frequency)Enum.Parse(typeof(Frequency), view.Frequency.SelectedValue.ToString()),
+            };
+
+            tranService.UpdateTransaction(updateTranDto);
+            GetTrans();
+            ClearForm();
+            view.ShowMessage("Transaction successfully updated.");
         }
 
-        public void UpdateTransaction()
+        public void GetTrans()
         {
-            var row = this.view.TranView.SelectedRows;
-        }
-
-        public void GetTransaction()
-        {
-            var tranDtos = transactionService.GetTransactionsByDate(loggedUser.UserId,
-                (TranType)Enum.Parse(typeof(TranType), this.view.TranTypeSearch.SelectedValue.ToString()),
-                this.view.FromDate.Value, this.view.ToDate.Value);
+            var tranDtos = tranService.GetTransactionsByDate(loggedUser.UserId,
+                (TranType)Enum.Parse(typeof(TranType), view.TranTypeSearch.SelectedValue.ToString()),
+                view.FromDate.Value, view.ToDate.Value);
             var bindingSource = new BindingSource(tranDtos, null);
-            this.view.TranView.DataSource = bindingSource;
+            view.TranTable.DataSource = bindingSource;
+            ClearForm();
         }
 
-        private void RestFormFields()
+        public void DeleteTran()
         {
-            this.view.TranName.Clear();
-            this.view.Description.Clear();
-            this.view.TranType.SelectedIndex = 0;
-            this.view.TranDate.Value = DateTime.Now;
-            this.view.Contact.SelectedIndex = 0;
-            this.view.Amount.Clear();
-            this.view.IsRecurring.Checked = false;
-            this.view.Frequency.SelectedIndex = 0;
+            var tranId = SelectedTranDto.TranId;
+            tranService.DeleteTran(tranId);
+            GetTrans();
+            ClearForm();
+            view.ShowMessage("Transaction successfully Deleted.");
         }
 
-        private void AddTexBoxColumn(string propName, string colName, bool isReadOnly)
+        private void RefreshTable()
+        {
+            var tranDtos = (view.TranTable.DataSource as BindingSource).List;
+            var bindingSource = new BindingSource(tranDtos, null);
+            view.TranTable.DataSource = bindingSource;
+        }
+
+        public void IsReCurringTran()
+        {
+            if (view.IsRecurring.Checked)
+                view.RecSection.Show();
+            else
+                view.RecSection.Hide();
+        }
+
+        public void SetSelectedTran()
+        {
+            if (view.TranTable.SelectedRows.Count < 1)
+                return;
+
+            SelectedTranDto = new TransactionDTO();
+            SelectedTranDto = view.TranTable.SelectedRows[0].DataBoundItem as TransactionDTO;
+            view.Name1.Text = SelectedTranDto.Name;
+            view.Description.Text = SelectedTranDto.Description;
+            view.TranTypeManage.SelectedItem = SelectedTranDto.TranType;
+            view.TranDate.Value = SelectedTranDto.TranDate;
+            view.Contact.SelectedValue = SelectedTranDto.ContactId;
+            view.Amount.Text = SelectedTranDto.Amount.ToString();
+            view.IsRecurring.Checked = SelectedTranDto.IsRecurring;
+
+            if (SelectedTranDto.IsRecurring)
+                view.Frequency.SelectedItem = SelectedTranDto.Frequency;
+        }
+
+        public void ClearTable()
+        {
+            view.TranTable.Rows.Clear();
+            view.TranTable.Refresh();
+        }
+
+
+        public void ClearForm()
+        {
+            SelectedTranDto = new TransactionDTO();
+            view.Name1.Clear();
+            view.Description.Clear();
+            view.TranTypeManage.SelectedIndex = 0;
+            view.TranDate.Value = DateTime.Now;
+            view.Contact.SelectedIndex = 0;
+            view.Amount.Clear();
+            view.IsRecurring.Checked = false;
+            view.Frequency.SelectedIndex = 0;
+        }
+
+        private void AddTexBoxColumn(string propName, string colName, bool isReadOnly, bool isVisible)
         {
             var col = new DataGridViewTextBoxColumn();
             col.DataPropertyName = propName;
             col.Name = colName;
             col.ReadOnly = isReadOnly;
-            this.view.TranView.Columns.Add(col);
+            col.Visible = isVisible;
+            view.TranTable.Columns.Add(col);
         }
 
         private void AddComboBoxColumn(string prop, string colName, Type enumType, bool isReadOnly)
@@ -118,7 +194,7 @@ namespace Finance.UI.Controllers
             col.DataPropertyName = prop;
             col.Name = colName;
             col.ReadOnly = isReadOnly;
-            this.view.TranView.Columns.Add(col);
+            view.TranTable.Columns.Add(col);
         }
 
         private void AddCheckBoxColumn(string prop, string colName, bool isReadOnly)
@@ -127,7 +203,7 @@ namespace Finance.UI.Controllers
             col.DataPropertyName = prop;
             col.Name = colName;
             col.ReadOnly = isReadOnly;
-            this.view.TranView.Columns.Add(col);
+            view.TranTable.Columns.Add(col);
         }
     }
 }

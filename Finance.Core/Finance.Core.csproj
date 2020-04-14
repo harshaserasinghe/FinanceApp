@@ -44,14 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTOs\ContactDTO.cs" />
-    <Compile Include="DTOs\CreateContactDTO.cs" />
-    <Compile Include="DTOs\CreateTransactionDTO.cs" />
-    <Compile Include="DTOs\RecurringTransactionDTO.cs" />
-    <Compile Include="DTOs\TransactionDTO.cs" />
-    <Compile Include="DTOs\UpdateContactDTO.cs" />
-    <Compile Include="DTOs\UpdateTransactionDTO.cs" />
-    <Compile Include="DTOs\UserDTO.cs" />
+    <Compile Include="DTOs\ContactDto.cs" />
+    <Compile Include="DTOs\CreateContactDto.cs" />
+    <Compile Include="DTOs\CreateTransactionDto.cs" />
+    <Compile Include="DTOs\RecurringTransactionDto.cs" />
+    <Compile Include="DTOs\TransactionDto.cs" />
+    <Compile Include="DTOs\UpdateContactDto.cs" />
+    <Compile Include="DTOs\UpdateTransactionDto.cs" />
+    <Compile Include="DTOs\UserDto.cs" />
     <Compile Include="Entities\Contact.cs" />
     <Compile Include="Entities\Event.cs" />
     <Compile Include="Entities\Frequency.cs" />

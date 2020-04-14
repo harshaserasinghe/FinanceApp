@@ -19,9 +19,10 @@ namespace Finance.UI.Controllers
 
         public void OpenTransactionForm()
         {
-            var transactionView = new TransactionView();
-            var transactionController = new TransactionController(transactionView);
-            transactionController.LoadView();
+            var tranView = new TransactionView();
+            var tranController = new TransactionController(tranView);
+            tranController.Init();
+            tranController.Show();
         }
     }
 }

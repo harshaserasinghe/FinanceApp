@@ -9,29 +9,28 @@ namespace Finance.Service
 {
     public class UserService
     {
-        private FinanceDbContext FinanaceDbContext { get; set; }
-        private IMapper Mapper { get; set; }
+        public FinanceDbContext finanaceDbContext { get; }
+        public Mapper mapper { get; }
 
         public UserService()
         {
-            FinanaceDbContext = new FinanceDbContext();
-            Mapper = new Mapper(new EntityMappingConfig().mapperConfig);
+            finanaceDbContext = new FinanceDbContext();
+            mapper = new Mapper(new EntityMappingConfig().mapperConfig);
         }
 
-        public UserDTO GetUser(string username)
+        public UserDto GetUser(string username)
         {
-            var user = FinanaceDbContext.Users.FirstOrDefault(u => u.Name == username);
+            var user = finanaceDbContext.Users.FirstOrDefault(u => u.Name == username);
 
             if (user == null)
             {
                 user = new User { Name = username };
-                FinanaceDbContext.Users.Add(user);
-                FinanaceDbContext.SaveChanges();
+                finanaceDbContext.Users.Add(user);
+                finanaceDbContext.SaveChanges();
             }
 
-            var userDto = Mapper.Map<UserDTO>(user);
+            var userDto = mapper.Map<UserDto>(user);
             return userDto;
         }
-
     }
 }

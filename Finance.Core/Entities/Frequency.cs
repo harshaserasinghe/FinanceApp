@@ -4,6 +4,7 @@
     {
         Daliy = 1,
         Monthly = 2,
-        Yearly = 3,
+        Weekly = 3,
+        Yearly = 4,
     }
 }

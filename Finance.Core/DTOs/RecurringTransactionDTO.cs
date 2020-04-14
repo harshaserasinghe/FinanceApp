@@ -2,7 +2,7 @@
 
 namespace Finance.Core.DTOs
 {
-    public class RecurringTransactionDTO
+    public class RecurringTransactionDto
     {
         public int TranRecId { get; set; }
         public Frequency Frequency { get; set; }
