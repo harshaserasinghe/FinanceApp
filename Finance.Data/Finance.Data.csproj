@@ -64,6 +64,10 @@
     <Compile Include="Migrations\202004130758148_AddUser.designer.cs">
       <DependentUpon>202004130758148_AddUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004141739225_updateContact.cs" />
+    <Compile Include="Migrations\202004141739225_updateContact.designer.cs">
+      <DependentUpon>202004141739225_updateContact.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -86,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004130758148_AddUser.resx">
       <DependentUpon>202004130758148_AddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004141739225_updateContact.resx">
+      <DependentUpon>202004141739225_updateContact.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

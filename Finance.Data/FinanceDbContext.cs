@@ -28,17 +28,17 @@ namespace Finance.Data
                 .Property(t => t.TranRecId).IsOptional();
 
             modelBuilder.Entity<Contact>()
-            .HasKey(c => c.ContactId);
+                .HasKey(c => c.ContactId);
 
             modelBuilder.Entity<Event>()
-            .HasKey(e => e.EventId)
-            .Property(e => e.EventRecId).IsOptional();
+                .HasKey(e => e.EventId)
+                .Property(e => e.EventRecId).IsOptional();
 
             modelBuilder.Entity<RecurringTransaction>()
-            .HasKey(rt => rt.TranRecId);
+                .HasKey(rt => rt.TranRecId);
 
             modelBuilder.Entity<RecurringEvent>()
-            .HasKey(re => re.EventRecId);
+                .HasKey(re => re.EventRecId);
 
             modelBuilder.Entity<Transaction>()
                 .HasRequired(t => t.Contact)
@@ -56,14 +56,14 @@ namespace Finance.Data
                 .HasForeignKey(e => e.EventRecId);
 
             modelBuilder.Entity<Transaction>()
-             .HasRequired(t => t.User)
-             .WithMany(u => u.Transactions)
-             .HasForeignKey(t => t.UserId);
+                .HasRequired(t => t.User)
+                .WithMany(u => u.Transactions)
+                .HasForeignKey(t => t.UserId);
 
             modelBuilder.Entity<Event>()
-               .HasRequired(t => t.User)
-               .WithMany(u => u.Events)
-               .HasForeignKey(t => t.UserId);
+                .HasRequired(t => t.User)
+                .WithMany(u => u.Events)
+                .HasForeignKey(t => t.UserId);
         }
     }
 }
