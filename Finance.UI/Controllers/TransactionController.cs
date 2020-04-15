@@ -63,64 +63,92 @@ namespace Finance.UI.Controllers
 
         public void GetTrans()
         {
-            ClearTable();
-            var tranDtos = tranService.GetTransByDate(loggedUser.UserId,
-                (TranType)Enum.Parse(typeof(TranType), view.TranTypeSearch.SelectedValue.ToString()),
-                view.FromDate.Value, view.ToDate.Value);
-            var bindingSource = new BindingSource(tranDtos, null);
-            view.TranTable.DataSource = bindingSource;
+            try
+            {
+                ClearTable();
+                var tranDtos = tranService.GetTransByDate(loggedUser.UserId,
+                    (TranType)Enum.Parse(typeof(TranType), view.TranTypeSearch.SelectedValue.ToString()),
+                    view.FromDate.Value, view.ToDate.Value);
+                var bindingSource = new BindingSource(tranDtos, null);
+                view.TranTable.DataSource = bindingSource;
+            }
+            catch (Exception)
+            {
+                view.ShowMessage("Transaction get failed.");
+            }
         }
 
         public void AddTran()
         {
-            var createTranDto = new CreateTransactionDto
+            try
             {
-                Name = view.TranName.Text,
-                Description = view.Description.Text,
-                TranType = (TranType)Enum.Parse(typeof(TranType), view.TranType.SelectedValue.ToString()),
-                TranDate = view.TranDate.Value,
-                ContactId = Int32.Parse(view.Contact.SelectedValue.ToString()),
-                Amount = Decimal.Parse(view.Amount.Text),
-                IsRecurring = view.IsRecurring.Checked,
-                Frequency = (Frequency)Enum.Parse(typeof(Frequency), view.Frequency.SelectedValue.ToString()),
-                UserId = loggedUser.UserId
-            };
+                var createTranDto = new CreateTransactionDto
+                {
+                    Name = view.TranName.Text,
+                    Description = view.Description.Text,
+                    TranType = (TranType)Enum.Parse(typeof(TranType), view.TranType.SelectedValue.ToString()),
+                    TranDate = view.TranDate.Value,
+                    ContactId = Int32.Parse(view.Contact.SelectedValue.ToString()),
+                    Amount = Decimal.Parse(view.Amount.Text),
+                    IsRecurring = view.IsRecurring.Checked,
+                    Frequency = (Frequency)Enum.Parse(typeof(Frequency), view.Frequency.SelectedValue.ToString()),
+                    UserId = loggedUser.UserId
+                };
 
-            tranService.AddTran(createTranDto);
-            GetTrans();
-            ClearForm();
-            view.ShowMessage("Transaction successfully added.");
+                tranService.AddTran(createTranDto);
+                GetTrans();
+                ClearForm();
+                view.ShowMessage("Transaction add success.");
+            }
+            catch (Exception)
+            {
+                view.ShowMessage("Transaction add failed.");
+            }
         }
 
         public void UpdateTran()
         {
-            var updateTranDto = new UpdateTransactionDto
+            try
             {
-                TranId = SelectedTranDto.TranId,
-                Name = view.TranName.Text,
-                Description = view.Description.Text,
-                TranType = (TranType)Enum.Parse(typeof(TranType), view.TranType.SelectedValue.ToString()),
-                TranDate = view.TranDate.Value,
-                ContactId = Int32.Parse(view.Contact.SelectedValue.ToString()),
-                Amount = Decimal.Parse(view.Amount.Text),
-                IsRecurring = view.IsRecurring.Checked,
-                TranRecId = SelectedTranDto.TranRecId,
-                Frequency = (Frequency)Enum.Parse(typeof(Frequency), view.Frequency.SelectedValue.ToString()),
-            };
+                var updateTranDto = new UpdateTransactionDto
+                {
+                    TranId = SelectedTranDto.TranId,
+                    Name = view.TranName.Text,
+                    Description = view.Description.Text,
+                    TranType = (TranType)Enum.Parse(typeof(TranType), view.TranType.SelectedValue.ToString()),
+                    TranDate = view.TranDate.Value,
+                    ContactId = Int32.Parse(view.Contact.SelectedValue.ToString()),
+                    Amount = Decimal.Parse(view.Amount.Text),
+                    IsRecurring = view.IsRecurring.Checked,
+                    TranRecId = SelectedTranDto.TranRecId,
+                    Frequency = (Frequency)Enum.Parse(typeof(Frequency), view.Frequency.SelectedValue.ToString()),
+                };
 
-            tranService.UpdateTran(updateTranDto);
-            GetTrans();
-            ClearForm();
-            view.ShowMessage("Transaction successfully updated.");
+                tranService.UpdateTran(updateTranDto);
+                GetTrans();
+                ClearForm();
+                view.ShowMessage("Transaction update success.");
+            }
+            catch (Exception)
+            {
+                view.ShowMessage("Transaction update failed.");
+            }
         }
-       
+
         public void DeleteTran()
         {
-            var tranId = SelectedTranDto.TranId;
-            tranService.DeleteTran(tranId);
-            GetTrans();
-            ClearForm();
-            view.ShowMessage("Transaction successfully Deleted.");
+            try
+            {
+                var tranId = SelectedTranDto.TranId;
+                tranService.DeleteTran(tranId);
+                GetTrans();
+                ClearForm();
+                view.ShowMessage("Transaction delete success.");
+            }
+            catch (Exception)
+            {
+                view.ShowMessage("Transaction delete failed.");
+            }
         }
 
         private void RefreshTable()
@@ -166,7 +194,7 @@ namespace Finance.UI.Controllers
         }
 
         public void ClearForm()
-        { 
+        {
             view.TranName.Clear();
             view.Description.Clear();
             view.TranType.SelectedIndex = 0;

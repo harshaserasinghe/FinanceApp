@@ -29,7 +29,6 @@ namespace Finance.UI.Controllers
             view.ContTable.AutoGenerateColumns = false;
             view.ContTable.AutoSize = true;
             view.ContTable.MultiSelect = false;
-            view.ContTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             AddTexBoxColumn(nameof(ContactDto.ContactId), "Id", true, false);
             AddTexBoxColumn(nameof(ContactDto.Name), "Name", true, true);
@@ -45,53 +44,81 @@ namespace Finance.UI.Controllers
 
         public void GetConts()
         {
-            ClearTable();
-            var contName = view.ContNameSearch.Text;
-            var contDtos = contService.GetContsByName(contName);
-            var bindingSource = new BindingSource(contDtos, null);
-            view.ContTable.DataSource = bindingSource;
+            try
+            {
+                ClearTable();
+                var contName = view.ContNameSearch.Text;
+                var contDtos = contService.GetContsByName(contName);
+                var bindingSource = new BindingSource(contDtos, null);
+                view.ContTable.DataSource = bindingSource;
+            }
+            catch (Exception)
+            {
+                view.ShowMessage("Contact get failed.");
+            }
         }
 
         public void AddCont()
         {
-            var createContDto = new CreateContactDto
+            try
             {
-                Name = view.ContName.Text,
-                BusinessType = view.BusinessType.Text,
-                Address = view.Address.Text,
-                PhoneNumber = view.PhoneNumber.Text
-            };
+                var createContDto = new CreateContactDto
+                {
+                    Name = view.ContName.Text,
+                    BusinessType = view.BusinessType.Text,
+                    Address = view.Address.Text,
+                    PhoneNumber = view.PhoneNumber.Text
+                };
 
-            contService.AddCont(createContDto);
-            GetConts();
-            ClearForm();
-            view.ShowMessage("Contact successfully added.");
+                contService.AddCont(createContDto);
+                GetConts();
+                ClearForm();
+                view.ShowMessage("Contact add success.");
+            }
+            catch (Exception)
+            {
+                view.ShowMessage("Contact add failed.");
+            }
         }
 
         public void UpdateCont()
         {
-            var updateContDto = new UpdateContactDto
+            try
             {
-                ContactId = SelectedContDto.ContactId,
-                Name = view.ContName.Text,
-                BusinessType = view.BusinessType.Text,
-                Address = view.Address.Text,
-                PhoneNumber = view.PhoneNumber.Text
-            };
+                var updateContDto = new UpdateContactDto
+                {
+                    ContactId = SelectedContDto.ContactId,
+                    Name = view.ContName.Text,
+                    BusinessType = view.BusinessType.Text,
+                    Address = view.Address.Text,
+                    PhoneNumber = view.PhoneNumber.Text
+                };
 
-            contService.UpdateContact(updateContDto);
-            GetConts();
-            ClearForm();
-            view.ShowMessage("Contact successfully updated.");
+                contService.UpdateContact(updateContDto);
+                GetConts();
+                ClearForm();
+                view.ShowMessage("Contact update success.");
+            }
+            catch (Exception)
+            {
+                view.ShowMessage("Contact update failed.");
+            }
         }
 
         public void DeleteCont()
         {
-            var contId = SelectedContDto.ContactId;
-            contService.DeleteCont(contId);
-            GetConts();
-            ClearForm();
-            view.ShowMessage("Contact successfully Deleted.");
+            try
+            {
+                var contId = SelectedContDto.ContactId;
+                contService.DeleteCont(contId);
+                GetConts();
+                ClearForm();
+                view.ShowMessage("Contact delete success.");
+            }
+            catch (Exception)
+            {
+                view.ShowMessage("Contact delete failed.");
+            }
         }
 
         public void SetSelectedCont()
@@ -131,6 +158,7 @@ namespace Finance.UI.Controllers
             col.Name = colName;
             col.ReadOnly = isReadOnly;
             col.Visible = isVisible;
+            col.Frozen = false;
             view.ContTable.Columns.Add(col);
         }
     }

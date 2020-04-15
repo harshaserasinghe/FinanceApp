@@ -178,10 +178,10 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearchClick);
             // 
-            // txbNameSearch
+            // txbContNameSearch
             // 
             this.txbContNameSearch.Location = new System.Drawing.Point(12, 21);
-            this.txbContNameSearch.Name = "txbNameSearch";
+            this.txbContNameSearch.Name = "txbContNameSearch";
             this.txbContNameSearch.Size = new System.Drawing.Size(446, 22);
             this.txbContNameSearch.TabIndex = 49;
             // 
@@ -192,7 +192,7 @@
             this.dgvContTable.Name = "dgvContTable";
             this.dgvContTable.RowHeadersWidth = 51;
             this.dgvContTable.RowTemplate.Height = 24;
-            this.dgvContTable.Size = new System.Drawing.Size(648, 385);
+            this.dgvContTable.Size = new System.Drawing.Size(608, 282);
             this.dgvContTable.TabIndex = 50;
             this.dgvContTable.SelectionChanged += new System.EventHandler(this.dgvContTableSelectionChange);
             // 
@@ -200,7 +200,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1027, 530);
+            this.ClientSize = new System.Drawing.Size(1027, 351);
             this.Controls.Add(this.dgvContTable);
             this.Controls.Add(this.txbContNameSearch);
             this.Controls.Add(this.btnClearTable);
