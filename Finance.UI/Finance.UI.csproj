@@ -96,6 +96,9 @@
     <Compile Include="Views\TransactionView.Designer.cs">
       <DependentUpon>TransactionView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\ContactView.resx">
+      <DependentUpon>ContactView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>

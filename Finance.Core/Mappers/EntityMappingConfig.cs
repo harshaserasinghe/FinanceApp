@@ -14,7 +14,7 @@ namespace Finance.Core.Mappers
             {
                 cfg.CreateMap<CreateTransactionDto, Transaction>();
 
-                cfg.CreateMap<Transaction, TransactionDTO>()
+                cfg.CreateMap<Transaction, TransactionDto>()
                 .ForMember(dest => dest.ContactName, opt => opt.MapFrom(src => src.Contact.Name))
                 .ForMember(dest => dest.Frequency, opt => opt.MapFrom(src => src.RecurringTransaction.Frequency));
 

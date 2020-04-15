@@ -18,13 +18,12 @@ namespace Finance.UI.Views
 
         private void btnClickOpenTransactionForm(object sender, System.EventArgs e)
         {
-            this.controller.OpenTransactionForm();
+            controller.OpenTransactionForm();
         }
 
         private void btnClickOpenContactForm(object sender, System.EventArgs e)
         {
-            var contactForm = new ContactView();
-            contactForm.Show();
+            controller.OpenContactForm();
         }
 
         private void btnClickOpenEvenForm(object sender, System.EventArgs e)

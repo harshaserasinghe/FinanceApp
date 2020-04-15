@@ -21,7 +21,7 @@ namespace Finance.Service
             mapper = new Mapper(new EntityMappingConfig().mapperConfig);
         }
 
-        public TransactionDTO GetTransaction(int tranId, int userId)
+        public TransactionDto GetTran(int tranId, int userId)
         {
             var tran = finanaceDbContext.Transactions
                 .Include(t => t.Contact)
@@ -30,14 +30,14 @@ namespace Finance.Service
 
             if (tran == null)
             {
-                return new TransactionDTO();
+                return new TransactionDto();
             }
 
-            var tranDto = mapper.Map<TransactionDTO>(tran);
+            var tranDto = mapper.Map<TransactionDto>(tran);
             return tranDto;
         }
 
-        public List<TransactionDTO> GetTransactionsByDate(int userId, TranType tranType, DateTime fromDate, DateTime toDate)
+        public List<TransactionDto> GetTransByDate(int userId, TranType tranType, DateTime fromDate, DateTime toDate)
         {
             var tranQuery = finanaceDbContext.Transactions
                 .Include(t => t.Contact)
@@ -58,14 +58,14 @@ namespace Finance.Service
 
             if (trans == null)
             {
-                return new List<TransactionDTO>();
+                return new List<TransactionDto>();
             }
 
-            var tranDtos = mapper.Map<List<TransactionDTO>>(trans);
+            var tranDtos = mapper.Map<List<TransactionDto>>(trans);
             return tranDtos;
         }
 
-        public void AddTransaction(CreateTransactionDto createTranDto)
+        public void AddTran(CreateTransactionDto createTranDto)
         {
             var tran = mapper.Map<Transaction>(createTranDto);
 
@@ -80,7 +80,7 @@ namespace Finance.Service
             finanaceDbContext.SaveChanges();
         }
 
-        public void UpdateTransaction(UpdateTransactionDto updateTranDto)
+        public void UpdateTran(UpdateTransactionDto updateTranDto)
         {
             var tran = finanaceDbContext.Transactions.Find(updateTranDto.TranId);
             mapper.Map(updateTranDto, tran);

@@ -1,4 +1,5 @@
 ﻿using Finance.UI.Views;
+using System;
 
 namespace Finance.UI.Controllers
 {
@@ -23,6 +24,14 @@ namespace Finance.UI.Controllers
             var tranController = new TransactionController(tranView);
             tranController.Init();
             tranController.Show();
+        }
+
+        internal void OpenContactForm()
+        {
+            var contView = new ContactView();
+            var contController = new ContactController(contView);
+            contController.Init();
+            contController.Show();
         }
     }
 }

@@ -3,6 +3,7 @@ using Finance.Core.DTOs;
 using Finance.Core.Entities;
 using Finance.Core.Mappers;
 using Finance.Data;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -11,52 +12,66 @@ namespace Finance.Service
 {
     public class ContactService
     {
-        private FinanceDbContext FinanaceDbContext { get; set; }
-        private IMapper Mapper { get; set; }
+        private readonly FinanceDbContext finanaceDbContext;
+        private readonly Mapper mapper;
 
         public ContactService()
         {
-            FinanaceDbContext = new FinanceDbContext();
-            Mapper = new Mapper(new EntityMappingConfig().mapperConfig);
+            finanaceDbContext = new FinanceDbContext();
+            mapper = new Mapper(new EntityMappingConfig().mapperConfig);
         }
 
-        public ContactDto GetContact(int contactId)
+        public ContactDto GetCont(int contId)
         {
-            var contact = FinanaceDbContext.Contacts.Find(contactId);
-            var contactDTO = Mapper.Map<ContactDto>(contact);
-            return contactDTO;
+            var cont = finanaceDbContext.Contacts.Find(contId);
+            var contDto = mapper.Map<ContactDto>(cont);
+            return contDto;
         }
 
-        public List<ContactDto> GetContacts()
+        public List<ContactDto> GetConts()
         {
-            var contacts = FinanaceDbContext.Contacts.Where(c => c.IsActive).ToList();
-            var contactDTOs = Mapper.Map<List<ContactDto>>(contacts);
-            return contactDTOs;
+            var conts = finanaceDbContext.Contacts.Where(c => c.IsActive).ToList();
+            var contDtos = mapper.Map<List<ContactDto>>(conts);
+            return contDtos;
         }
 
-        public List<ContactDto> GetContactsByName(string name)
+        public List<ContactDto> GetContsByName(string name)
         {
-            var contacts = FinanaceDbContext.Contacts
-                .Where(c => c.IsActive && c.Name.Contains(name))
-                .OrderBy(c => c.Name)
-                .ToList();
-            var contactDTOs = Mapper.Map<List<ContactDto>>(contacts);
-            return contactDTOs;
+
+            var contQuery = finanaceDbContext.Contacts
+                .Where(c => c.IsActive).AsQueryable();
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                contQuery = contQuery.Where(c => c.Name.Contains(name)).AsQueryable();
+            }
+
+            var conts = contQuery.OrderBy(c => c.Name).ToList();
+
+            var contDtos = mapper.Map<List<ContactDto>>(conts);
+            return contDtos;
         }
 
-        public void AddContact(CreateContactDto createContactDTO)
+        public void AddCont(CreateContactDto createContDto)
         {
-            var contact = Mapper.Map<Contact>(createContactDTO);
-            FinanaceDbContext.Contacts.Add(contact);
-            FinanaceDbContext.SaveChanges();
+            var cont = mapper.Map<Contact>(createContDto);
+            finanaceDbContext.Contacts.Add(cont);
+            finanaceDbContext.SaveChanges();
         }
 
-        public void UpdateContact(int contactId, UpdateContactDto updateContactDTO)
+        public void UpdateContact(UpdateContactDto updateContDto)
         {
-            var contact = FinanaceDbContext.Contacts.Find(contactId);
-            Mapper.Map(updateContactDTO, contact);
-            FinanaceDbContext.Entry(contact).State = EntityState.Modified;
-            FinanaceDbContext.SaveChanges();
+            var cont = finanaceDbContext.Contacts.Find(updateContDto.ContactId);
+            mapper.Map(updateContDto, cont);
+            finanaceDbContext.Entry(cont).State = EntityState.Modified;
+            finanaceDbContext.SaveChanges();
+        }
+
+        public void DeleteCont(int contId)
+        {
+            var cont = finanaceDbContext.Contacts.Find(contId);
+            finanaceDbContext.Contacts.Remove(cont);
+            finanaceDbContext.SaveChanges();
         }
     }
 }

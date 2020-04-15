@@ -17,10 +17,10 @@ namespace Finance.UI.Views
             this.controller = controller;
         }
 
-        public TextBox Name1
+        public TextBox TranName
         {
-            get { return txbName; }
-            set { txbName = value; }
+            get { return txbTranName; }
+            set { txbTranName = value; }
         }
 
         public RichTextBox Description
@@ -29,10 +29,10 @@ namespace Finance.UI.Views
             set { txbDescription = value; }
         }
 
-        public ComboBox TranTypeManage
+        public ComboBox TranType
         {
-            get { return cmbTranTypeManage; }
-            set { cmbTranTypeManage = value; }
+            get { return cmbTranType; }
+            set { cmbTranType = value; }
         }
 
         public DateTimePicker TranDate
@@ -115,7 +115,7 @@ namespace Finance.UI.Views
             controller.DeleteTran();
         }
        
-        private void dgvTranListSelectionChange(object sender, System.EventArgs e)
+        private void dgvTranTableSelectionChange(object sender, System.EventArgs e)
         {
             controller.SetSelectedTran();
         }
