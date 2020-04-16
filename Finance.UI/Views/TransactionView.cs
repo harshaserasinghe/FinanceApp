@@ -132,5 +132,11 @@ namespace Finance.UI.Views
         {
             controller.SetSelectedTran();
         }
+
+        private void TransactionView_Load(object sender, System.EventArgs e)
+        {
+
+            this.reportViewer1.RefreshReport();
+        }
     }
 }

@@ -63,10 +63,14 @@ namespace Finance.UI.Views
             this.label6 = new System.Windows.Forms.Label();
             this.tabCtrl = new System.Windows.Forms.TabControl();
             this.tabPgReport = new System.Windows.Forms.TabPage();
+            this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
+            this.directoryEntry2 = new System.DirectoryServices.DirectoryEntry();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.tabPgManage.SuspendLayout();
             this.panRecSection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTranTable)).BeginInit();
             this.tabCtrl.SuspendLayout();
+            this.tabPgReport.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPgManage
@@ -405,6 +409,7 @@ namespace Finance.UI.Views
             // 
             // tabPgReport
             // 
+            this.tabPgReport.Controls.Add(this.reportViewer1);
             this.tabPgReport.Location = new System.Drawing.Point(4, 25);
             this.tabPgReport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPgReport.Name = "tabPgReport";
@@ -412,6 +417,14 @@ namespace Finance.UI.Views
             this.tabPgReport.TabIndex = 5;
             this.tabPgReport.Text = "Reports";
             this.tabPgReport.UseVisualStyleBackColor = true;
+            // 
+            // reportViewer1
+            // 
+            this.reportViewer1.Location = new System.Drawing.Point(0, 3);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.Size = new System.Drawing.Size(869, 348);
+            this.reportViewer1.TabIndex = 0;
             // 
             // TransactionView
             // 
@@ -422,12 +435,14 @@ namespace Finance.UI.Views
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "TransactionView";
             this.Text = "Transaction";
+            this.Load += new System.EventHandler(this.TransactionView_Load);
             this.tabPgManage.ResumeLayout(false);
             this.tabPgManage.PerformLayout();
             this.panRecSection.ResumeLayout(false);
             this.panRecSection.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTranTable)).EndInit();
             this.tabCtrl.ResumeLayout(false);
+            this.tabPgReport.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -467,5 +482,8 @@ namespace Finance.UI.Views
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Panel panRecSection;
         private System.Windows.Forms.Button btnClearForm;
+        private System.DirectoryServices.DirectoryEntry directoryEntry1;
+        private System.DirectoryServices.DirectoryEntry directoryEntry2;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }
