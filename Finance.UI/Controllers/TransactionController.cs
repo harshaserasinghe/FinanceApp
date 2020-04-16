@@ -168,9 +168,6 @@ namespace Finance.UI.Controllers
 
         public void SetSelectedTran()
         {
-            if (view.TranTable.SelectedRows.Count < 1)
-                return;
-
             ClearForm();
             SelectedTranDto = new TransactionDto();
             SelectedTranDto = view.TranTable.SelectedRows[0].DataBoundItem as TransactionDto;

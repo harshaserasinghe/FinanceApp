@@ -124,7 +124,7 @@ namespace Finance.UI.Views
             this.panRecSection.Controls.Add(this.labFrequence);
             this.panRecSection.Controls.Add(this.cmbFrequency);
             this.panRecSection.Location = new System.Drawing.Point(1205, 340);
-            this.panRecSection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panRecSection.Margin = new System.Windows.Forms.Padding(4);
             this.panRecSection.Name = "panRecSection";
             this.panRecSection.Size = new System.Drawing.Size(349, 43);
             this.panRecSection.TabIndex = 41;
@@ -309,12 +309,12 @@ namespace Finance.UI.Views
             this.label2.TabIndex = 22;
             this.label2.Text = "Date";
             // 
-            // cmbTranTypeManage
+            // cmbTranType
             // 
             this.cmbTranType.FormattingEnabled = true;
             this.cmbTranType.Location = new System.Drawing.Point(1300, 62);
             this.cmbTranType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cmbTranType.Name = "cmbTranTypeManage";
+            this.cmbTranType.Name = "cmbTranType";
             this.cmbTranType.Size = new System.Drawing.Size(240, 24);
             this.cmbTranType.TabIndex = 21;
             // 
@@ -337,7 +337,7 @@ namespace Finance.UI.Views
             this.dgvTranTable.RowTemplate.Height = 24;
             this.dgvTranTable.Size = new System.Drawing.Size(1109, 377);
             this.dgvTranTable.TabIndex = 17;
-            this.dgvTranTable.SelectionChanged += new System.EventHandler(this.dgvTranTableSelectionChange);
+            this.dgvTranTable.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTranTableRowHeaderMouseClick);
             // 
             // dtpToDate
             // 

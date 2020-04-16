@@ -123,9 +123,6 @@ namespace Finance.UI.Controllers
 
         public void SetSelectedCont()
         {
-            if (view.ContTable.SelectedRows.Count < 1)
-                return;
-
             ClearForm();
             SelectedContDto = new ContactDto();
             SelectedContDto = view.ContTable.SelectedRows[0].DataBoundItem as ContactDto;

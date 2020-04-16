@@ -194,7 +194,7 @@
             this.dgvContTable.RowTemplate.Height = 24;
             this.dgvContTable.Size = new System.Drawing.Size(608, 282);
             this.dgvContTable.TabIndex = 50;
-            this.dgvContTable.SelectionChanged += new System.EventHandler(this.dgvContTableSelectionChange);
+            this.dgvContTable.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvContTableRowHeaderMouseClick);
             // 
             // ContactView
             // 

@@ -75,11 +75,6 @@ namespace Finance.UI.Views
             controller.DeleteCont();
         }
 
-        private void dgvContTableSelectionChange(object sender, System.EventArgs e)
-        {
-            controller.SetSelectedCont();
-        }
-
         private void btnClearTableClick(object sender, System.EventArgs e)
         {
             controller.ClearTable();
@@ -87,6 +82,11 @@ namespace Finance.UI.Views
         private void btnClearFromClick(object sender, System.EventArgs e)
         {
             controller.ClearForm();
+        }
+
+        private void dgvContTableRowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            controller.SetSelectedCont();
         }
     }
 }

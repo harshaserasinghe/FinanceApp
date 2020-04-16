@@ -113,12 +113,7 @@ namespace Finance.UI.Views
         private void btnDeleteClick(object sender, System.EventArgs e)
         {
             controller.DeleteTran();
-        }
-       
-        private void dgvTranTableSelectionChange(object sender, System.EventArgs e)
-        {
-            controller.SetSelectedTran();
-        }
+        }      
 
         private void chbIsRecurringCheckedChanged(object sender, System.EventArgs e)
         {
@@ -131,6 +126,11 @@ namespace Finance.UI.Views
         private void btnClearFromClick(object sender, System.EventArgs e)
         {
             controller.ClearForm();
+        }
+
+        private void dgvTranTableRowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            controller.SetSelectedTran();
         }
     }
 }
