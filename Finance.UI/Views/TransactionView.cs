@@ -1,4 +1,7 @@
 ﻿using Finance.UI.Controllers;
+using Microsoft.Reporting.WinForms;
+using System;
+using System.Net;
 using System.Windows.Forms;
 
 namespace Finance.UI.Views
@@ -10,6 +13,16 @@ namespace Finance.UI.Views
         public TransactionView()
         {
             InitializeComponent();
+
+            tranRptViwer.ProcessingMode = ProcessingMode.Remote;
+            var serverReport = tranRptViwer.ServerReport;
+            var credentials = CredentialCache.DefaultCredentials;
+            var rsCredentials = serverReport.ReportServerCredentials;
+            rsCredentials.NetworkCredentials = credentials;
+
+            serverReport.ReportServerUrl = new Uri("http://harsha-laptop/ReportServer");
+            serverReport.ReportPath = "/Finance.Reprot/TranRpt";
+            tranRptViwer.RefreshReport();
         }
 
         public void SetController(TransactionController controller)
@@ -113,7 +126,7 @@ namespace Finance.UI.Views
         private void btnDeleteClick(object sender, System.EventArgs e)
         {
             controller.DeleteTran();
-        }      
+        }
 
         private void chbIsRecurringCheckedChanged(object sender, System.EventArgs e)
         {
@@ -136,7 +149,7 @@ namespace Finance.UI.Views
         private void TransactionView_Load(object sender, System.EventArgs e)
         {
 
-            this.reportViewer1.RefreshReport();
+            this.tranRptViwer.RefreshReport();
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Finance.UI.Views
         public MainView()
         {
             InitializeComponent();
+
         }
 
         public void SetController(MainController controller)
