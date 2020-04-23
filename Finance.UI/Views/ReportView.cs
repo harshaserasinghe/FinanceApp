@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveCharts.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,5 +17,25 @@ namespace Finance.UI.Views
         {
             InitializeComponent();
         }
+
+        public CartesianChart TranSumChart
+        {
+            get { return tranSumChart; }
+            set { tranSumChart = value; }
+        }
+
+        public PieChart ContExpChart
+        {
+            get { return contExpChart; }
+            set { contExpChart = value; }
+        }
+
+        public CartesianChart TranDetailChart
+        {
+            get { return tranDetailChart; }
+            set { tranDetailChart = value; }
+        }
+
+
     }
 }

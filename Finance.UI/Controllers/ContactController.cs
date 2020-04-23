@@ -29,6 +29,7 @@ namespace Finance.UI.Controllers
             view.ContTable.AutoGenerateColumns = false;
             view.ContTable.AutoSize = true;
             view.ContTable.MultiSelect = false;
+            view.ContTable.ScrollBars = ScrollBars.Vertical;
 
             AddTexBoxColumn(nameof(ContactDto.ContactId), "Id", true, false);
             AddTexBoxColumn(nameof(ContactDto.Name), "Name", true, true);

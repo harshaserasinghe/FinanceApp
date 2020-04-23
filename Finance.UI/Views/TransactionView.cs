@@ -1,5 +1,4 @@
 ﻿using Finance.UI.Controllers;
-using LiveCharts.WinForms;
 using System.Windows.Forms;
 
 namespace Finance.UI.Views
@@ -71,7 +70,6 @@ namespace Finance.UI.Views
             set { panRecSection = value; }
         }
 
-
         public ComboBox TranTypeSearch
         {
             get { return cmbTranTypeSearch; }
@@ -97,24 +95,6 @@ namespace Finance.UI.Views
         public void ShowMessage(string msg)
         {
             MessageBox.Show(msg);
-        }
-
-        public CartesianChart TranSumChart
-        {
-            get { return tranSumChart; }
-            set { tranSumChart = value; }
-        }
-
-        public PieChart ContExpChart
-        {
-            get { return contExpChart; }
-            set { contExpChart = value; }
-        }
-
-        public CartesianChart TranDetailChart
-        {
-            get { return tranDetailChart; }
-            set { tranDetailChart = value; }
         }
 
         private void btnSearchClick(object sender, System.EventArgs e)
@@ -150,11 +130,6 @@ namespace Finance.UI.Views
         private void dgvTranTableRowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             controller.SetSelectedTran();
-        }
-
-        private void TransactionView_Load(object sender, System.EventArgs e)
-        {
-
         }
     }
 }
