@@ -63,9 +63,12 @@ namespace Finance.UI.Views
             this.label6 = new System.Windows.Forms.Label();
             this.tabCtrl = new System.Windows.Forms.TabControl();
             this.tabPgReport = new System.Windows.Forms.TabPage();
-            this.tranRptViwer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.tranSumChart = new LiveCharts.WinForms.CartesianChart();
             this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
             this.directoryEntry2 = new System.DirectoryServices.DirectoryEntry();
+            this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
+            this.contExpChart = new LiveCharts.WinForms.PieChart();
+            this.tranDetailChart = new LiveCharts.WinForms.CartesianChart();
             this.tabPgManage.SuspendLayout();
             this.panRecSection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTranTable)).BeginInit();
@@ -107,7 +110,7 @@ namespace Finance.UI.Views
             this.tabPgManage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPgManage.Name = "tabPgManage";
             this.tabPgManage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPgManage.Size = new System.Drawing.Size(1564, 495);
+            this.tabPgManage.Size = new System.Drawing.Size(1564, 531);
             this.tabPgManage.TabIndex = 4;
             this.tabPgManage.Text = "Manage";
             this.tabPgManage.UseVisualStyleBackColor = true;
@@ -404,34 +407,59 @@ namespace Finance.UI.Views
             this.tabCtrl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabCtrl.Name = "tabCtrl";
             this.tabCtrl.SelectedIndex = 0;
-            this.tabCtrl.Size = new System.Drawing.Size(1572, 524);
+            this.tabCtrl.Size = new System.Drawing.Size(1572, 946);
             this.tabCtrl.TabIndex = 0;
             // 
             // tabPgReport
             // 
-            this.tabPgReport.Controls.Add(this.tranRptViwer);
+            this.tabPgReport.Controls.Add(this.tranDetailChart);
+            this.tabPgReport.Controls.Add(this.contExpChart);
+            this.tabPgReport.Controls.Add(this.tranSumChart);
             this.tabPgReport.Location = new System.Drawing.Point(4, 25);
             this.tabPgReport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPgReport.Name = "tabPgReport";
-            this.tabPgReport.Size = new System.Drawing.Size(1564, 495);
+            this.tabPgReport.Size = new System.Drawing.Size(1564, 917);
             this.tabPgReport.TabIndex = 5;
             this.tabPgReport.Text = "Reports";
             this.tabPgReport.UseVisualStyleBackColor = true;
             // 
-            // tranRptViwer
+            // tranSumChart
             // 
-            this.tranRptViwer.Location = new System.Drawing.Point(0, 3);
-            this.tranRptViwer.Name = "tranRptViwer";
-            this.tranRptViwer.ProcessingMode = Microsoft.Reporting.WinForms.ProcessingMode.Remote;
-            this.tranRptViwer.ServerReport.BearerToken = null;
-            this.tranRptViwer.Size = new System.Drawing.Size(869, 348);
-            this.tranRptViwer.TabIndex = 0;
+            this.tranSumChart.Location = new System.Drawing.Point(63, 20);
+            this.tranSumChart.Name = "tranSumChart";
+            this.tranSumChart.Size = new System.Drawing.Size(367, 370);
+            this.tranSumChart.TabIndex = 0;
+            this.tranSumChart.Text = "cartesianChart1";
+            // 
+            // entityCommand1
+            // 
+            this.entityCommand1.CommandTimeout = 0;
+            this.entityCommand1.CommandTree = null;
+            this.entityCommand1.Connection = null;
+            this.entityCommand1.EnablePlanCaching = true;
+            this.entityCommand1.Transaction = null;
+            // 
+            // contExpChart
+            // 
+            this.contExpChart.Location = new System.Drawing.Point(643, 30);
+            this.contExpChart.Name = "contExpChart";
+            this.contExpChart.Size = new System.Drawing.Size(565, 360);
+            this.contExpChart.TabIndex = 1;
+            this.contExpChart.Text = "pieChart1";
+            // 
+            // tranDetailChart
+            // 
+            this.tranDetailChart.Location = new System.Drawing.Point(63, 438);
+            this.tranDetailChart.Name = "tranDetailChart";
+            this.tranDetailChart.Size = new System.Drawing.Size(1273, 429);
+            this.tranDetailChart.TabIndex = 2;
+            this.tranDetailChart.Text = "cartesianChart1";
             // 
             // TransactionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1572, 524);
+            this.ClientSize = new System.Drawing.Size(1572, 946);
             this.Controls.Add(this.tabCtrl);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "TransactionView";
@@ -485,6 +513,9 @@ namespace Finance.UI.Views
         private System.Windows.Forms.Button btnClearForm;
         private System.DirectoryServices.DirectoryEntry directoryEntry1;
         private System.DirectoryServices.DirectoryEntry directoryEntry2;
-        private Microsoft.Reporting.WinForms.ReportViewer tranRptViwer;
+        private System.Data.Entity.Core.EntityClient.EntityCommand entityCommand1;
+        private LiveCharts.WinForms.CartesianChart tranSumChart;
+        private LiveCharts.WinForms.PieChart contExpChart;
+        private LiveCharts.WinForms.CartesianChart tranDetailChart;
     }
 }
