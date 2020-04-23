@@ -38,9 +38,10 @@ namespace Finance.UI.Views
             // 
             // btnTran
             // 
-            this.btnTran.Location = new System.Drawing.Point(109, 71);
+            this.btnTran.Location = new System.Drawing.Point(82, 58);
+            this.btnTran.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnTran.Name = "btnTran";
-            this.btnTran.Size = new System.Drawing.Size(113, 47);
+            this.btnTran.Size = new System.Drawing.Size(85, 38);
             this.btnTran.TabIndex = 0;
             this.btnTran.Text = "Transactions";
             this.btnTran.UseVisualStyleBackColor = true;
@@ -48,9 +49,10 @@ namespace Finance.UI.Views
             // 
             // btnCont
             // 
-            this.btnCont.Location = new System.Drawing.Point(267, 71);
+            this.btnCont.Location = new System.Drawing.Point(200, 58);
+            this.btnCont.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCont.Name = "btnCont";
-            this.btnCont.Size = new System.Drawing.Size(113, 47);
+            this.btnCont.Size = new System.Drawing.Size(85, 38);
             this.btnCont.TabIndex = 1;
             this.btnCont.Text = "Contacts";
             this.btnCont.UseVisualStyleBackColor = true;
@@ -58,9 +60,10 @@ namespace Finance.UI.Views
             // 
             // btnEvnt
             // 
-            this.btnEvnt.Location = new System.Drawing.Point(109, 141);
+            this.btnEvnt.Location = new System.Drawing.Point(82, 115);
+            this.btnEvnt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEvnt.Name = "btnEvnt";
-            this.btnEvnt.Size = new System.Drawing.Size(113, 47);
+            this.btnEvnt.Size = new System.Drawing.Size(85, 38);
             this.btnEvnt.TabIndex = 2;
             this.btnEvnt.Text = "Events";
             this.btnEvnt.UseVisualStyleBackColor = true;
@@ -68,9 +71,10 @@ namespace Finance.UI.Views
             // 
             // btnRpt
             // 
-            this.btnRpt.Location = new System.Drawing.Point(267, 141);
+            this.btnRpt.Location = new System.Drawing.Point(200, 115);
+            this.btnRpt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRpt.Name = "btnRpt";
-            this.btnRpt.Size = new System.Drawing.Size(113, 47);
+            this.btnRpt.Size = new System.Drawing.Size(85, 38);
             this.btnRpt.TabIndex = 3;
             this.btnRpt.Text = "Report";
             this.btnRpt.UseVisualStyleBackColor = true;
@@ -78,15 +82,17 @@ namespace Finance.UI.Views
             // 
             // MainView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(506, 286);
+            this.ClientSize = new System.Drawing.Size(380, 232);
             this.Controls.Add(this.btnRpt);
             this.Controls.Add(this.btnEvnt);
             this.Controls.Add(this.btnCont);
             this.Controls.Add(this.btnTran);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainView";
             this.Text = "MainForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainView_FormClosing);
             this.ResumeLayout(false);
 
         }

@@ -37,6 +37,9 @@ namespace Finance.UI.Views
             controller.OpenRptForm();
         }
 
-      
+        private void MainView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
