@@ -45,11 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\ContactDto.cs" />
-    <Compile Include="DTOs\ContactExpenseDto.cs" />
+    <Compile Include="DTOs\ContactExpenseBreakDownDto.cs" />
     <Compile Include="DTOs\CreateContactDto.cs" />
     <Compile Include="DTOs\CreateTransactionDto.cs" />
     <Compile Include="DTOs\RecurringTransactionDto.cs" />
-    <Compile Include="DTOs\TransactionDetailDto.cs" />
+    <Compile Include="DTOs\TransactionByDateDto.cs" />
     <Compile Include="DTOs\TransactionDto.cs" />
     <Compile Include="DTOs\TransactionSummaryDto.cs" />
     <Compile Include="DTOs\UpdateContactDto.cs" />

@@ -1,4 +1,5 @@
-﻿using LiveCharts.WinForms;
+﻿using Finance.UI.Controllers;
+using LiveCharts.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,29 +14,49 @@ namespace Finance.UI.Views
 {
     public partial class ReportView : Form
     {
+        private ReportController controller;
+
         public ReportView()
         {
             InitializeComponent();
         }
 
-        public CartesianChart TranSumChart
+        public void SetController(ReportController controller)
         {
-            get { return tranSumChart; }
-            set { tranSumChart = value; }
+            this.controller = controller;
         }
 
-        public PieChart ContExpChart
+        public DateTimePicker FromDate
         {
-            get { return contExpChart; }
-            set { contExpChart = value; }
+            get { return dtpFromDate; }
+            set { dtpFromDate = value; }
+        }
+        public DateTimePicker ToDate
+        {
+            get { return dtpToDate; }
+            set { dtpToDate = value; }
+        }
+        public CartesianChart TranSum
+        {
+            get { return colChtTraSum; }
+            set { colChtTraSum = value; }
         }
 
-        public CartesianChart TranDetailChart
+        public PieChart ContExpBrkDwn
         {
-            get { return tranDetailChart; }
-            set { tranDetailChart = value; }
+            get { return pieChtContExpBrkDwn; }
+            set { pieChtContExpBrkDwn = value; }
         }
 
+        public CartesianChart TranByDate
+        {
+            get { return trndChtTranByDate; }
+            set { trndChtTranByDate = value; }
+        }
 
+        private void btnGenRptsClick(object sender, EventArgs e)
+        {
+            controller.GenRpts();
+        }
     }
 }

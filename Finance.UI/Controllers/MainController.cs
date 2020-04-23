@@ -18,7 +18,7 @@ namespace Finance.UI.Controllers
             view.Show();
         }
 
-        public void OpenTransactionForm()
+        public void OpenTranForm()
         {
             var tranView = new TransactionView();
             var tranController = new TransactionController(tranView);
@@ -26,10 +26,26 @@ namespace Finance.UI.Controllers
             tranController.Show();
         }
 
-        internal void OpenContactForm()
+        public void OpenContForm()
         {
             var contView = new ContactView();
             var contController = new ContactController(contView);
+            contController.Init();
+            contController.Show();
+        }
+
+        public void OpenEvntForm()
+        {
+            var evntView = new EventView();
+            var evntController = new EventController(evntView);
+            evntController.Init();
+            evntController.Show();
+        }
+
+        public void OpenRptForm()
+        {
+            var rptView = new ReportView();
+            var contController = new ReportController(rptView);
             contController.Init();
             contController.Show();
         }

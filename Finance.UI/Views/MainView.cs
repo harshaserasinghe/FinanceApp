@@ -9,7 +9,6 @@ namespace Finance.UI.Views
         public MainView()
         {
             InitializeComponent();
-
         }
 
         public void SetController(MainController controller)
@@ -19,12 +18,12 @@ namespace Finance.UI.Views
 
         private void btnClickOpenTransactionForm(object sender, System.EventArgs e)
         {
-            controller.OpenTransactionForm();
+            controller.OpenTranForm();
         }
 
         private void btnClickOpenContactForm(object sender, System.EventArgs e)
         {
-            controller.OpenContactForm();
+            controller.OpenContForm();
         }
 
         private void btnClickOpenEvenForm(object sender, System.EventArgs e)
@@ -32,5 +31,12 @@ namespace Finance.UI.Views
             var eventForm = new EventView();
             eventForm.Show();
         }
+
+        private void btnClickOpenReportForm(object sender, System.EventArgs e)
+        {
+            controller.OpenRptForm();
+        }
+
+      
     }
 }

@@ -1,5 +1,4 @@
-﻿using Finance.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Finance.Core.DTOs
 {
-    public class TransactionDetailDto
+    public class ContactExpenseBreakDownDto
     {
-        public TranType TranType { get; set; }
-        public DateTime TranDate { get; set; }
+        public int ContactId { get; set; }
+        public string Name { get; set; }
         public decimal TotalAmount { get; set; }
     }
 }

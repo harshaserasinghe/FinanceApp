@@ -1,4 +1,10 @@
-﻿using System;
+﻿using Finance.Core.DTOs;
+using Finance.Core.Entities;
+using Finance.Service;
+using Finance.UI.Views;
+using LiveCharts;
+using LiveCharts.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,141 +14,158 @@ namespace Finance.UI.Controllers
 {
     public class ReportController
     {
-        public ReportController()
+        private readonly ReportService rptService;
+        private readonly UserService userService;
+        private readonly UserDto loggedUser;
+        private ReportView view;
+        public ReportController(ReportView view)
         {
-            //LoadTranSumChart();
-            //LoadContExpChart();
-            //LoadTranDetailsChart();
+            this.view = view;
+            this.view.SetController(this);
+            rptService = new ReportService();
+            userService = new UserService();
+            loggedUser = userService.GetUser(Environment.UserName);
         }
-        //public void LoadTranSumChart()
-        //{
-        //    var fromDate = new DateTime(2020, 03, 01);
-        //    var toDate = new DateTime(2020, 03, 31);
 
-        //    var tranSumDtos = tranService.GetTranSum(loggedUser.UserId, fromDate, toDate);
+        public void Init()
+        {
+            //GenRpts();
+        }
 
-        //    var seriColl = new SeriesCollection();
+        public void Show()
+        {
+            view.Show();
+        }
 
-        //    foreach (var tranSumDto in tranSumDtos)
-        //    {
-        //        var colSeri = new ColumnSeries
-        //        {
-        //            Title = tranSumDto.TranType.ToString(),
-        //            Values = new ChartValues<decimal> { tranSumDto.TotalAmount }
-        //        };
-        //        seriColl.Add(colSeri);
-        //    }
+        public void GenRpts()
+        {
+            var fromDate = view.FromDate.Value;
+            var toDate = view.ToDate.Value;
+            LoadTranSum(fromDate,toDate);
+            LoadContExpBrkDwn(fromDate, toDate);
+            LoadTranByDate(fromDate, toDate);
+        }
 
-        //    view.TranSumChart.Series = seriColl;
+        public void LoadTranSum(DateTime fromDate,DateTime toDate)
+        {
+            var tranSumDtos = rptService.GetTranSum(loggedUser.UserId, fromDate, toDate);
 
-        //    view.TranSumChart.AxisX.Add(new Axis
-        //    {
-        //        Title = "Transaction Types",
-        //        Labels = new[] { string.Empty }
-        //    });
+            var seriColl = new SeriesCollection();
 
-        //    view.TranSumChart.AxisY.Add(new Axis
-        //    {
-        //        Title = "Amount",
-        //        MinValue = 0,
-        //        Separator = new Separator { Step = 50000 }
-        //    });
+            foreach (var tranSumDto in tranSumDtos)
+            {
+                var colSeri = new ColumnSeries
+                {
+                    Title = tranSumDto.TranType.ToString(),
+                    Values = new ChartValues<decimal> { tranSumDto.TotalAmount }
+                };
+                seriColl.Add(colSeri);
+            }
 
-        //    view.TranSumChart.LegendLocation = LegendLocation.Left;
-        //}
+            view.TranSum.Series = seriColl;
 
-        //public void LoadContExpChart()
-        //{
-        //    var fromDate = new DateTime(2020, 03, 01);
-        //    var toDate = new DateTime(2020, 03, 31);
+            view.TranSum.AxisX.Add(new Axis
+            {
+                Title = "Transaction Types",
+                Labels = new[] { string.Empty }
+            });
 
-        //    var contExpDtos = tranService.GetContExp(loggedUser.UserId, fromDate, toDate);
+            view.TranSum.AxisY.Add(new Axis
+            {
+                Title = "Amount",
+                MinValue = 0,
+                Separator = new Separator { Step = 50000 }
+            });
 
-        //    Func<ChartPoint, string> labelPoint = chartPoint =>
-        //        string.Format("{0:P}", chartPoint.Participation);
+            view.TranSum.LegendLocation = LegendLocation.Left;
+        }
 
-        //    var seriColl = new SeriesCollection();
+        public void LoadContExpBrkDwn(DateTime fromDate, DateTime toDate)
+        {
+            var contExpBrkDwnDtos = rptService.GetContExpBrkDwn(loggedUser.UserId, fromDate, toDate);
 
-        //    foreach (var contExpDto in contExpDtos)
-        //    {
-        //        var pieSeri = new PieSeries
-        //        {
-        //            Title = contExpDto.Name,
-        //            Values = new ChartValues<decimal> { contExpDto.TotalAmount },
-        //            DataLabels = true,
-        //            LabelPoint = labelPoint
-        //        };
-        //        seriColl.Add(pieSeri);
-        //    }
+            Func<ChartPoint, string> labelPoint = chartPoint =>
+                string.Format("{0:P}", chartPoint.Participation);
 
-        //    view.ContExpChart.Series = seriColl;
-        //    view.ContExpChart.LegendLocation = LegendLocation.Right;
-        //}
+            var seriColl = new SeriesCollection();
 
-        //public void LoadTranDetailsChart()
-        //{
-        //    var fromDate = new DateTime(2020, 03, 01);
-        //    var toDate = new DateTime(2020, 03, 31);
+            foreach (var contExpDto in contExpBrkDwnDtos)
+            {
+                var pieSeri = new PieSeries
+                {
+                    Title = contExpDto.Name,
+                    Values = new ChartValues<decimal> { contExpDto.TotalAmount },
+                    DataLabels = true,
+                    LabelPoint = labelPoint
+                };
+                seriColl.Add(pieSeri);
+            }
 
-        //    var tranDetailDtos = tranService.GetTranDetail(loggedUser.UserId, fromDate, toDate);
+            view.ContExpBrkDwn.Series = seriColl;
+            view.ContExpBrkDwn.LegendLocation = LegendLocation.Right;
+        }
 
-        //    var seriColl = new SeriesCollection();
+        public void LoadTranByDate(DateTime fromDate, DateTime toDate)
+        {
+            var tranByDateDtos = rptService.GetTranByDate(loggedUser.UserId, fromDate, toDate);
 
-        //    var xAxis = new Axis
-        //    {
-        //        Title = "Transaction Date",
-        //        MinValue = 0,
-        //        Separator = new Separator { Step = 1 },
-        //        Labels = new List<string>()
-        //    };
+            var seriColl = new SeriesCollection();
 
-        //    var yAxis = new Axis
-        //    {
-        //        Title = "Amount",
-        //        MinValue = 0,
-        //        Separator = new Separator { Step = 10000 }
-        //    };
+            var xAxis = new Axis
+            {
+                Title = "Transaction Date",
+                MinValue = 0,
+                Separator = new Separator { Step = 1 },
+                Labels = new List<string>()
+            };
 
-        //    var debtSeri = new LineSeries
-        //    {
-        //        Title = TranType.Debet.ToString(),
-        //        Values = new ChartValues<decimal>()
-        //    };
+            var yAxis = new Axis
+            {
+                Title = "Amount",
+                MinValue = 0,
+                Separator = new Separator { Step = 10000 }
+            };
 
-        //    var creditSeri = new LineSeries
-        //    {
-        //        Title = TranType.Credit.ToString(),
-        //        Values = new ChartValues<decimal>()
-        //    };
+            var debtSeri = new LineSeries
+            {
+                Title = TranType.Debet.ToString(),
+                Values = new ChartValues<decimal>()
+            };
 
-        //    foreach (var tranDetailDto in tranDetailDtos)
-        //    {
+            var creditSeri = new LineSeries
+            {
+                Title = TranType.Credit.ToString(),
+                Values = new ChartValues<decimal>()
+            };
 
-        //        if (tranDetailDto.TranType == TranType.Debet)
-        //        {
-        //            debtSeri.Values.Add(tranDetailDto.TotalAmount);
-        //        }
+            foreach (var tranDetailDto in tranByDateDtos)
+            {
 
-        //        if (tranDetailDto.TranType == TranType.Credit)
-        //        {
-        //            creditSeri.Values.Add(tranDetailDto.TotalAmount);
-        //        }
+                if (tranDetailDto.TranType == TranType.Debet)
+                {
+                    debtSeri.Values.Add(tranDetailDto.TotalAmount);
+                }
 
-        //        var tranDate = tranDetailDto.TranDate.ToShortDateString();
-        //        if (!xAxis.Labels.Any(l => l == tranDate))
-        //        {
-        //            xAxis.Labels.Add(tranDate);
-        //        }
-        //    }
+                if (tranDetailDto.TranType == TranType.Credit)
+                {
+                    creditSeri.Values.Add(tranDetailDto.TotalAmount);
+                }
 
-        //    seriColl.Add(debtSeri);
-        //    seriColl.Add(creditSeri);
+                var tranDate = tranDetailDto.TranDate.ToShortDateString();
+                if (!xAxis.Labels.Any(l => l == tranDate))
+                {
+                    xAxis.Labels.Add(tranDate);
+                }
+            }
 
-        //    view.TranDetailChart.Series = seriColl;
-        //    view.TranDetailChart.AxisX.Add(xAxis);
-        //    view.TranDetailChart.AxisY.Add(yAxis);
+            seriColl.Add(debtSeri);
+            seriColl.Add(creditSeri);
 
-        //    view.TranDetailChart.LegendLocation = LegendLocation.Right;
-        //}
+            view.TranByDate.Series = seriColl;
+            view.TranByDate.AxisX.Add(xAxis);
+            view.TranByDate.AxisY.Add(yAxis);
+
+            view.TranByDate.LegendLocation = LegendLocation.Right;
+        }
     }
 }

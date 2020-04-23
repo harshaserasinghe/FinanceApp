@@ -103,61 +103,6 @@ namespace Finance.Service
             finanaceDbContext.SaveChanges();
         }
 
-        public List<TransactionSummaryDto> GetTranSum(int userId, DateTime fromDate, DateTime toDate)
-        {
-
-            var tranSumDto = finanaceDbContext.Transactions
-                .Where(t => t.IsActive && t.UserId == userId &&
-                DbFunctions.TruncateTime(t.TranDate) >= DbFunctions.TruncateTime(fromDate) &&
-                DbFunctions.TruncateTime(t.TranDate) <= DbFunctions.TruncateTime(toDate))
-                .GroupBy(t => t.TranType)
-                .Select(t => new TransactionSummaryDto
-                {
-                    TranType = t.Key,
-                    TotalAmount = t.Sum(x => x.Amount)
-                })
-                .ToList();
-
-            return tranSumDto;
-        }
-
-        public List<ContactExpenseDto> GetContExp(int userId, DateTime fromDate, DateTime toDate)
-        {
-            var ContExpDto = finanaceDbContext.Transactions
-               .Where(t => t.IsActive && t.UserId == userId && t.TranType == TranType.Debet &&
-               DbFunctions.TruncateTime(t.TranDate) >= DbFunctions.TruncateTime(fromDate) &&
-               DbFunctions.TruncateTime(t.TranDate) <= DbFunctions.TruncateTime(toDate))
-               .GroupBy(t => new { t.Contact.ContactId, t.Contact.Name })
-               .Select(t => new ContactExpenseDto
-               {
-                   ContactId = t.Key.ContactId,
-                   Name = t.Key.Name,
-                   TotalAmount = t.Sum(x => x.Amount)
-               })
-               .ToList();
-
-            return ContExpDto;
-        }
-
-        public List<TransactionDetailDto> GetTranDetail(int userId, DateTime fromDate, DateTime toDate)
-        {
-            var tranDetailsDtos = finanaceDbContext.Transactions
-              .Where(t => t.IsActive && t.UserId == userId && 
-              DbFunctions.TruncateTime(t.TranDate) >= DbFunctions.TruncateTime(fromDate) &&
-              DbFunctions.TruncateTime(t.TranDate) <= DbFunctions.TruncateTime(toDate))
-              .GroupBy(t => new { t.TranType, DbFunctions.TruncateTime(t.TranDate).Value })
-              .Select(t => new TransactionDetailDto
-              {
-                  TranType = t.Key.TranType,
-                  TranDate = t.Key.Value,
-                  TotalAmount = t.Sum(x => x.Amount)
-              })
-              .ToList();
-
-            return tranDetailsDtos;
-        }
-
-
         public List<RecurringTransactionDto> GetRecurringTransactions()
         {
             var recurringTransactions = finanaceDbContext.RecurringTransactions
