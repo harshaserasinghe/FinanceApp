@@ -43,7 +43,7 @@ namespace Finance.Service
         public List<ContactExpenseBreakDownDto> GetContExpBrkDwn(int userId, DateTime fromDate, DateTime toDate)
         {
             var ContExpDto = finanaceDbContext.Transactions
-               .Where(t => t.IsActive && t.UserId == userId && t.TranType == TranType.Debet &&
+               .Where(t => t.IsActive && t.UserId == userId && t.TranType == TranType.Debit &&
                DbFunctions.TruncateTime(t.TranDate) >= DbFunctions.TruncateTime(fromDate) &&
                DbFunctions.TruncateTime(t.TranDate) <= DbFunctions.TruncateTime(toDate))
                .GroupBy(t => new { t.Contact.ContactId, t.Contact.Name })

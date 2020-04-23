@@ -4,6 +4,6 @@
     {
         All = 0,
         Credit = 1,
-        Debet = 2
+        Debit = 2
     }
 }

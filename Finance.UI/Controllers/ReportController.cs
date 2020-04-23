@@ -41,12 +41,12 @@ namespace Finance.UI.Controllers
         {
             var fromDate = view.FromDate.Value;
             var toDate = view.ToDate.Value;
-            LoadTranSum(fromDate,toDate);
+            LoadTranSum(fromDate, toDate);
             LoadContExpBrkDwn(fromDate, toDate);
             LoadTranByDate(fromDate, toDate);
         }
 
-        public void LoadTranSum(DateTime fromDate,DateTime toDate)
+        public void LoadTranSum(DateTime fromDate, DateTime toDate)
         {
             var tranSumDtos = rptService.GetTranSum(loggedUser.UserId, fromDate, toDate);
 
@@ -128,7 +128,7 @@ namespace Finance.UI.Controllers
 
             var debtSeri = new LineSeries
             {
-                Title = TranType.Debet.ToString(),
+                Title = TranType.Debit.ToString(),
                 Values = new ChartValues<decimal>()
             };
 
@@ -141,7 +141,7 @@ namespace Finance.UI.Controllers
             foreach (var tranDetailDto in tranByDateDtos)
             {
 
-                if (tranDetailDto.TranType == TranType.Debet)
+                if (tranDetailDto.TranType == TranType.Debit)
                 {
                     debtSeri.Values.Add(tranDetailDto.TotalAmount);
                 }
