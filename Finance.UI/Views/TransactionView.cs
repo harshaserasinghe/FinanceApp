@@ -1,6 +1,7 @@
 ﻿using Finance.UI.Controllers;
 using System.Windows.Forms;
 
+
 namespace Finance.UI.Views
 {
     public partial class TransactionView : Form
