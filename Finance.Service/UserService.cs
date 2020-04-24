@@ -3,6 +3,7 @@ using Finance.Core.DTOs;
 using Finance.Core.Entities;
 using Finance.Core.Mappers;
 using Finance.Data;
+using System.IO;
 using System.Linq;
 
 namespace Finance.Service
@@ -27,6 +28,9 @@ namespace Finance.Service
                 user = new User { Name = username };
                 finanaceDbContext.Users.Add(user);
                 finanaceDbContext.SaveChanges();
+
+                var path = Path.Combine(FileService.UserFilePath, $"user_{user.UserId.ToString()}.xml");
+                FileService.SaveOrUpdateEntityToFile(user, path);
             }
 
             var userDto = mapper.Map<UserDto>(user);

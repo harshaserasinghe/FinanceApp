@@ -5,8 +5,12 @@ using Finance.Core.Mappers;
 using Finance.Data;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace Finance.Service
 {
@@ -78,6 +82,9 @@ namespace Finance.Service
 
             finanaceDbContext.Transactions.Add(tran);
             finanaceDbContext.SaveChanges();
+
+            var path = Path.Combine(FileService.TranFilePath, $"tran_{tran.TranId.ToString()}.xml");
+            FileService.SaveOrUpdateEntityToFile(tran, path);
         }
 
         public void UpdateTran(UpdateTransactionDto updateTranDto)
@@ -94,6 +101,9 @@ namespace Finance.Service
 
             finanaceDbContext.Entry(tran).State = EntityState.Modified;
             finanaceDbContext.SaveChanges();
+
+            var path = Path.Combine(FileService.TranFilePath, $"tran_{tran.TranId.ToString()}.xml");
+            FileService.SaveOrUpdateEntityToFile(tran, path);
         }
 
         public void DeleteTran(int tranId)
@@ -101,6 +111,9 @@ namespace Finance.Service
             var tran = finanaceDbContext.Transactions.Find(tranId);
             finanaceDbContext.Transactions.Remove(tran);
             finanaceDbContext.SaveChanges();
+
+            var path = Path.Combine(FileService.TranFilePath, $"tran_{tran.TranId.ToString()}.xml");
+            FileService.DeleteEntityFile(path);
         }
 
         public List<RecurringTransactionDto> GetRecurringTransactions()

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace Finance.Core.Entities
 {
@@ -12,7 +13,9 @@ namespace Finance.Core.Entities
         public int UserId { get; set; }
         public string Name { get; set; }
 
+        [XmlIgnore]
         public ICollection<Transaction> Transactions { get; set; }
+        [XmlIgnore]
         public ICollection<Event> Events { get; set; }
 
     }

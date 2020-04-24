@@ -6,6 +6,7 @@ using Finance.Data;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 
 namespace Finance.Service
@@ -57,6 +58,9 @@ namespace Finance.Service
             var cont = mapper.Map<Contact>(createContDto);
             finanaceDbContext.Contacts.Add(cont);
             finanaceDbContext.SaveChanges();
+
+            var path = Path.Combine(FileService.ContFilePath, $"cont_{cont.ContactId.ToString()}.xml");
+            FileService.SaveOrUpdateEntityToFile(cont, path);
         }
 
         public void UpdateContact(UpdateContactDto updateContDto)
@@ -65,6 +69,9 @@ namespace Finance.Service
             mapper.Map(updateContDto, cont);
             finanaceDbContext.Entry(cont).State = EntityState.Modified;
             finanaceDbContext.SaveChanges();
+
+            var path = Path.Combine(FileService.ContFilePath, $"cont_{cont.ContactId.ToString()}.xml");
+            FileService.SaveOrUpdateEntityToFile(cont, path);
         }
 
         public void DeleteCont(int contId)
@@ -72,6 +79,9 @@ namespace Finance.Service
             var cont = finanaceDbContext.Contacts.Find(contId);
             finanaceDbContext.Contacts.Remove(cont);
             finanaceDbContext.SaveChanges();
+
+            var path = Path.Combine(FileService.ContFilePath, $"cont_{cont.ContactId.ToString()}.xml");
+            FileService.DeleteEntityFile(path);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace Finance.Core.Entities
 {
@@ -17,6 +18,7 @@ namespace Finance.Core.Entities
         public string PhoneNumber { get; set; }
         public bool IsActive { get; set; }
 
+        [XmlIgnore]
         public ICollection<Transaction> Transactions { get; private set; }
     }
 }

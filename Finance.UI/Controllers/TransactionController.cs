@@ -107,7 +107,7 @@ namespace Finance.UI.Controllers
                 ClearForm();
                 view.ShowMessage("Transaction add success.");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 view.ShowMessage("Transaction add failed.");
             }

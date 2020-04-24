@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Serialization;
 
 namespace Finance.Core.Entities
 {
@@ -19,8 +20,14 @@ namespace Finance.Core.Entities
         public int UserId { get; set; }
         public int ContactId { get; set; }
         public int? TranRecId { get; set; }
+
+        [XmlIgnore]
         public Contact Contact { get; set; }
+
+        [XmlIgnore]
         public RecurringTransaction RecurringTransaction { get; set; }
+
+        [XmlIgnore]
         public User User { get; set; }
     }
 }

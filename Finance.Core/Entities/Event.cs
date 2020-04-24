@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Serialization;
 
 namespace Finance.Core.Entities
 {
@@ -12,7 +13,11 @@ namespace Finance.Core.Entities
         public bool IsRecurring { get; set; }
         public int UserId { get; set; }
         public int? EventRecId { get; set; }
+
+        [XmlIgnore]
         public RecurringEvent RecurringEvent { get; set; }
+
+        [XmlIgnore]
         public User User { get; set; }
     }
 }

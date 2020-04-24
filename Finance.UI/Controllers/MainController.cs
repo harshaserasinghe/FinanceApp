@@ -1,4 +1,5 @@
-﻿using Finance.UI.Views;
+﻿using Finance.Service;
+using Finance.UI.Views;
 using System;
 
 namespace Finance.UI.Controllers
@@ -11,6 +12,7 @@ namespace Finance.UI.Controllers
         {
             this.view = view;
             this.view.SetController(this);
+            FileService.Init();
         }
 
         public void LoadView()
