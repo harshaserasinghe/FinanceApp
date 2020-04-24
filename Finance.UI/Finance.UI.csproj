@@ -141,6 +141,9 @@
     <EmbeddedResource Include="Views\ContactView.resx">
       <DependentUpon>ContactView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\EventView.resx">
+      <DependentUpon>EventView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>

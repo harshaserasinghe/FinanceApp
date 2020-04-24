@@ -47,13 +47,17 @@
     <Compile Include="DTOs\ContactDto.cs" />
     <Compile Include="DTOs\ContactExpenseBreakDownDto.cs" />
     <Compile Include="DTOs\CreateContactDto.cs" />
+    <Compile Include="DTOs\CreateEventDto.cs" />
     <Compile Include="DTOs\CreateTransactionDto.cs" />
+    <Compile Include="DTOs\RecurringEventDto.cs" />
     <Compile Include="DTOs\ForecastDto.cs" />
     <Compile Include="DTOs\RecurringTransactionDto.cs" />
     <Compile Include="DTOs\TransactionByDateDto.cs" />
+    <Compile Include="DTOs\EventDto.cs" />
     <Compile Include="DTOs\TransactionDto.cs" />
     <Compile Include="DTOs\TransactionSummaryDto.cs" />
     <Compile Include="DTOs\UpdateContactDto.cs" />
+    <Compile Include="DTOs\UpdateEventDto.cs" />
     <Compile Include="DTOs\UpdateTransactionDto.cs" />
     <Compile Include="DTOs\UserDto.cs" />
     <Compile Include="Entities\Contact.cs" />
@@ -62,6 +66,7 @@
     <Compile Include="Entities\RecurringEvent.cs" />
     <Compile Include="Entities\RecurringTransaction.cs" />
     <Compile Include="Entities\Transaction.cs" />
+    <Compile Include="Entities\EventType.cs" />
     <Compile Include="Entities\TranType.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Mappers\EntityMappingConfig.cs" />
