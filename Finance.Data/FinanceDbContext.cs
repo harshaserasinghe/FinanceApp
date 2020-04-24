@@ -51,6 +51,11 @@ namespace Finance.Data
                 .HasForeignKey(t => t.TranRecId);
 
             modelBuilder.Entity<Event>()
+                .HasOptional(t => t.Contact)
+                .WithMany(c => c.Events)
+                .HasForeignKey(t => t.ContactId);
+
+            modelBuilder.Entity<Event>()
                 .HasOptional(e => e.RecurringEvent)
                 .WithMany(re => re.Events)
                 .HasForeignKey(e => e.EventRecId);

@@ -38,8 +38,8 @@ namespace Finance.UI.Controllers
             view.EvntContact.DataSource = contactService.GetConts();
             view.EvntContact.DisplayMember = nameof(ContactDto.Name);
             view.EvntContact.ValueMember = nameof(ContactDto.ContactId);
-            view.EvntTypeSearch.DataSource = Enum.GetValues(typeof(EvntType));
-            view.EvntType.DataSource = Enum.GetValues(typeof(EvntType));
+            view.EvntTypeSearch.DataSource = Enum.GetValues(typeof(EventType));
+            view.EvntType.DataSource = Enum.GetValues(typeof(EventType));
             view.EvntOccourence.DataSource = Enum.GetValues(typeof(Frequency));
 
             view.EvntTable.AutoGenerateColumns = false;
@@ -75,7 +75,7 @@ namespace Finance.UI.Controllers
             {
                 ClearTable();
                 var evntDtos = eventService.GetEvntsByDate(loggedUser.UserId,
-                    (EvntType)Enum.Parse(typeof(EvntType), view.EvntType.SelectedValue.ToString()),
+                    (EventType)Enum.Parse(typeof(EventType), view.EvntType.SelectedValue.ToString()),
                     view.EvntStart.Value, view.EvntEnd.Value);
                 var bindingSource = new BindingSource(evntDtos, null);
                 view.EvntTable.DataSource = bindingSource;
@@ -96,7 +96,7 @@ namespace Finance.UI.Controllers
                 {
                     Name = view.EvntName.Text,
                     Description = view.EvntDescription.Text,
-                    EvntType = (EvntType)Enum.Parse(typeof(EvntType), view.EvntType.SelectedValue.ToString()),
+                    EvntType = (EventType)Enum.Parse(typeof(EventType), view.EvntType.SelectedValue.ToString()),
                     EvntStartDate = view.EvntStartDate.Value,
                     EvntEndDate= view.EvntEndDate.Value,
                     EvntStartTime = view.EvntStartTime.Value,
@@ -129,7 +129,7 @@ namespace Finance.UI.Controllers
                     EventId = SelectedEvntDto.EventId,
                     Name = view.EvntName.Text,
                     Description = view.EvntDescription.Text,
-                    EvntType = (EvntType)Enum.Parse(typeof(EvntType), view.EvntType.SelectedValue.ToString()),
+                    EvntType = (EventType)Enum.Parse(typeof(EventType), view.EvntType.SelectedValue.ToString()),
                     EvntStartDate = view.EvntStartDate.Value,
                     ContactId = Int32.Parse(view.EvntContact.SelectedValue.ToString()),
                     IsRecurring = view.IsRecurring.Checked,

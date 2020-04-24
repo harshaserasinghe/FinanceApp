@@ -1,6 +1,6 @@
 ﻿namespace Finance.Core.Entities
 {
-    public enum EvntType
+    public enum EventType
     {
         All = 0,
         Appointment = 1,

@@ -41,24 +41,24 @@ namespace Finance.Service
 
 
 
-        public List<EventDto> GetEvntsByDate(int userId, EvntType evntType, DateTime fromDate, DateTime toDate)
+        public List<EventDto> GetEvntsByDate(int userId, EventType evntType, DateTime fromDate, DateTime toDate)
         {
             var evntQuery = finanaceDbContext.Events
                 .Include(t => t.Contact)
                 .Include(t => t.RecurringEvent)
                 .AsQueryable();
 
-            if (EvntType.All != evntType)
+            if (EventType.All != evntType)
             {
-                evntQuery = evntQuery.Where(t => t.EvntType == evntType).AsQueryable();
+                evntQuery = evntQuery.Where(t => t.EventType == evntType).AsQueryable();
             }
 
             evntQuery = evntQuery.Where(t => t.IsActive &&
                 t.UserId == userId &&
-                DbFunctions.TruncateTime(t.EvntStartDate) >= DbFunctions.TruncateTime(fromDate) &&
-                DbFunctions.TruncateTime(t.EvntEndDate) <= DbFunctions.TruncateTime(toDate)).AsQueryable();
+                DbFunctions.TruncateTime(t.EventStartDate) >= DbFunctions.TruncateTime(fromDate) &&
+                DbFunctions.TruncateTime(t.EventEndDate) <= DbFunctions.TruncateTime(toDate)).AsQueryable();
 
-            var evnts = evntQuery.OrderBy(t => t.EvntStartDate).ToList();
+            var evnts = evntQuery.OrderBy(t => t.EventStartDate).ToList();
 
             if (evnts == null)
             {
@@ -115,7 +115,7 @@ namespace Finance.Service
                 {
                     EvntRecId = re.EventRecId,
                     Frequency = re.Frequency,
-                    Event = re.Events.OrderByDescending(t => t.EvntStartDate).FirstOrDefault()
+                    Event = re.Events.OrderByDescending(t => t.EventStartDate).FirstOrDefault()
                 })
                 .ToList();
 
@@ -138,14 +138,14 @@ namespace Finance.Service
                     AddEvent(recurringEvent);
                 }
                 else if (recurringEvent.Frequency == Frequency.Monthly &&
-                    recurringEvent.Event.EvntStartDate.Day == currentDate.Day &&
+                    recurringEvent.Event.EventStartDate.Day == currentDate.Day &&
                     !HasMonthly(recurringEvent, monthStartDate, monthEndDate))
                 {
                     AddEvent(recurringEvent);
                 }
                 else if (recurringEvent.Frequency == Frequency.Yearly &&
-                    recurringEvent.Event.EvntStartDate.Month == currentDate.Month &&
-                    recurringEvent.Event.EvntStartDate.Day == currentDate.Day &&
+                    recurringEvent.Event.EventStartDate.Month == currentDate.Month &&
+                    recurringEvent.Event.EventStartDate.Day == currentDate.Day &&
                     !HasMonthly(recurringEvent, yearStartDate, yearEndDate))
                 {
                     AddEvent(recurringEvent);
@@ -159,11 +159,11 @@ namespace Finance.Service
             var evnt = new Event();
             evnt.Name = recurringEvent.Event.Name;
             evnt.Description = recurringEvent.Event.Description;
-            evnt.EvntType = recurringEvent.Event.EvntType;
-            evnt.EvntStartDate = DateTime.Now;
-            evnt.EvntEndDate = DateTime.Now;
-            evnt.EvntStartTime = DateTime.Now;
-            evnt.EvntEndTime = DateTime.Now;
+            evnt.EventType = recurringEvent.Event.EventType;
+            evnt.EventStartDate = DateTime.Now;
+            evnt.EventEndDate = DateTime.Now;
+            evnt.EventStartTime = DateTime.Now;
+            evnt.EventEndTime = DateTime.Now;
             evnt.IsRecurring = true;
             evnt.ContactId = recurringEvent.Event.ContactId;
             evnt.EventRecId = recurringEvent.Event.EventRecId;
@@ -176,15 +176,15 @@ namespace Finance.Service
         {
             return finanaceDbContext.Events
                 .Any(t => t.EventRecId == recurringEvent.EvntRecId &&
-                DbFunctions.TruncateTime(t.EvntStartDate) == DbFunctions.TruncateTime(currentDate));
+                DbFunctions.TruncateTime(t.EventStartDate) == DbFunctions.TruncateTime(currentDate));
         }
 
         private bool HasMonthly(RecurringEventDto recurringEvent, DateTime monthStartDate, DateTime monthEndDate)
         {
             return finanaceDbContext.Events
                 .Any(t => t.EventRecId == recurringEvent.EvntRecId &&
-                DbFunctions.TruncateTime(t.EvntStartDate) >= DbFunctions.TruncateTime(monthStartDate) &&
-                DbFunctions.TruncateTime(t.EvntStartDate) <= DbFunctions.TruncateTime(monthEndDate));
+                DbFunctions.TruncateTime(t.EventStartDate) >= DbFunctions.TruncateTime(monthStartDate) &&
+                DbFunctions.TruncateTime(t.EventStartDate) <= DbFunctions.TruncateTime(monthEndDate));
         }
     }
 }

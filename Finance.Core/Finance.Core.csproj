@@ -65,7 +65,7 @@
     <Compile Include="Entities\RecurringEvent.cs" />
     <Compile Include="Entities\RecurringTransaction.cs" />
     <Compile Include="Entities\Transaction.cs" />
-    <Compile Include="Entities\EvntType.cs" />
+    <Compile Include="Entities\EventType.cs" />
     <Compile Include="Entities\TranType.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Mappers\EntityMappingConfig.cs" />

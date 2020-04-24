@@ -8,6 +8,7 @@ namespace Finance.Core.Entities
         {
             IsActive = true;
             Transactions = new HashSet<Transaction>();
+            Events = new HashSet<Event>();
         }
 
         public int ContactId { get; set; }
@@ -18,5 +19,6 @@ namespace Finance.Core.Entities
         public bool IsActive { get; set; }
 
         public ICollection<Transaction> Transactions { get; private set; }
+        public ICollection<Event> Events { get; private set; }
     }
 }
