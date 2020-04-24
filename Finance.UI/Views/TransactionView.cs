@@ -92,6 +92,18 @@ namespace Finance.UI.Views
             set { dgvTranTable = value; }
         }
 
+        public Label Forecast
+        {
+            get { return labForecast; }
+            set { labForecast = value; }
+        }
+
+        public DateTimePicker ForecastDate
+        {
+            get { return dtpForecast; }
+            set { dtpForecast = value; }
+        }
+
         public void ShowMessage(string msg)
         {
             MessageBox.Show(msg);
@@ -130,6 +142,11 @@ namespace Finance.UI.Views
         private void dgvTranTableRowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             controller.SetSelectedTran();
+        }
+
+        private void btnGetForecastClick(object sender, System.EventArgs e)
+        {
+            controller.GetForecast();
         }
     }
 }

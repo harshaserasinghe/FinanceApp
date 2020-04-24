@@ -48,6 +48,7 @@
     <Compile Include="DTOs\ContactExpenseBreakDownDto.cs" />
     <Compile Include="DTOs\CreateContactDto.cs" />
     <Compile Include="DTOs\CreateTransactionDto.cs" />
+    <Compile Include="DTOs\ForecastDto.cs" />
     <Compile Include="DTOs\RecurringTransactionDto.cs" />
     <Compile Include="DTOs\TransactionByDateDto.cs" />
     <Compile Include="DTOs\TransactionDto.cs" />

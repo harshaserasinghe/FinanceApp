@@ -116,6 +116,30 @@ namespace Finance.Service
             FileService.DeleteEntityFile(path);
         }
 
+        public decimal GetForecast(int userId, DateTime forecastDate)
+        {
+            var fromDate = forecastDate.Date.AddMonths(-3);
+            var toDate = forecastDate.Date.AddMonths(3);
+
+            var foreCastDtos = finanaceDbContext.Transactions
+              .Where(t => t.IsActive && t.UserId == userId && t.TranType == TranType.Debit &&
+              DbFunctions.TruncateTime(t.TranDate) >= DbFunctions.TruncateTime(fromDate) &&
+              DbFunctions.TruncateTime(t.TranDate) <= DbFunctions.TruncateTime(toDate))
+              .Select(t => new ForecastDto
+              {
+                  TranId = t.TranId,
+                  TranDate = t.TranDate,
+                  Amount = t.Amount
+              })
+              .ToList();
+
+            foreCastDtos = foreCastDtos.Where(t => t.TranDate.Day == forecastDate.Day).ToList();
+
+            var forecast = (foreCastDtos.Sum(t => t.Amount)) / foreCastDtos.Count;
+
+            return forecast;
+        }
+
         public List<RecurringTransactionDto> GetRecurringTransactions()
         {
             var recurringTransactions = finanaceDbContext.RecurringTransactions

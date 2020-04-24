@@ -158,6 +158,13 @@ namespace Finance.UI.Controllers
             }
         }
 
+        public void GetForecast()
+        {
+            var forecast = tranService.GetForecast(loggedUser.UserId, view.ForecastDate.Value);
+            var formatForcast = $"Expense forecast of the {view.ForecastDate.Value.ToShortDateString()} will be Rs {forecast.ToString(".00")}";
+            view.Forecast.Text = formatForcast;
+        }
+
         private void RefreshTable()
         {
             var tranDtos = (view.TranTable.DataSource as BindingSource).List;

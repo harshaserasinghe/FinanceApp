@@ -64,6 +64,9 @@ namespace Finance.UI.Views
             this.label6 = new System.Windows.Forms.Label();
             this.dgvTranTable = new System.Windows.Forms.DataGridView();
             this.tabLayPanTran = new System.Windows.Forms.TableLayoutPanel();
+            this.btnForecast = new System.Windows.Forms.Button();
+            this.dtpForecast = new System.Windows.Forms.DateTimePicker();
+            this.labForecast = new System.Windows.Forms.Label();
             this.panRecSection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTranTable)).BeginInit();
             this.tabLayPanTran.SuspendLayout();
@@ -79,7 +82,7 @@ namespace Finance.UI.Views
             // 
             // btnClearForm
             // 
-            this.btnClearForm.Location = new System.Drawing.Point(1415, 393);
+            this.btnClearForm.Location = new System.Drawing.Point(1414, 436);
             this.btnClearForm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClearForm.Name = "btnClearForm";
             this.btnClearForm.Size = new System.Drawing.Size(75, 23);
@@ -92,7 +95,7 @@ namespace Finance.UI.Views
             // 
             this.panRecSection.Controls.Add(this.labFrequence);
             this.panRecSection.Controls.Add(this.cmbFrequency);
-            this.panRecSection.Location = new System.Drawing.Point(1153, 344);
+            this.panRecSection.Location = new System.Drawing.Point(1152, 387);
             this.panRecSection.Margin = new System.Windows.Forms.Padding(4);
             this.panRecSection.Name = "panRecSection";
             this.panRecSection.Size = new System.Drawing.Size(349, 43);
@@ -118,7 +121,7 @@ namespace Finance.UI.Views
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(1331, 393);
+            this.btnDelete.Location = new System.Drawing.Point(1330, 436);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
@@ -129,7 +132,7 @@ namespace Finance.UI.Views
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(1245, 393);
+            this.btnUpdate.Location = new System.Drawing.Point(1244, 436);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
@@ -140,7 +143,7 @@ namespace Finance.UI.Views
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(1160, 393);
+            this.btnCreate.Location = new System.Drawing.Point(1159, 436);
             this.btnCreate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(75, 23);
@@ -174,7 +177,7 @@ namespace Finance.UI.Views
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1157, 324);
+            this.label5.Location = new System.Drawing.Point(1156, 367);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(70, 17);
             this.label5.TabIndex = 91;
@@ -183,7 +186,7 @@ namespace Finance.UI.Views
             // chbIsRecurring
             // 
             this.chbIsRecurring.AutoSize = true;
-            this.chbIsRecurring.Location = new System.Drawing.Point(1245, 324);
+            this.chbIsRecurring.Location = new System.Drawing.Point(1244, 367);
             this.chbIsRecurring.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chbIsRecurring.Name = "chbIsRecurring";
             this.chbIsRecurring.Size = new System.Drawing.Size(18, 17);
@@ -193,7 +196,7 @@ namespace Finance.UI.Views
             // 
             // txbDescription
             // 
-            this.txbDescription.Location = new System.Drawing.Point(1249, 180);
+            this.txbDescription.Location = new System.Drawing.Point(1248, 223);
             this.txbDescription.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbDescription.Name = "txbDescription";
             this.txbDescription.Size = new System.Drawing.Size(239, 61);
@@ -202,7 +205,7 @@ namespace Finance.UI.Views
             // 
             // txbTranName
             // 
-            this.txbTranName.Location = new System.Drawing.Point(1248, 141);
+            this.txbTranName.Location = new System.Drawing.Point(1247, 184);
             this.txbTranName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbTranName.Name = "txbTranName";
             this.txbTranName.Size = new System.Drawing.Size(240, 22);
@@ -210,7 +213,7 @@ namespace Finance.UI.Views
             // 
             // txbAmount
             // 
-            this.txbAmount.Location = new System.Drawing.Point(1248, 287);
+            this.txbAmount.Location = new System.Drawing.Point(1247, 330);
             this.txbAmount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbAmount.Name = "txbAmount";
             this.txbAmount.Size = new System.Drawing.Size(240, 22);
@@ -219,7 +222,7 @@ namespace Finance.UI.Views
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(1157, 184);
+            this.label11.Location = new System.Drawing.Point(1156, 227);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(79, 17);
             this.label11.TabIndex = 88;
@@ -228,7 +231,7 @@ namespace Finance.UI.Views
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(1157, 143);
+            this.label10.Location = new System.Drawing.Point(1156, 186);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(45, 17);
             this.label10.TabIndex = 87;
@@ -237,7 +240,7 @@ namespace Finance.UI.Views
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1157, 290);
+            this.label4.Location = new System.Drawing.Point(1156, 333);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 17);
             this.label4.TabIndex = 84;
@@ -246,7 +249,7 @@ namespace Finance.UI.Views
             // cmbContact
             // 
             this.cmbContact.FormattingEnabled = true;
-            this.cmbContact.Location = new System.Drawing.Point(1249, 104);
+            this.cmbContact.Location = new System.Drawing.Point(1248, 147);
             this.cmbContact.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbContact.Name = "cmbContact";
             this.cmbContact.Size = new System.Drawing.Size(239, 24);
@@ -255,7 +258,7 @@ namespace Finance.UI.Views
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1157, 106);
+            this.label3.Location = new System.Drawing.Point(1156, 149);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 17);
             this.label3.TabIndex = 82;
@@ -263,7 +266,7 @@ namespace Finance.UI.Views
             // 
             // dtpTranDate
             // 
-            this.dtpTranDate.Location = new System.Drawing.Point(1248, 253);
+            this.dtpTranDate.Location = new System.Drawing.Point(1247, 296);
             this.dtpTranDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpTranDate.Name = "dtpTranDate";
             this.dtpTranDate.Size = new System.Drawing.Size(240, 22);
@@ -272,7 +275,7 @@ namespace Finance.UI.Views
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1157, 258);
+            this.label2.Location = new System.Drawing.Point(1156, 301);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 17);
             this.label2.TabIndex = 80;
@@ -281,7 +284,7 @@ namespace Finance.UI.Views
             // cmbTranType
             // 
             this.cmbTranType.FormattingEnabled = true;
-            this.cmbTranType.Location = new System.Drawing.Point(1248, 66);
+            this.cmbTranType.Location = new System.Drawing.Point(1247, 109);
             this.cmbTranType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbTranType.Name = "cmbTranType";
             this.cmbTranType.Size = new System.Drawing.Size(240, 24);
@@ -290,7 +293,7 @@ namespace Finance.UI.Views
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1157, 68);
+            this.label1.Location = new System.Drawing.Point(1156, 111);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 17);
             this.label1.TabIndex = 78;
@@ -356,7 +359,7 @@ namespace Finance.UI.Views
             this.dgvTranTable.Name = "dgvTranTable";
             this.dgvTranTable.RowHeadersWidth = 51;
             this.dgvTranTable.RowTemplate.Height = 24;
-            this.dgvTranTable.Size = new System.Drawing.Size(1103, 348);
+            this.dgvTranTable.Size = new System.Drawing.Size(1103, 379);
             this.dgvTranTable.TabIndex = 77;
             this.dgvTranTable.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTranTableRowHeaderMouseClick);
             // 
@@ -369,14 +372,44 @@ namespace Finance.UI.Views
             this.tabLayPanTran.Name = "tabLayPanTran";
             this.tabLayPanTran.RowCount = 1;
             this.tabLayPanTran.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tabLayPanTran.Size = new System.Drawing.Size(1109, 352);
+            this.tabLayPanTran.Size = new System.Drawing.Size(1109, 383);
             this.tabLayPanTran.TabIndex = 99;
+            // 
+            // btnForecast
+            // 
+            this.btnForecast.Location = new System.Drawing.Point(1412, 21);
+            this.btnForecast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnForecast.Name = "btnForecast";
+            this.btnForecast.Size = new System.Drawing.Size(75, 23);
+            this.btnForecast.TabIndex = 100;
+            this.btnForecast.Text = "Forecast";
+            this.btnForecast.UseVisualStyleBackColor = true;
+            this.btnForecast.Click += new System.EventHandler(this.btnGetForecastClick);
+            // 
+            // dtpForecast
+            // 
+            this.dtpForecast.Location = new System.Drawing.Point(1159, 23);
+            this.dtpForecast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpForecast.Name = "dtpForecast";
+            this.dtpForecast.Size = new System.Drawing.Size(240, 22);
+            this.dtpForecast.TabIndex = 101;
+            // 
+            // labForecast
+            // 
+            this.labForecast.AutoSize = true;
+            this.labForecast.Location = new System.Drawing.Point(1159, 69);
+            this.labForecast.Name = "labForecast";
+            this.labForecast.Size = new System.Drawing.Size(0, 17);
+            this.labForecast.TabIndex = 102;
             // 
             // TransactionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1516, 447);
+            this.ClientSize = new System.Drawing.Size(1539, 488);
+            this.Controls.Add(this.labForecast);
+            this.Controls.Add(this.dtpForecast);
+            this.Controls.Add(this.btnForecast);
             this.Controls.Add(this.tabLayPanTran);
             this.Controls.Add(this.btnClearForm);
             this.Controls.Add(this.panRecSection);
@@ -452,5 +485,8 @@ namespace Finance.UI.Views
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dgvTranTable;
         private System.Windows.Forms.TableLayoutPanel tabLayPanTran;
+        private System.Windows.Forms.Button btnForecast;
+        private System.Windows.Forms.DateTimePicker dtpForecast;
+        private System.Windows.Forms.Label labForecast;
     }
 }
