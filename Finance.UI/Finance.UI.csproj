@@ -178,7 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Finance.Core\Finance.Core.csproj">
-      <Project>{E0324D78-230B-4248-8738-9DADD8D7FA1A}</Project>
+      <Project>{e0324d78-230b-4248-8738-9dadd8d7fa1a}</Project>
       <Name>Finance.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Finance.Data\Finance.Data.csproj">

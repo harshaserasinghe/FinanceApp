@@ -28,8 +28,7 @@ namespace Finance.UI.Views
 
         private void btnClickOpenEvenForm(object sender, System.EventArgs e)
         {
-            var eventForm = new EventView();
-            eventForm.Show();
+            controller.OpenEvntForm();
         }
 
         private void btnClickOpenReportForm(object sender, System.EventArgs e)

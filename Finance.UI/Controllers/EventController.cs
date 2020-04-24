@@ -29,6 +29,7 @@ namespace Finance.UI.Controllers
             this.view = view;
             this.view.SetController(this);
             eventService = new EventService();
+            contactService = new ContactService();
             userService = new UserService();
             loggedUser = userService.GetUser(Environment.UserName);
         }
