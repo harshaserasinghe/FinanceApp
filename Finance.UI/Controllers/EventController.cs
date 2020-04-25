@@ -49,20 +49,26 @@ namespace Finance.UI.Controllers
             view.EvntTable.ScrollBars = ScrollBars.Vertical;
             view.EvntTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            
+            //String eventEndTime;
+            //String eventStartDate;
+            //String eventEndTime;
+
+
             AddTexBoxColumn(nameof(EventDto.EventId), "Id", true, false);
             AddTexBoxColumn(nameof(EventDto.Name), "Name", true, true);
             AddTexBoxColumn(nameof(EventDto.Description), "Description", true, true);
             AddTexBoxColumn(nameof(EventDto.ContactId), "ContactId", true, false);
             AddTexBoxColumn(nameof(EventDto.ContactName), "Contact", true, true);
-            AddTexBoxColumn(nameof(EventDto.EvntType), "Type", true, true);
-            AddTexBoxColumn(nameof(EventDto.EvntStartDate), "StartDate", true, true);
-            AddTexBoxColumn(nameof(EventDto.EvntStartTime), "StartTime", true, true);
-            AddTexBoxColumn(nameof(EventDto.EvntEndDate), "EndDate", true, true);
-            AddTexBoxColumn(nameof(EventDto.EvntEndTime), "EndTime", true, true);
+            AddTexBoxColumn(nameof(EventDto.EventType), "Type", true, true);
+            AddTexBoxColumn(nameof(EventDto.EventStartDate), "StartDate", true, true);
+            AddTexBoxColumn(nameof(EventDto.EventStartTime), "StartTime", true, true);
+            AddTexBoxColumn(nameof(EventDto.EventEndDate), "EndDate", true, true);
+            AddTexBoxColumn(nameof(EventDto.EventEndTime), "EndTime", true, true);
             AddTexBoxColumn(nameof(EventDto.IsRecurring), "Recurring", true, true);
             AddTexBoxColumn(nameof(EventDto.EventRecId), "TranRecId", true, false);
             AddTexBoxColumn(nameof(EventDto.Frequency), "Occurrence", true, true);
-
+            IsReCurringEvnt();
         }
 
         public void Show()
@@ -77,7 +83,7 @@ namespace Finance.UI.Controllers
                 ClearTable();
                 var evntDtos = eventService.GetEvntsByDate(loggedUser.UserId,
                     (EventType)Enum.Parse(typeof(EventType), view.EvntType.SelectedValue.ToString()),
-                    view.EvntStart.Value, view.EvntEnd.Value);
+                    view.EvntFrom.Value, view.EvntTo.Value);
                 var bindingSource = new BindingSource(evntDtos, null);
                 view.EvntTable.DataSource = bindingSource;
             }
@@ -97,11 +103,11 @@ namespace Finance.UI.Controllers
                 {
                     Name = view.EvntName.Text,
                     Description = view.EvntDescription.Text,
-                    EvntType = (EventType)Enum.Parse(typeof(EventType), view.EvntType.SelectedValue.ToString()),
-                    EvntStartDate = view.EvntStartDate.Value,
-                    EvntEndDate= view.EvntEndDate.Value,
-                    EvntStartTime = view.EvntStartTime.Value,
-                    EvntEndTime = view.EvntEndTime.Value,
+                    EventType = (EventType)Enum.Parse(typeof(EventType), view.EvntType.SelectedValue.ToString()),
+                    EventStartDate = view.EvntStartDate.Value,
+                    EventEndDate= view.EvntEndDate.Value,
+                    EventStartTime = view.EvntStartTime.Value,
+                    EventEndTime = view.EvntEndTime.Value,
                     ContactId = Int32.Parse(view.EvntContact.SelectedValue.ToString()),
                     IsRecurring = view.IsRecurring.Checked,
                     Frequency = (Frequency)Enum.Parse(typeof(Frequency), view.EvntOccourence.SelectedValue.ToString()),
@@ -111,11 +117,12 @@ namespace Finance.UI.Controllers
                 eventService.AddEvnt(createEvntDto);
                 GetEvents();
                 ClearForm();
-                view.ShowMessage("Transaction add success.","Information");
+                view.ShowMessage("Event added successfully.","Information");
             }
             catch (Exception)
             {
-                view.ShowMessage("Transaction add failed.","Error");
+              
+                view.ShowMessage("Event add failed!","Error");
             }
 
 
@@ -130,11 +137,14 @@ namespace Finance.UI.Controllers
                     EventId = SelectedEvntDto.EventId,
                     Name = view.EvntName.Text,
                     Description = view.EvntDescription.Text,
-                    EvntType = (EventType)Enum.Parse(typeof(EventType), view.EvntType.SelectedValue.ToString()),
-                    EvntStartDate = view.EvntStartDate.Value,
+                    EventType = (EventType)Enum.Parse(typeof(EventType), view.EvntType.SelectedValue.ToString()),
+                    EventStartDate = view.EvntStartDate.Value,
+                    EventEndDate = view.EvntEndDate.Value,
+                    EventStartTime = view.EvntStartTime.Value,
+                    EventEndTime = view.EvntEndTime.Value,
                     ContactId = Int32.Parse(view.EvntContact.SelectedValue.ToString()),
                     IsRecurring = view.IsRecurring.Checked,
-                    EvntRecId = SelectedEvntDto.EventRecId,
+                    EventRecId = SelectedEvntDto.EventRecId,
                     Frequency = (Frequency)Enum.Parse(typeof(Frequency), view.EvntOccourence.SelectedValue.ToString()),
                 };
 
@@ -143,8 +153,9 @@ namespace Finance.UI.Controllers
                 ClearForm();
                 view.ShowMessage("Transaction update success.","Information");
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                view.ShowMessage(e.ToString(),"Error");
                 view.ShowMessage("Transaction update failed.","Error");
             }
         }
@@ -153,6 +164,9 @@ namespace Finance.UI.Controllers
         {
             try
             {
+                //view.ShowMessage("Are you sure you want to delete this transaction?", "Warning");
+                
+              //  view.ShowDialog(("Are you sure you want to delete this transaction?", "Warning"));
                 var evntId = SelectedEvntDto.EventId;
                 eventService.DeleteEvnt(evntId);
                 GetEvents();
@@ -177,15 +191,25 @@ namespace Finance.UI.Controllers
             if (view.IsRecurring.Checked)
                 view.SecOccourence.Show();
             else
+            {
+                view.EvntOccourence.SelectedIndex = 0; 
                 view.SecOccourence.Hide();
+            }
         }
 
         public void IsAppointment()
         {
-            if (view.IsRecurring.Checked)
+            if (view.EvntType.SelectedValue.ToString().Equals("Appointment"))
+            {
+
                 view.SecEvntContact.Show();
+            }
+
             else
+            {
                 view.SecEvntContact.Hide();
+
+            }
         }
 
         public void SetSelectedEvnt()
@@ -195,11 +219,11 @@ namespace Finance.UI.Controllers
             SelectedEvntDto = view.EvntTable.SelectedRows[0].DataBoundItem as EventDto;
             view.EvntName.Text = SelectedEvntDto.Name;
             view.EvntDescription.Text = SelectedEvntDto.Description;
-            view.EvntType.SelectedItem = SelectedEvntDto.EvntType;
-            view.EvntStartDate.Value = SelectedEvntDto.EvntStartDate;
-            view.EvntEndDate.Value = SelectedEvntDto.EvntEndDate;
-            view.EvntStartTime.Value = SelectedEvntDto.EvntStartTime;
-            view.EvntEndTime.Value = SelectedEvntDto.EvntEndTime;
+            view.EvntType.SelectedItem = SelectedEvntDto.EventType;
+            view.EvntStartDate.Value = SelectedEvntDto.EventStartDate;
+            view.EvntEndDate.Value = SelectedEvntDto.EventEndDate;
+            view.EvntStartTime.Value = SelectedEvntDto.EventStartTime;
+            view.EvntEndTime.Value = SelectedEvntDto.EventEndTime;
             view.EvntContact.SelectedValue = SelectedEvntDto.ContactId;
             view.IsRecurring.Checked = SelectedEvntDto.IsRecurring;
 

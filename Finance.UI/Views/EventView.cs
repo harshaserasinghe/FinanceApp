@@ -101,14 +101,14 @@ namespace Finance.UI.Views
             set { cmbEvntTypeSearch = value; }
         }
 
-        public DateTimePicker EvntStart
+        public DateTimePicker EvntFrom
         {
             get { return dtpEvntStartSearch; }
             set { dtpEvntStartSearch = value; }
 
         }
 
-        public DateTimePicker EvntEnd
+        public DateTimePicker EvntTo
         {
             get { return dtpEvntEndSearch; }
             set { dtpEvntEndSearch = value; }
@@ -166,6 +166,16 @@ namespace Finance.UI.Views
         private void btnEvntSearchClear_Click(object sender, System.EventArgs e)
         {
             controller.ClearTable();
+        }
+
+        private void cmbEvntType_SelectedValueChanged(object sender, System.EventArgs e)
+        {
+            controller.IsAppointment();
+        }
+
+        private void dgvEvntTable_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            controller.SetSelectedEvnt();
         }
     }
 }

@@ -107,7 +107,7 @@ namespace Finance.UI.Controllers
                 ClearForm();
                 view.ShowMessage("Transaction add success.");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 view.ShowMessage("Transaction add failed.");
             }
@@ -175,9 +175,16 @@ namespace Finance.UI.Controllers
         public void IsReCurringTran()
         {
             if (view.IsRecurring.Checked)
+            {
                 view.RecSection.Show();
+            }
+
             else
+            {
+                view.Frequency.SelectedIndex = 0;
                 view.RecSection.Hide();
+            }
+                
         }
 
         public void SetSelectedTran()
