@@ -13,10 +13,9 @@ namespace Finance.Core.DTOs
         public DateTime EventEndDate { get; set; }
         public DateTime EventStartTime { get; set; }
         public DateTime EventEndTime { get; set; }
-        public int ContactId { get; set; }
+        public int? ContactId { get; set; }
         public bool IsRecurring { get; set; }
         public int? EventRecId { get; set; }
         public Frequency Frequency { get; set; }
-        public int UserId { get; set; }
     }
 }

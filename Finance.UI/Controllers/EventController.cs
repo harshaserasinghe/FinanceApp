@@ -121,7 +121,7 @@ namespace Finance.UI.Controllers
             }
             catch (Exception)
             {
-              
+             
                 view.ShowMessage("Event add failed!","Error");
             }
 
