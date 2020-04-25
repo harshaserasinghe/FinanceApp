@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\ContactDto.cs" />
-    <Compile Include="DTOs\ContactExpenseBreakDownDto.cs" />
+    <Compile Include="DTOs\ExpenseByContactDto.cs" />
     <Compile Include="DTOs\CreateContactDto.cs" />
     <Compile Include="DTOs\CreateEventDto.cs" />
     <Compile Include="DTOs\CreateTransactionDto.cs" />

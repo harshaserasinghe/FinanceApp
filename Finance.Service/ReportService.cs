@@ -7,8 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Finance.Service
 {
@@ -22,10 +20,10 @@ namespace Finance.Service
             finanaceDbContext = new FinanceDbContext();
             mapper = new Mapper(new EntityMappingConfig().mapperConfig);
         }
-        public List<TransactionSummaryDto> GetTranSum(int userId, DateTime fromDate, DateTime toDate)
+        public List<TransactionSummaryDto> GetTranSumry(int userId, DateTime fromDate, DateTime toDate)
         {
 
-            var tranSumDto = finanaceDbContext.Transactions
+            var tranSumryDtos = finanaceDbContext.Transactions
                 .Where(t => t.IsActive && t.UserId == userId &&
                 DbFunctions.TruncateTime(t.TranDate) >= DbFunctions.TruncateTime(fromDate) &&
                 DbFunctions.TruncateTime(t.TranDate) <= DbFunctions.TruncateTime(toDate))
@@ -35,32 +33,34 @@ namespace Finance.Service
                     TranType = t.Key,
                     TotalAmount = t.Sum(x => x.Amount)
                 })
+                .OrderBy(t => t.TranType)
                 .ToList();
 
-            return tranSumDto;
+            return tranSumryDtos;
         }
 
-        public List<ContactExpenseBreakDownDto> GetContExpBrkDwn(int userId, DateTime fromDate, DateTime toDate)
+        public List<ExpenseByContactDto> GetExpnBrkDwnByCont(int userId, DateTime fromDate, DateTime toDate)
         {
-            var ContExpDto = finanaceDbContext.Transactions
+            var expnByContDtos = finanaceDbContext.Transactions
                .Where(t => t.IsActive && t.UserId == userId && t.TranType == TranType.Debit &&
                DbFunctions.TruncateTime(t.TranDate) >= DbFunctions.TruncateTime(fromDate) &&
                DbFunctions.TruncateTime(t.TranDate) <= DbFunctions.TruncateTime(toDate))
                .GroupBy(t => new { t.Contact.ContactId, t.Contact.Name })
-               .Select(t => new ContactExpenseBreakDownDto
+               .Select(t => new ExpenseByContactDto
                {
                    ContactId = t.Key.ContactId,
                    Name = t.Key.Name,
                    TotalAmount = t.Sum(x => x.Amount)
                })
+               .OrderBy(t => t.Name)
                .ToList();
 
-            return ContExpDto;
+            return expnByContDtos;
         }
 
-        public List<TransactionByDateDto> GetTranByDate(int userId, DateTime fromDate, DateTime toDate)
+        public List<TransactionByDateDto> GetTranBrkDownByDate(int userId, DateTime fromDate, DateTime toDate)
         {
-            var tranDetailsDtos = finanaceDbContext.Transactions
+            var tranByDateDtos = finanaceDbContext.Transactions
               .Where(t => t.IsActive && t.UserId == userId &&
               DbFunctions.TruncateTime(t.TranDate) >= DbFunctions.TruncateTime(fromDate) &&
               DbFunctions.TruncateTime(t.TranDate) <= DbFunctions.TruncateTime(toDate))
@@ -71,9 +71,10 @@ namespace Finance.Service
                   TranDate = t.Key.Value,
                   TotalAmount = t.Sum(x => x.Amount)
               })
+              .OrderBy(t => new { t.TranDate, t.TranType })
               .ToList();
 
-            return tranDetailsDtos;
+            return tranByDateDtos;
         }
 
     }

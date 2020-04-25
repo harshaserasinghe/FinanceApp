@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Finance.Core.DTOs
 {
-    public class ContactExpenseBreakDownDto
+    public class ExpenseByContactDto
     {
         public int ContactId { get; set; }
         public string Name { get; set; }

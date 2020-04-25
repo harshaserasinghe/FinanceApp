@@ -40,15 +40,15 @@
             // 
             // trndChtTranByDate
             // 
-            this.trndChtTranByDate.Location = new System.Drawing.Point(116, 498);
+            this.trndChtTranByDate.Location = new System.Drawing.Point(36, 516);
             this.trndChtTranByDate.Name = "trndChtTranByDate";
-            this.trndChtTranByDate.Size = new System.Drawing.Size(1273, 458);
+            this.trndChtTranByDate.Size = new System.Drawing.Size(1670, 440);
             this.trndChtTranByDate.TabIndex = 5;
             this.trndChtTranByDate.Text = "cartesianChart1";
             // 
             // pieChtContExpBrkDwn
             // 
-            this.pieChtContExpBrkDwn.Location = new System.Drawing.Point(732, 96);
+            this.pieChtContExpBrkDwn.Location = new System.Drawing.Point(897, 86);
             this.pieChtContExpBrkDwn.Name = "pieChtContExpBrkDwn";
             this.pieChtContExpBrkDwn.Size = new System.Drawing.Size(625, 414);
             this.pieChtContExpBrkDwn.TabIndex = 4;
@@ -56,7 +56,7 @@
             // 
             // colChtTraSum
             // 
-            this.colChtTraSum.Location = new System.Drawing.Point(171, 62);
+            this.colChtTraSum.Location = new System.Drawing.Point(280, 86);
             this.colChtTraSum.Name = "colChtTraSum";
             this.colChtTraSum.Size = new System.Drawing.Size(344, 412);
             this.colChtTraSum.TabIndex = 3;
@@ -111,7 +111,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1466, 968);
+            this.ClientSize = new System.Drawing.Size(1748, 968);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.dtpToDate);
             this.Controls.Add(this.label8);
@@ -122,6 +122,7 @@
             this.Controls.Add(this.colChtTraSum);
             this.Name = "ReportView";
             this.Text = "ReportView";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
 
