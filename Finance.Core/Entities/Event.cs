@@ -23,6 +23,7 @@ namespace Finance.Core.Entities
         public int UserId { get; set; }
         public int? EventRecId { get; set; }
         public int? ContactId { get; set; }
+        [XmlIgnore]
         public Contact Contact { get; set; }
 
         [XmlIgnore]

@@ -5,12 +5,10 @@ using Finance.Core.Mappers;
 using Finance.Data;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.Entity;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Xml.Serialization;
+using System.Threading.Tasks;
 
 namespace Finance.Service
 {
@@ -84,7 +82,7 @@ namespace Finance.Service
             finanaceDbContext.SaveChanges();
 
             var path = Path.Combine(FileService.TranFilePath, $"tran_{tran.TranId.ToString()}.xml");
-            FileService.SaveOrUpdateEntityToFile(tran, path);
+            Task.Run(() => FileService.SaveOrUpdateEntityToFile(tran, path));
         }
 
         public void UpdateTran(UpdateTransactionDto updateTranDto)
@@ -103,7 +101,7 @@ namespace Finance.Service
             finanaceDbContext.SaveChanges();
 
             var path = Path.Combine(FileService.TranFilePath, $"tran_{tran.TranId.ToString()}.xml");
-            FileService.SaveOrUpdateEntityToFile(tran, path);
+            Task.Run(() => FileService.SaveOrUpdateEntityToFile(tran, path));
         }
 
         public void DeleteTran(int tranId)
@@ -113,7 +111,7 @@ namespace Finance.Service
             finanaceDbContext.SaveChanges();
 
             var path = Path.Combine(FileService.TranFilePath, $"tran_{tran.TranId.ToString()}.xml");
-            FileService.DeleteEntityFile(path);
+            Task.Run(() => FileService.DeleteEntityFile(path));
         }
 
         public decimal GetForecast(int userId, DateTime forecastDate)

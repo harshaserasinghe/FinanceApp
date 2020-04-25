@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Finance.Service
 {
@@ -59,8 +61,9 @@ namespace Finance.Service
             finanaceDbContext.Contacts.Add(cont);
             finanaceDbContext.SaveChanges();
 
+
             var path = Path.Combine(FileService.ContFilePath, $"cont_{cont.ContactId.ToString()}.xml");
-            FileService.SaveOrUpdateEntityToFile(cont, path);
+            Task.Run(() => FileService.SaveOrUpdateEntityToFile(cont, path));
         }
 
         public void UpdateContact(UpdateContactDto updateContDto)
@@ -71,7 +74,7 @@ namespace Finance.Service
             finanaceDbContext.SaveChanges();
 
             var path = Path.Combine(FileService.ContFilePath, $"cont_{cont.ContactId.ToString()}.xml");
-            FileService.SaveOrUpdateEntityToFile(cont, path);
+            Task.Run(() => FileService.SaveOrUpdateEntityToFile(cont, path));
         }
 
         public void DeleteCont(int contId)
@@ -81,7 +84,7 @@ namespace Finance.Service
             finanaceDbContext.SaveChanges();
 
             var path = Path.Combine(FileService.ContFilePath, $"cont_{cont.ContactId.ToString()}.xml");
-            FileService.DeleteEntityFile(path);
+            Task.Run(() => FileService.DeleteEntityFile(path));
         }
     }
 }

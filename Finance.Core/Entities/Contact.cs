@@ -21,6 +21,7 @@ namespace Finance.Core.Entities
 
         [XmlIgnore]
         public ICollection<Transaction> Transactions { get; private set; }
+        [XmlIgnore]
         public ICollection<Event> Events { get; private set; }
     }
 }
