@@ -153,9 +153,9 @@ namespace Finance.UI.Controllers
                 ClearForm();
                 view.ShowMessage("Transaction update success.","Information");
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                view.ShowMessage(e.ToString(),"Error");
+               
                 view.ShowMessage("Transaction update failed.","Error");
             }
         }

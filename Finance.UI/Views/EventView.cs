@@ -31,13 +31,14 @@ namespace Finance.UI.Views
         {
             get { return cmbEvntType; }
             set { cmbEvntType = value; }
+              
         }
 
         public ComboBox EvntContact
         {
             get { return cmbEvntContact; }
             set { cmbEvntContact = value; }
-
+                   
         }
 
         public Panel SecEvntContact
@@ -125,12 +126,18 @@ namespace Finance.UI.Views
         {
             if (type.Equals("Error"))
             {
-                MessageBox.Show(msg,type, MessageBoxButtons.OKCancel,MessageBoxIcon.Error);
+                MessageBox.Show(msg,type, MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
 
-            else {
-                MessageBox.Show(msg,type, MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            else if (type.Equals("Information"))
+            {
+                MessageBox.Show(msg,type, MessageBoxButtons.OK, MessageBoxIcon.Information);
             } 
+
+            else if (type.Equals("Warning"))
+            {
+                MessageBox.Show(msg, type, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnEvntSearch_Click(object sender, System.EventArgs e)
