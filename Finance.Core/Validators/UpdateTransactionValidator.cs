@@ -14,7 +14,6 @@ namespace Finance.Core.Validators
             RuleFor(t => t.Amount).NotNull().GreaterThan(0);
             RuleFor(t => t.ContactId).NotNull();
             RuleFor(t => t.IsRecurring).NotNull();
-            RuleFor(t => t.TranRecId).NotNull().When(t => t.IsRecurring);
             RuleFor(t => t.Frequency).NotNull().When(t => t.IsRecurring);
         }
     }

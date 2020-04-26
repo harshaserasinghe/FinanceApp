@@ -100,11 +100,30 @@ namespace Finance.Service
 
             mapper.Map(updateTranDto, tran);
 
-            if (updateTranDto.IsRecurring)
+            var recTran = finanaceDbContext.RecurringTransactions.Find(updateTranDto.TranRecId);
+
+            if (recTran != null)
             {
-                var recTran = finanaceDbContext.RecurringTransactions.Find(updateTranDto.TranRecId);
-                mapper.Map(updateTranDto, recTran);
-                finanaceDbContext.Entry(recTran).State = EntityState.Modified;
+                if (updateTranDto.IsRecurring)
+                {
+                    mapper.Map(updateTranDto, recTran);
+                    finanaceDbContext.Entry(recTran).State = EntityState.Modified;
+                }
+                else
+                {
+                    finanaceDbContext.RecurringTransactions.Remove(recTran);
+                    finanaceDbContext.SaveChanges();
+                    tran.TranRecId = null;
+                }
+            }
+            else
+            {
+                if (updateTranDto.IsRecurring)
+                {
+                    recTran = mapper.Map<RecurringTransaction>(updateTranDto);
+                    finanaceDbContext.RecurringTransactions.Add(recTran);
+                    tran.RecurringTransaction = recTran;
+                }
             }
 
             finanaceDbContext.Entry(tran).State = EntityState.Modified;
