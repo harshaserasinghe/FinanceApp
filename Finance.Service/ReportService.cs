@@ -12,8 +12,8 @@ namespace Finance.Service
 {
     public class ReportService
     {
-        public FinanceDbContext finanaceDbContext { get; }
-        public Mapper mapper { get; }
+        private readonly FinanceDbContext finanaceDbContext;
+        private readonly Mapper mapper;
 
         public ReportService()
         {

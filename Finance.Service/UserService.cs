@@ -10,8 +10,8 @@ namespace Finance.Service
 {
     public class UserService
     {
-        public FinanceDbContext finanaceDbContext { get; }
-        public Mapper mapper { get; }
+        private readonly FinanceDbContext finanaceDbContext;
+        private readonly Mapper mapper;
 
         public UserService()
         {
