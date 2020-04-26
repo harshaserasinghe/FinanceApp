@@ -8,7 +8,12 @@ namespace Finance.Data
     {
         public FinanceDbContext() : base("financeDbContext")
         {
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<FinanceDbContext, Configuration>());
+
+        }
+
+        public static void Init()
+        {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<FinanceDbContext, Configuration>());
         }
 
         public DbSet<Transaction> Transactions { get; set; }
