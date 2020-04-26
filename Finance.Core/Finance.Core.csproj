@@ -79,7 +79,9 @@
     <Compile Include="Mappers\EntityMappingConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\CreateContactValidator.cs" />
+    <Compile Include="Validators\CreateTransactionValidator.cs" />
     <Compile Include="Validators\UpdateContactValidator.cs" />
+    <Compile Include="Validators\UpdateTransactionValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

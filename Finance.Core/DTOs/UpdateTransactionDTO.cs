@@ -14,6 +14,6 @@ namespace Finance.Core.DTOs
         public bool IsRecurring { get; set; }
         public int ContactId { get; set; }
         public int? TranRecId { get; set; }
-        public Frequency Frequency { get; set; }
+        public Frequency? Frequency { get; set; }
     }
 }

@@ -2,7 +2,9 @@
 using Finance.Core.Entities;
 using Finance.Service;
 using Finance.UI.Views;
+using FluentValidation;
 using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Finance.UI.Controllers
@@ -91,7 +93,7 @@ namespace Finance.UI.Controllers
                     ContactId = Int32.Parse(view.Contact.SelectedValue.ToString()),
                     Amount = Decimal.Parse(view.Amount.Text),
                     IsRecurring = view.IsRecurring.Checked,
-                    Frequency = (Frequency)Enum.Parse(typeof(Frequency), view.Frequency.SelectedValue.ToString()),
+                    Frequency = GetFrequency(),
                     UserId = loggedUser.UserId
                 };
 
@@ -100,9 +102,27 @@ namespace Finance.UI.Controllers
                 ClearForm();
                 view.ShowMessage("Transaction add success.");
             }
+            catch (ValidationException ex)
+            {
+                Debug.WriteLine(ex);
+                view.ShowMessage("Invalid user input.");
+            }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 view.ShowMessage("Transaction add failed.");
+            }
+        }
+
+        private Frequency? GetFrequency()
+        {
+            if (view.IsRecurring.Checked)
+            {
+                return (Frequency)Enum.Parse(typeof(Frequency), view.Frequency.SelectedValue.ToString());
+            }
+            else
+            {
+                return null;
             }
         }
 
@@ -110,6 +130,11 @@ namespace Finance.UI.Controllers
         {
             try
             {
+                if (SelectedTranDto == null)
+                {
+                    throw new InvalidOperationException();
+                }
+
                 var updateTranDto = new UpdateTransactionDto
                 {
                     TranId = SelectedTranDto.TranId,
@@ -121,7 +146,7 @@ namespace Finance.UI.Controllers
                     Amount = Decimal.Parse(view.Amount.Text),
                     IsRecurring = view.IsRecurring.Checked,
                     TranRecId = SelectedTranDto.TranRecId,
-                    Frequency = (Frequency)Enum.Parse(typeof(Frequency), view.Frequency.SelectedValue.ToString()),
+                    Frequency = GetFrequency(),
                 };
 
                 tranService.UpdateTran(updateTranDto);
@@ -129,8 +154,19 @@ namespace Finance.UI.Controllers
                 ClearForm();
                 view.ShowMessage("Transaction update success.");
             }
-            catch (Exception)
+            catch (InvalidOperationException ex)
             {
+                Debug.WriteLine(ex);
+                view.ShowMessage("Please select a transaction");
+            }
+            catch (ValidationException ex)
+            {
+                Debug.WriteLine(ex);
+                view.ShowMessage("Invalid user input.");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
                 view.ShowMessage("Transaction update failed.");
             }
         }
@@ -139,14 +175,25 @@ namespace Finance.UI.Controllers
         {
             try
             {
+                if (SelectedTranDto == null)
+                {
+                    throw new InvalidOperationException();
+                }
+
                 var tranId = SelectedTranDto.TranId;
                 tranService.DeleteTran(tranId);
                 GetTrans();
                 ClearForm();
                 view.ShowMessage("Transaction delete success.");
             }
-            catch (Exception)
+            catch (InvalidOperationException ex)
             {
+                Debug.WriteLine(ex);
+                view.ShowMessage("Please select a transaction");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
                 view.ShowMessage("Transaction delete failed.");
             }
         }

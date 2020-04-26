@@ -7,7 +7,7 @@ namespace Finance.Core.Validators
     {
         public UpdateContactValidator()
         {
-            RuleFor(c => c.ContactId).NotEmpty();
+            RuleFor(c => c.ContactId).NotNull();
             RuleFor(c => c.Name).NotEmpty();
             RuleFor(c => c.BusinessType).NotEmpty();
             RuleFor(c => c.Address).NotEmpty();

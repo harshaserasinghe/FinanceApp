@@ -1,5 +1,4 @@
 ﻿using Finance.Core.DTOs;
-using Finance.Core.Validators;
 using Finance.Service;
 using Finance.UI.Views;
 using FluentValidation;
@@ -14,10 +13,7 @@ namespace Finance.UI.Controllers
         private readonly ContactService contService;
         private readonly UserService userService;
         private readonly UserDto loggedUser;
-        private readonly CreateContactValidator createContVal;
-        private readonly UpdateContactValidator updateContVal;
         private ContactView view;
-
         public ContactDto SelectedContDto { get; private set; }
 
         public ContactController(ContactView view)
@@ -27,8 +23,6 @@ namespace Finance.UI.Controllers
             contService = new ContactService();
             userService = new UserService();
             loggedUser = userService.GetUser(Environment.UserName);
-            createContVal = new CreateContactValidator();
-            updateContVal = new UpdateContactValidator();
         }
 
         public void Init()
@@ -78,8 +72,6 @@ namespace Finance.UI.Controllers
                     PhoneNumber = view.PhoneNumber.Text
                 };
 
-                createContVal.ValidateAndThrow(createContDto);
-
                 contService.AddCont(createContDto);
                 GetConts();
                 ClearForm();
@@ -114,8 +106,6 @@ namespace Finance.UI.Controllers
                     Address = view.Address.Text,
                     PhoneNumber = view.PhoneNumber.Text
                 };
-
-                updateContVal.ValidateAndThrow(updateContDto);
 
                 contService.UpdateContact(updateContDto);
                 GetConts();

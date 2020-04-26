@@ -2,7 +2,9 @@
 using Finance.Core.DTOs;
 using Finance.Core.Entities;
 using Finance.Core.Mappers;
+using Finance.Core.Validators;
 using Finance.Data;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,13 +16,16 @@ namespace Finance.Service
 {
     public class TransactionService
     {
-        public FinanceDbContext finanaceDbContext { get; }
-        public Mapper mapper { get; }
-
+        private readonly FinanceDbContext finanaceDbContext;
+        private readonly Mapper mapper;
+        private readonly CreateTransactionValidator createTranVal;
+        private readonly UpdateTransactionValidator updateTranVal;
         public TransactionService()
         {
             finanaceDbContext = new FinanceDbContext();
             mapper = new Mapper(new EntityMappingConfig().mapperConfig);
+            createTranVal = new CreateTransactionValidator();
+            updateTranVal = new UpdateTransactionValidator();
         }
 
         public TransactionDto GetTran(int tranId, int userId)
@@ -69,6 +74,8 @@ namespace Finance.Service
 
         public void AddTran(CreateTransactionDto createTranDto)
         {
+            createTranVal.ValidateAndThrow(createTranDto);
+
             var tran = mapper.Map<Transaction>(createTranDto);
 
             if (createTranDto.IsRecurring)
@@ -88,6 +95,9 @@ namespace Finance.Service
         public void UpdateTran(UpdateTransactionDto updateTranDto)
         {
             var tran = finanaceDbContext.Transactions.Find(updateTranDto.TranId);
+
+            updateTranVal.ValidateAndThrow(updateTranDto);
+
             mapper.Map(updateTranDto, tran);
 
             if (updateTranDto.IsRecurring)
