@@ -3,12 +3,10 @@ using Finance.Core.DTOs;
 using Finance.Core.Entities;
 using Finance.Core.Mappers;
 using Finance.Data;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Finance.Service

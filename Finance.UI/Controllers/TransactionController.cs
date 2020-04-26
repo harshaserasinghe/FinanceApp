@@ -4,13 +4,6 @@ using Finance.Service;
 using Finance.UI.Views;
 using System;
 using System.Windows.Forms;
-using System.Linq;
-using LiveCharts;
-using LiveCharts.Wpf;
-using LiveCharts.WinForms;
-using System.Collections.Generic;
-using System.Windows.Media;
-using System.Windows;
 
 namespace Finance.UI.Controllers
 {
