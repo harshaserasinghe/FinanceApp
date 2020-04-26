@@ -56,7 +56,7 @@ namespace Finance.Service
             evntQuery = evntQuery.Where(t => t.IsActive &&
                 t.UserId == userId &&
                 DbFunctions.TruncateTime(t.EventStartDate) >= DbFunctions.TruncateTime(fromDate) &&
-                DbFunctions.TruncateTime(t.EventEndDate) <= DbFunctions.TruncateTime(toDate)).AsQueryable();
+                DbFunctions.TruncateTime(t.EventStartDate) <= DbFunctions.TruncateTime(toDate)).AsQueryable();
 
             var evnts = evntQuery.OrderBy(t => t.EventStartDate).ToList();
 
@@ -92,7 +92,7 @@ namespace Finance.Service
 
             if (updateEvntDto.IsRecurring)
             {
-                var recEvnt = finanaceDbContext.RecurringEvents.Find(updateEvntDto.EvntRecId);
+                var recEvnt = finanaceDbContext.RecurringEvents.Find(updateEvntDto.EventRecId);
                 mapper.Map(updateEvntDto, recEvnt);
                 finanaceDbContext.Entry(recEvnt).State = EntityState.Modified;
             }

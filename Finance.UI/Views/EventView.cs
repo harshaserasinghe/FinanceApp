@@ -31,13 +31,14 @@ namespace Finance.UI.Views
         {
             get { return cmbEvntType; }
             set { cmbEvntType = value; }
+              
         }
 
         public ComboBox EvntContact
         {
             get { return cmbEvntContact; }
             set { cmbEvntContact = value; }
-
+                   
         }
 
         public Panel SecEvntContact
@@ -101,14 +102,14 @@ namespace Finance.UI.Views
             set { cmbEvntTypeSearch = value; }
         }
 
-        public DateTimePicker EvntStart
+        public DateTimePicker EvntFrom
         {
             get { return dtpEvntStartSearch; }
             set { dtpEvntStartSearch = value; }
 
         }
 
-        public DateTimePicker EvntEnd
+        public DateTimePicker EvntTo
         {
             get { return dtpEvntEndSearch; }
             set { dtpEvntEndSearch = value; }
@@ -125,12 +126,18 @@ namespace Finance.UI.Views
         {
             if (type.Equals("Error"))
             {
-                MessageBox.Show(msg,type, MessageBoxButtons.OKCancel,MessageBoxIcon.Error);
+                MessageBox.Show(msg,type, MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
 
-            else {
-                MessageBox.Show(msg,type, MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            else if (type.Equals("Information"))
+            {
+                MessageBox.Show(msg,type, MessageBoxButtons.OK, MessageBoxIcon.Information);
             } 
+
+            else if (type.Equals("Warning"))
+            {
+                MessageBox.Show(msg, type, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnEvntSearch_Click(object sender, System.EventArgs e)
@@ -166,6 +173,16 @@ namespace Finance.UI.Views
         private void btnEvntSearchClear_Click(object sender, System.EventArgs e)
         {
             controller.ClearTable();
+        }
+
+        private void cmbEvntType_SelectedValueChanged(object sender, System.EventArgs e)
+        {
+            controller.IsAppointment();
+        }
+
+        private void dgvEvntTable_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            controller.SetSelectedEvnt();
         }
     }
 }
