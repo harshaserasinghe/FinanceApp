@@ -49,7 +49,7 @@ namespace Finance.UI.Controllers
             view.EvntTable.ScrollBars = ScrollBars.Vertical;
             view.EvntTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            
+
             //String eventEndTime;
             //String eventStartDate;
             //String eventEndTime;
@@ -89,11 +89,11 @@ namespace Finance.UI.Controllers
             }
             catch (Exception)
             {
-                view.ShowMessage("Transaction get failed.","Error");
+                view.ShowMessage("Transaction get failed.", "Error");
             }
         }
 
-      
+
 
         public void AddEvent()
         {
@@ -105,10 +105,10 @@ namespace Finance.UI.Controllers
                     Description = view.EvntDescription.Text,
                     EventType = (EventType)Enum.Parse(typeof(EventType), view.EvntType.SelectedValue.ToString()),
                     EventStartDate = view.EvntStartDate.Value,
-                    EventEndDate= view.EvntEndDate.Value,
+                    EventEndDate = view.EvntEndDate.Value,
                     EventStartTime = view.EvntStartTime.Value,
                     EventEndTime = view.EvntEndTime.Value,
-                    ContactId = Int32.Parse(view.EvntContact.SelectedValue.ToString()),
+                    ContactId = GetContId(),
                     IsRecurring = view.IsRecurring.Checked,
                     Frequency = (Frequency)Enum.Parse(typeof(Frequency), view.EvntOccourence.SelectedValue.ToString()),
                     UserId = loggedUser.UserId
@@ -117,15 +117,24 @@ namespace Finance.UI.Controllers
                 eventService.AddEvnt(createEvntDto);
                 GetEvents();
                 ClearForm();
-                view.ShowMessage("Event added successfully.","Information");
+                view.ShowMessage("Event added successfully.", "Information");
             }
             catch (Exception)
             {
-             
-                view.ShowMessage("Event add failed!","Error");
+                view.ShowMessage("Event add failed!", "Error");
             }
+        }
 
-
+        private int? GetContId()
+        {
+            if ((EventType)Enum.Parse(typeof(EventType), view.EvntType.SelectedValue.ToString()) == EventType.Appointment)
+            {
+                return Int32.Parse(view.EvntContact.SelectedValue.ToString());
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void UpdateEvent()
@@ -142,7 +151,7 @@ namespace Finance.UI.Controllers
                     EventEndDate = view.EvntEndDate.Value,
                     EventStartTime = view.EvntStartTime.Value,
                     EventEndTime = view.EvntEndTime.Value,
-                    ContactId = Int32.Parse(view.EvntContact.SelectedValue.ToString()),
+                    ContactId = GetContId(),
                     IsRecurring = view.IsRecurring.Checked,
                     EventRecId = SelectedEvntDto.EventRecId,
                     Frequency = (Frequency)Enum.Parse(typeof(Frequency), view.EvntOccourence.SelectedValue.ToString()),
@@ -151,12 +160,12 @@ namespace Finance.UI.Controllers
                 eventService.UpdateEvnt(updateEvntDto);
                 GetEvents();
                 ClearForm();
-                view.ShowMessage("Transaction update success.","Information");
+                view.ShowMessage("Transaction update success.", "Information");
             }
             catch (Exception)
             {
-               
-                view.ShowMessage("Transaction update failed.","Error");
+
+                view.ShowMessage("Transaction update failed.", "Error");
             }
         }
 
@@ -165,17 +174,17 @@ namespace Finance.UI.Controllers
             try
             {
                 //view.ShowMessage("Are you sure you want to delete this transaction?", "Warning");
-                
-              //  view.ShowDialog(("Are you sure you want to delete this transaction?", "Warning"));
+
+                //  view.ShowDialog(("Are you sure you want to delete this transaction?", "Warning"));
                 var evntId = SelectedEvntDto.EventId;
                 eventService.DeleteEvnt(evntId);
                 GetEvents();
                 ClearForm();
-                view.ShowMessage("Transaction delete success.","Information");
+                view.ShowMessage("Transaction delete success.", "Information");
             }
             catch (Exception)
             {
-                view.ShowMessage("Transaction delete failed.","Error");
+                view.ShowMessage("Transaction delete failed.", "Error");
             }
         }
 
@@ -192,7 +201,7 @@ namespace Finance.UI.Controllers
                 view.SecOccourence.Show();
             else
             {
-                view.EvntOccourence.SelectedIndex = 0; 
+                view.EvntOccourence.SelectedIndex = 0;
                 view.SecOccourence.Hide();
             }
         }
@@ -230,7 +239,7 @@ namespace Finance.UI.Controllers
             if (SelectedEvntDto.IsRecurring)
                 view.EvntOccourence.SelectedItem = SelectedEvntDto.Frequency;
         }
-        
+
         public void ClearForm()
         {
             view.EvntName.Clear();
