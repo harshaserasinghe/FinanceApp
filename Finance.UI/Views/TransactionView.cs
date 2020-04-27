@@ -71,6 +71,7 @@ namespace Finance.UI.Views
             set { panRecSection = value; }
         }
 
+
         public ComboBox TranTypeSearch
         {
             get { return cmbTranTypeSearch; }
