@@ -93,11 +93,6 @@ namespace Finance.UI.Views
             set { dgvTranTable = value; }
         }
 
-        public Label Forecast
-        {
-            get { return labForecast; }
-            set { labForecast = value; }
-        }
 
         public DateTimePicker ForecastDate
         {
@@ -148,6 +143,11 @@ namespace Finance.UI.Views
         private void btnGetForecastClick(object sender, System.EventArgs e)
         {
             controller.GetForecast();
+        }
+
+        private void TransactionView_Load(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

@@ -34,12 +34,13 @@ namespace Finance.UI.Views
             this.btnCont = new System.Windows.Forms.Button();
             this.btnEvnt = new System.Windows.Forms.Button();
             this.btnRpt = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnTran
             // 
             this.btnTran.Location = new System.Drawing.Point(82, 58);
-            this.btnTran.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTran.Margin = new System.Windows.Forms.Padding(2);
             this.btnTran.Name = "btnTran";
             this.btnTran.Size = new System.Drawing.Size(85, 38);
             this.btnTran.TabIndex = 0;
@@ -50,7 +51,7 @@ namespace Finance.UI.Views
             // btnCont
             // 
             this.btnCont.Location = new System.Drawing.Point(200, 58);
-            this.btnCont.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCont.Margin = new System.Windows.Forms.Padding(2);
             this.btnCont.Name = "btnCont";
             this.btnCont.Size = new System.Drawing.Size(85, 38);
             this.btnCont.TabIndex = 1;
@@ -61,7 +62,7 @@ namespace Finance.UI.Views
             // btnEvnt
             // 
             this.btnEvnt.Location = new System.Drawing.Point(82, 115);
-            this.btnEvnt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEvnt.Margin = new System.Windows.Forms.Padding(2);
             this.btnEvnt.Name = "btnEvnt";
             this.btnEvnt.Size = new System.Drawing.Size(85, 38);
             this.btnEvnt.TabIndex = 2;
@@ -72,7 +73,7 @@ namespace Finance.UI.Views
             // btnRpt
             // 
             this.btnRpt.Location = new System.Drawing.Point(200, 115);
-            this.btnRpt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRpt.Margin = new System.Windows.Forms.Padding(2);
             this.btnRpt.Name = "btnRpt";
             this.btnRpt.Size = new System.Drawing.Size(85, 38);
             this.btnRpt.TabIndex = 3;
@@ -80,20 +81,32 @@ namespace Finance.UI.Views
             this.btnRpt.UseVisualStyleBackColor = true;
             this.btnRpt.Click += new System.EventHandler(this.btnClickOpenReportForm);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(79, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(205, 17);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Finance and Task Manager";
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(380, 232);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRpt);
             this.Controls.Add(this.btnEvnt);
             this.Controls.Add(this.btnCont);
             this.Controls.Add(this.btnTran);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainView";
             this.Text = "MainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainView_FormClosing);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -103,5 +116,6 @@ namespace Finance.UI.Views
         private System.Windows.Forms.Button btnCont;
         private System.Windows.Forms.Button btnEvnt;
         private System.Windows.Forms.Button btnRpt;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -89,7 +89,7 @@ namespace Finance.UI.Controllers
             }
             catch (Exception)
             {
-                view.ShowMessage("Transaction get failed.", "Error");
+                view.ShowMessage("Get events failed!", "Error");
             }
         }
 
@@ -117,7 +117,7 @@ namespace Finance.UI.Controllers
                 eventService.AddEvnt(createEvntDto);
                 GetEvents();
                 ClearForm();
-                view.ShowMessage("Event added successfully.", "Information");
+                view.ShowMessage("Event added successfully!", "Information");
             }
             catch (Exception)
             {
@@ -160,12 +160,12 @@ namespace Finance.UI.Controllers
                 eventService.UpdateEvnt(updateEvntDto);
                 GetEvents();
                 ClearForm();
-                view.ShowMessage("Transaction update success.", "Information");
+                view.ShowMessage("Event update success!", "Information");
             }
             catch (Exception)
             {
 
-                view.ShowMessage("Transaction update failed.", "Error");
+                view.ShowMessage("Event update failed!", "Error");
             }
         }
 
@@ -180,11 +180,11 @@ namespace Finance.UI.Controllers
                 eventService.DeleteEvnt(evntId);
                 GetEvents();
                 ClearForm();
-                view.ShowMessage("Transaction delete success.", "Information");
+                view.ShowMessage("Event successfully deleted!", "Information");
             }
             catch (Exception)
             {
-                view.ShowMessage("Transaction delete failed.", "Error");
+                view.ShowMessage("Event deletion failed!", "Error");
             }
         }
 

@@ -202,7 +202,17 @@ namespace Finance.UI.Controllers
         {
             var forecast = tranService.GetForecast(loggedUser.UserId, view.ForecastDate.Value);
             var formatForcast = $"Expense forecast of the {view.ForecastDate.Value.ToShortDateString()} will be Rs {forecast.ToString(".00")}";
-            view.Forecast.Text = formatForcast;
+
+            //create dynamic label
+            Label labForcast = new Label();
+            labForcast.Location = new System.Drawing.Point(866,45);
+            labForcast.Name = "labForcast";
+            labForcast.Size = new System.Drawing.Size(300, 21); 
+            labForcast.TabIndex = 102;
+            //add text
+            labForcast.Text = formatForcast;
+            //add to view
+            view.Controls.Add(labForcast);
         }
 
         private void RefreshTable()

@@ -6,7 +6,9 @@ using Finance.Data;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Finance.Service
 {
@@ -82,6 +84,9 @@ namespace Finance.Service
 
             finanaceDbContext.Events.Add(evnt);
             finanaceDbContext.SaveChanges();
+
+            var path = Path.Combine(FileService.EvntFilePath, $"evnt_{evnt.EventId.ToString()}.xml");
+            Task.Run(() => FileService.SaveOrUpdateEntityToFile(evnt, path));
         }
 
 
@@ -99,6 +104,9 @@ namespace Finance.Service
 
             finanaceDbContext.Entry(evnt).State = EntityState.Modified;
             finanaceDbContext.SaveChanges();
+
+            var path = Path.Combine(FileService.TranFilePath, $"evnt_{evnt.EventId.ToString()}.xml");
+            Task.Run(() => FileService.SaveOrUpdateEntityToFile(evnt, path));
         }
 
         public void DeleteEvnt(int evntId)
@@ -106,6 +114,9 @@ namespace Finance.Service
             var evnt = finanaceDbContext.Events.Find(evntId);
             finanaceDbContext.Events.Remove(evnt);
             finanaceDbContext.SaveChanges();
+
+            var path = Path.Combine(FileService.TranFilePath, $"evnt_{evnt.EventId.ToString()}.xml");
+            Task.Run(() => FileService.DeleteEntityFile(path));
         }
 
         public List<RecurringEventDto> GetRecurringEvents()

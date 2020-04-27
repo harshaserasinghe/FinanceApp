@@ -35,50 +35,51 @@
             this.dtpEvntStartSearch = new System.Windows.Forms.DateTimePicker();
             this.dtpEvntEndSearch = new System.Windows.Forms.DateTimePicker();
             this.pnlEvntParent = new System.Windows.Forms.Panel();
+            this.pnlEvntFormItems = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.dtpEvntEndTime = new System.Windows.Forms.DateTimePicker();
+            this.pnlEvntContact = new System.Windows.Forms.Panel();
+            this.cmbEvntContact = new System.Windows.Forms.ComboBox();
+            this.lblEvntContact = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.cmbEvntType = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.txbEvntName = new System.Windows.Forms.TextBox();
             this.dtpEvntStartTime = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.txbEvntDescription = new System.Windows.Forms.TextBox();
             this.btnEvntClear = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnEvntDelete = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.btnEvntUpdate = new System.Windows.Forms.Button();
+            this.dtpEventStartDate = new System.Windows.Forms.DateTimePicker();
             this.btnEvntAdd = new System.Windows.Forms.Button();
+            this.dtpEvntEndDate = new System.Windows.Forms.DateTimePicker();
             this.pnlEvntOccourence = new System.Windows.Forms.Panel();
             this.cmbEvntOccurrence = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.chbIsEvntRecurring = new System.Windows.Forms.CheckBox();
-            this.dtpEvntEndDate = new System.Windows.Forms.DateTimePicker();
-            this.dtpEventStartDate = new System.Windows.Forms.DateTimePicker();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txbEvntDescription = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txbEvntName = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cmbEvntType = new System.Windows.Forms.ComboBox();
-            this.pnlEvntContact = new System.Windows.Forms.Panel();
-            this.cmbEvntContact = new System.Windows.Forms.ComboBox();
-            this.lblEvntContact = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgvEvntTable = new System.Windows.Forms.DataGridView();
             this.btnEvntSearchClear = new System.Windows.Forms.Button();
             this.btnEvntSearch = new System.Windows.Forms.Button();
-            this.pnlEvntFormItems = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
             this.pnlEvntParent.SuspendLayout();
-            this.pnlEvntOccourence.SuspendLayout();
+            this.pnlEvntFormItems.SuspendLayout();
             this.pnlEvntContact.SuspendLayout();
+            this.pnlEvntOccourence.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEvntTable)).BeginInit();
-            this.pnlEvntFormItems.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbEvntTypeSearch
             // 
             this.cmbEvntTypeSearch.FormattingEnabled = true;
-            this.cmbEvntTypeSearch.Location = new System.Drawing.Point(53, 10);
+            this.cmbEvntTypeSearch.Location = new System.Drawing.Point(49, 21);
             this.cmbEvntTypeSearch.Name = "cmbEvntTypeSearch";
             this.cmbEvntTypeSearch.Size = new System.Drawing.Size(121, 21);
             this.cmbEvntTypeSearch.TabIndex = 0;
@@ -86,7 +87,7 @@
             // lblEventTypeSearch
             // 
             this.lblEventTypeSearch.AutoSize = true;
-            this.lblEventTypeSearch.Location = new System.Drawing.Point(12, 13);
+            this.lblEventTypeSearch.Location = new System.Drawing.Point(12, 24);
             this.lblEventTypeSearch.Name = "lblEventTypeSearch";
             this.lblEventTypeSearch.Size = new System.Drawing.Size(31, 13);
             this.lblEventTypeSearch.TabIndex = 1;
@@ -95,7 +96,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(193, 13);
+            this.label1.Location = new System.Drawing.Point(193, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 2;
@@ -104,7 +105,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(461, 14);
+            this.label2.Location = new System.Drawing.Point(461, 24);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 13);
             this.label2.TabIndex = 3;
@@ -112,20 +113,21 @@
             // 
             // dtpEvntStartSearch
             // 
-            this.dtpEvntStartSearch.Location = new System.Drawing.Point(255, 9);
+            this.dtpEvntStartSearch.Location = new System.Drawing.Point(255, 20);
             this.dtpEvntStartSearch.Name = "dtpEvntStartSearch";
             this.dtpEvntStartSearch.Size = new System.Drawing.Size(200, 20);
             this.dtpEvntStartSearch.TabIndex = 4;
             // 
             // dtpEvntEndSearch
             // 
-            this.dtpEvntEndSearch.Location = new System.Drawing.Point(513, 11);
+            this.dtpEvntEndSearch.Location = new System.Drawing.Point(512, 20);
             this.dtpEvntEndSearch.Name = "dtpEvntEndSearch";
             this.dtpEvntEndSearch.Size = new System.Drawing.Size(200, 20);
             this.dtpEvntEndSearch.TabIndex = 5;
             // 
             // pnlEvntParent
             // 
+            this.pnlEvntParent.Controls.Add(this.label13);
             this.pnlEvntParent.Controls.Add(this.pnlEvntFormItems);
             this.pnlEvntParent.Controls.Add(this.panel1);
             this.pnlEvntParent.Controls.Add(this.btnEvntSearchClear);
@@ -142,6 +144,45 @@
             this.pnlEvntParent.Size = new System.Drawing.Size(1483, 528);
             this.pnlEvntParent.TabIndex = 6;
             // 
+            // pnlEvntFormItems
+            // 
+            this.pnlEvntFormItems.Controls.Add(this.label3);
+            this.pnlEvntFormItems.Controls.Add(this.dtpEvntEndTime);
+            this.pnlEvntFormItems.Controls.Add(this.pnlEvntContact);
+            this.pnlEvntFormItems.Controls.Add(this.label12);
+            this.pnlEvntFormItems.Controls.Add(this.cmbEvntType);
+            this.pnlEvntFormItems.Controls.Add(this.label11);
+            this.pnlEvntFormItems.Controls.Add(this.label4);
+            this.pnlEvntFormItems.Controls.Add(this.label10);
+            this.pnlEvntFormItems.Controls.Add(this.txbEvntName);
+            this.pnlEvntFormItems.Controls.Add(this.dtpEvntStartTime);
+            this.pnlEvntFormItems.Controls.Add(this.label5);
+            this.pnlEvntFormItems.Controls.Add(this.label9);
+            this.pnlEvntFormItems.Controls.Add(this.txbEvntDescription);
+            this.pnlEvntFormItems.Controls.Add(this.btnEvntClear);
+            this.pnlEvntFormItems.Controls.Add(this.label6);
+            this.pnlEvntFormItems.Controls.Add(this.btnEvntDelete);
+            this.pnlEvntFormItems.Controls.Add(this.label7);
+            this.pnlEvntFormItems.Controls.Add(this.btnEvntUpdate);
+            this.pnlEvntFormItems.Controls.Add(this.dtpEventStartDate);
+            this.pnlEvntFormItems.Controls.Add(this.btnEvntAdd);
+            this.pnlEvntFormItems.Controls.Add(this.dtpEvntEndDate);
+            this.pnlEvntFormItems.Controls.Add(this.pnlEvntOccourence);
+            this.pnlEvntFormItems.Controls.Add(this.chbIsEvntRecurring);
+            this.pnlEvntFormItems.Location = new System.Drawing.Point(1130, 48);
+            this.pnlEvntFormItems.Name = "pnlEvntFormItems";
+            this.pnlEvntFormItems.Size = new System.Drawing.Size(337, 406);
+            this.pnlEvntFormItems.TabIndex = 32;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(42, 17);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(31, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Type";
+            // 
             // dtpEvntEndTime
             // 
             this.dtpEvntEndTime.CustomFormat = "HH:mm";
@@ -152,6 +193,33 @@
             this.dtpEvntEndTime.Size = new System.Drawing.Size(52, 20);
             this.dtpEvntEndTime.TabIndex = 31;
             // 
+            // pnlEvntContact
+            // 
+            this.pnlEvntContact.Controls.Add(this.cmbEvntContact);
+            this.pnlEvntContact.Controls.Add(this.lblEvntContact);
+            this.pnlEvntContact.Location = new System.Drawing.Point(38, 40);
+            this.pnlEvntContact.Name = "pnlEvntContact";
+            this.pnlEvntContact.Size = new System.Drawing.Size(258, 31);
+            this.pnlEvntContact.TabIndex = 10;
+            this.pnlEvntContact.Visible = false;
+            // 
+            // cmbEvntContact
+            // 
+            this.cmbEvntContact.FormattingEnabled = true;
+            this.cmbEvntContact.Location = new System.Drawing.Point(72, 6);
+            this.cmbEvntContact.Name = "cmbEvntContact";
+            this.cmbEvntContact.Size = new System.Drawing.Size(186, 21);
+            this.cmbEvntContact.TabIndex = 1;
+            // 
+            // lblEvntContact
+            // 
+            this.lblEvntContact.AutoSize = true;
+            this.lblEvntContact.Location = new System.Drawing.Point(4, 9);
+            this.lblEvntContact.Name = "lblEvntContact";
+            this.lblEvntContact.Size = new System.Drawing.Size(44, 13);
+            this.lblEvntContact.TabIndex = 0;
+            this.lblEvntContact.Text = "Contact";
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -160,6 +228,15 @@
             this.label12.Size = new System.Drawing.Size(30, 13);
             this.label12.TabIndex = 30;
             this.label12.Text = "Time";
+            // 
+            // cmbEvntType
+            // 
+            this.cmbEvntType.FormattingEnabled = true;
+            this.cmbEvntType.Location = new System.Drawing.Point(110, 9);
+            this.cmbEvntType.Name = "cmbEvntType";
+            this.cmbEvntType.Size = new System.Drawing.Size(186, 21);
+            this.cmbEvntType.TabIndex = 11;
+            this.cmbEvntType.SelectedValueChanged += new System.EventHandler(this.cmbEvntType_SelectedValueChanged);
             // 
             // label11
             // 
@@ -170,6 +247,15 @@
             this.label11.TabIndex = 29;
             this.label11.Text = "Date";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(42, 86);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Name";
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -178,6 +264,13 @@
             this.label10.Size = new System.Drawing.Size(30, 13);
             this.label10.TabIndex = 28;
             this.label10.Text = "Date";
+            // 
+            // txbEvntName
+            // 
+            this.txbEvntName.Location = new System.Drawing.Point(110, 83);
+            this.txbEvntName.Name = "txbEvntName";
+            this.txbEvntName.Size = new System.Drawing.Size(186, 20);
+            this.txbEvntName.TabIndex = 13;
             // 
             // dtpEvntStartTime
             // 
@@ -189,6 +282,15 @@
             this.dtpEvntStartTime.Size = new System.Drawing.Size(52, 20);
             this.dtpEvntStartTime.TabIndex = 27;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(39, 123);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Description";
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -197,6 +299,14 @@
             this.label9.Size = new System.Drawing.Size(30, 13);
             this.label9.TabIndex = 26;
             this.label9.Text = "Time";
+            // 
+            // txbEvntDescription
+            // 
+            this.txbEvntDescription.Location = new System.Drawing.Point(110, 123);
+            this.txbEvntDescription.Multiline = true;
+            this.txbEvntDescription.Name = "txbEvntDescription";
+            this.txbEvntDescription.Size = new System.Drawing.Size(186, 61);
+            this.txbEvntDescription.TabIndex = 15;
             // 
             // btnEvntClear
             // 
@@ -208,6 +318,15 @@
             this.btnEvntClear.UseVisualStyleBackColor = true;
             this.btnEvntClear.Click += new System.EventHandler(this.btnEvntClear_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(42, 207);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(32, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Start:";
+            // 
             // btnEvntDelete
             // 
             this.btnEvntDelete.Location = new System.Drawing.Point(186, 371);
@@ -217,6 +336,15 @@
             this.btnEvntDelete.Text = "Delete";
             this.btnEvntDelete.UseVisualStyleBackColor = true;
             this.btnEvntDelete.Click += new System.EventHandler(this.btnEvntDelete_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(42, 252);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(29, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "End:";
             // 
             // btnEvntUpdate
             // 
@@ -228,6 +356,16 @@
             this.btnEvntUpdate.UseVisualStyleBackColor = true;
             this.btnEvntUpdate.Click += new System.EventHandler(this.btnEvntUpdate_Click);
             // 
+            // dtpEventStartDate
+            // 
+            this.dtpEventStartDate.CustomFormat = "";
+            this.dtpEventStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEventStartDate.Location = new System.Drawing.Point(110, 203);
+            this.dtpEventStartDate.Name = "dtpEventStartDate";
+            this.dtpEventStartDate.RightToLeftLayout = true;
+            this.dtpEventStartDate.Size = new System.Drawing.Size(89, 20);
+            this.dtpEventStartDate.TabIndex = 18;
+            // 
             // btnEvntAdd
             // 
             this.btnEvntAdd.Location = new System.Drawing.Point(36, 371);
@@ -237,6 +375,14 @@
             this.btnEvntAdd.Text = "Create";
             this.btnEvntAdd.UseVisualStyleBackColor = true;
             this.btnEvntAdd.Click += new System.EventHandler(this.btnEvntAdd_Click);
+            // 
+            // dtpEvntEndDate
+            // 
+            this.dtpEvntEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEvntEndDate.Location = new System.Drawing.Point(108, 249);
+            this.dtpEvntEndDate.Name = "dtpEvntEndDate";
+            this.dtpEvntEndDate.Size = new System.Drawing.Size(91, 20);
+            this.dtpEvntEndDate.TabIndex = 19;
             // 
             // pnlEvntOccourence
             // 
@@ -277,120 +423,6 @@
             this.chbIsEvntRecurring.UseVisualStyleBackColor = true;
             this.chbIsEvntRecurring.CheckedChanged += new System.EventHandler(this.chbIsEvntRecurring_CheckedChanged);
             // 
-            // dtpEvntEndDate
-            // 
-            this.dtpEvntEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEvntEndDate.Location = new System.Drawing.Point(108, 249);
-            this.dtpEvntEndDate.Name = "dtpEvntEndDate";
-            this.dtpEvntEndDate.Size = new System.Drawing.Size(91, 20);
-            this.dtpEvntEndDate.TabIndex = 19;
-            // 
-            // dtpEventStartDate
-            // 
-            this.dtpEventStartDate.CustomFormat = "";
-            this.dtpEventStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEventStartDate.Location = new System.Drawing.Point(110, 203);
-            this.dtpEventStartDate.Name = "dtpEventStartDate";
-            this.dtpEventStartDate.RightToLeftLayout = true;
-            this.dtpEventStartDate.Size = new System.Drawing.Size(89, 20);
-            this.dtpEventStartDate.TabIndex = 18;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(42, 252);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(29, 13);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "End:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(42, 207);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(32, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Start:";
-            // 
-            // txbEvntDescription
-            // 
-            this.txbEvntDescription.Location = new System.Drawing.Point(110, 123);
-            this.txbEvntDescription.Multiline = true;
-            this.txbEvntDescription.Name = "txbEvntDescription";
-            this.txbEvntDescription.Size = new System.Drawing.Size(186, 61);
-            this.txbEvntDescription.TabIndex = 15;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(39, 123);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 13);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "Description";
-            // 
-            // txbEvntName
-            // 
-            this.txbEvntName.Location = new System.Drawing.Point(110, 83);
-            this.txbEvntName.Name = "txbEvntName";
-            this.txbEvntName.Size = new System.Drawing.Size(186, 20);
-            this.txbEvntName.TabIndex = 13;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(42, 86);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Name";
-            // 
-            // cmbEvntType
-            // 
-            this.cmbEvntType.FormattingEnabled = true;
-            this.cmbEvntType.Location = new System.Drawing.Point(110, 9);
-            this.cmbEvntType.Name = "cmbEvntType";
-            this.cmbEvntType.Size = new System.Drawing.Size(186, 21);
-            this.cmbEvntType.TabIndex = 11;
-            this.cmbEvntType.SelectedValueChanged += new System.EventHandler(this.cmbEvntType_SelectedValueChanged);
-            // 
-            // pnlEvntContact
-            // 
-            this.pnlEvntContact.Controls.Add(this.cmbEvntContact);
-            this.pnlEvntContact.Controls.Add(this.lblEvntContact);
-            this.pnlEvntContact.Location = new System.Drawing.Point(38, 40);
-            this.pnlEvntContact.Name = "pnlEvntContact";
-            this.pnlEvntContact.Size = new System.Drawing.Size(258, 31);
-            this.pnlEvntContact.TabIndex = 10;
-            this.pnlEvntContact.Visible = false;
-            // 
-            // cmbEvntContact
-            // 
-            this.cmbEvntContact.FormattingEnabled = true;
-            this.cmbEvntContact.Location = new System.Drawing.Point(72, 6);
-            this.cmbEvntContact.Name = "cmbEvntContact";
-            this.cmbEvntContact.Size = new System.Drawing.Size(186, 21);
-            this.cmbEvntContact.TabIndex = 1;
-            // 
-            // lblEvntContact
-            // 
-            this.lblEvntContact.AutoSize = true;
-            this.lblEvntContact.Location = new System.Drawing.Point(4, 9);
-            this.lblEvntContact.Name = "lblEvntContact";
-            this.lblEvntContact.Size = new System.Drawing.Size(44, 13);
-            this.lblEvntContact.TabIndex = 0;
-            this.lblEvntContact.Text = "Contact";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(42, 17);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Type";
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.dgvEvntTable);
@@ -411,7 +443,7 @@
             // 
             // btnEvntSearchClear
             // 
-            this.btnEvntSearchClear.Location = new System.Drawing.Point(812, 8);
+            this.btnEvntSearchClear.Location = new System.Drawing.Point(812, 19);
             this.btnEvntSearchClear.Name = "btnEvntSearchClear";
             this.btnEvntSearchClear.Size = new System.Drawing.Size(75, 23);
             this.btnEvntSearchClear.TabIndex = 7;
@@ -421,7 +453,7 @@
             // 
             // btnEvntSearch
             // 
-            this.btnEvntSearch.Location = new System.Drawing.Point(731, 8);
+            this.btnEvntSearch.Location = new System.Drawing.Point(731, 19);
             this.btnEvntSearch.Name = "btnEvntSearch";
             this.btnEvntSearch.Size = new System.Drawing.Size(75, 23);
             this.btnEvntSearch.TabIndex = 6;
@@ -429,35 +461,15 @@
             this.btnEvntSearch.UseVisualStyleBackColor = true;
             this.btnEvntSearch.Click += new System.EventHandler(this.btnEvntSearch_Click);
             // 
-            // pnlEvntFormItems
+            // label13
             // 
-            this.pnlEvntFormItems.Controls.Add(this.label3);
-            this.pnlEvntFormItems.Controls.Add(this.dtpEvntEndTime);
-            this.pnlEvntFormItems.Controls.Add(this.pnlEvntContact);
-            this.pnlEvntFormItems.Controls.Add(this.label12);
-            this.pnlEvntFormItems.Controls.Add(this.cmbEvntType);
-            this.pnlEvntFormItems.Controls.Add(this.label11);
-            this.pnlEvntFormItems.Controls.Add(this.label4);
-            this.pnlEvntFormItems.Controls.Add(this.label10);
-            this.pnlEvntFormItems.Controls.Add(this.txbEvntName);
-            this.pnlEvntFormItems.Controls.Add(this.dtpEvntStartTime);
-            this.pnlEvntFormItems.Controls.Add(this.label5);
-            this.pnlEvntFormItems.Controls.Add(this.label9);
-            this.pnlEvntFormItems.Controls.Add(this.txbEvntDescription);
-            this.pnlEvntFormItems.Controls.Add(this.btnEvntClear);
-            this.pnlEvntFormItems.Controls.Add(this.label6);
-            this.pnlEvntFormItems.Controls.Add(this.btnEvntDelete);
-            this.pnlEvntFormItems.Controls.Add(this.label7);
-            this.pnlEvntFormItems.Controls.Add(this.btnEvntUpdate);
-            this.pnlEvntFormItems.Controls.Add(this.dtpEventStartDate);
-            this.pnlEvntFormItems.Controls.Add(this.btnEvntAdd);
-            this.pnlEvntFormItems.Controls.Add(this.dtpEvntEndDate);
-            this.pnlEvntFormItems.Controls.Add(this.pnlEvntOccourence);
-            this.pnlEvntFormItems.Controls.Add(this.chbIsEvntRecurring);
-            this.pnlEvntFormItems.Location = new System.Drawing.Point(1130, 48);
-            this.pnlEvntFormItems.Name = "pnlEvntFormItems";
-            this.pnlEvntFormItems.Size = new System.Drawing.Size(337, 406);
-            this.pnlEvntFormItems.TabIndex = 32;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(15, 4);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(66, 13);
+            this.label13.TabIndex = 33;
+            this.label13.Text = "My Events";
             // 
             // EventView
             // 
@@ -469,14 +481,14 @@
             this.Text = "EventForm";
             this.pnlEvntParent.ResumeLayout(false);
             this.pnlEvntParent.PerformLayout();
-            this.pnlEvntOccourence.ResumeLayout(false);
-            this.pnlEvntOccourence.PerformLayout();
-            this.pnlEvntContact.ResumeLayout(false);
-            this.pnlEvntContact.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEvntTable)).EndInit();
             this.pnlEvntFormItems.ResumeLayout(false);
             this.pnlEvntFormItems.PerformLayout();
+            this.pnlEvntContact.ResumeLayout(false);
+            this.pnlEvntContact.PerformLayout();
+            this.pnlEvntOccourence.ResumeLayout(false);
+            this.pnlEvntOccourence.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEvntTable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -522,5 +534,6 @@
         private System.Windows.Forms.DateTimePicker dtpEvntStartTime;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel pnlEvntFormItems;
+        private System.Windows.Forms.Label label13;
     }
 }
