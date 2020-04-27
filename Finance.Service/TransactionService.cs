@@ -145,6 +145,7 @@ namespace Finance.Service
 
         public decimal GetForecast(int userId, DateTime forecastDate)
         {
+            decimal forecast = 0;
             var fromDate = forecastDate.Date.AddMonths(-3);
             var toDate = forecastDate.Date.AddMonths(3);
 
@@ -162,7 +163,12 @@ namespace Finance.Service
 
             foreCastDtos = foreCastDtos.Where(t => t.TranDate.Day == forecastDate.Day).ToList();
 
-            var forecast = (foreCastDtos.Sum(t => t.Amount)) / foreCastDtos.Count;
+            if (foreCastDtos.Count < 1)
+            {
+                return forecast;
+            }
+
+            forecast = foreCastDtos.Sum(t => t.Amount) / foreCastDtos.Count;
 
             return forecast;
         }
