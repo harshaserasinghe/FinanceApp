@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.Core", "Finance.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finance.UI", "Finance.UI\Finance.UI.csproj", "{A74CDAB3-4751-4387-8053-D4E442CF7D9A}"
 EndProject
-Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Finance.Reprot", "Finance.Reprot\Finance.Reprot.rptproj", "{565A3282-7965-44A7-A0AB-D96B91A43974}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,14 +42,6 @@ Global
 		{A74CDAB3-4751-4387-8053-D4E442CF7D9A}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
 		{A74CDAB3-4751-4387-8053-D4E442CF7D9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A74CDAB3-4751-4387-8053-D4E442CF7D9A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{565A3282-7965-44A7-A0AB-D96B91A43974}.Debug|Any CPU.ActiveCfg = Debug
-		{565A3282-7965-44A7-A0AB-D96B91A43974}.Debug|Any CPU.Build.0 = Debug
-		{565A3282-7965-44A7-A0AB-D96B91A43974}.Debug|Any CPU.Deploy.0 = Debug
-		{565A3282-7965-44A7-A0AB-D96B91A43974}.DebugLocal|Any CPU.ActiveCfg = DebugLocal
-		{565A3282-7965-44A7-A0AB-D96B91A43974}.DebugLocal|Any CPU.Build.0 = DebugLocal
-		{565A3282-7965-44A7-A0AB-D96B91A43974}.Release|Any CPU.ActiveCfg = Release
-		{565A3282-7965-44A7-A0AB-D96B91A43974}.Release|Any CPU.Build.0 = Release
-		{565A3282-7965-44A7-A0AB-D96B91A43974}.Release|Any CPU.Deploy.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
