@@ -201,7 +201,7 @@ namespace Finance.UI.Controllers
         public void GetForecast()
         {
             var forecast = tranService.GetForecast(loggedUser.UserId, view.ForecastDate.Value);
-            var formatForcast = $"Expense forecast of the {view.ForecastDate.Value.ToShortDateString()} will be Rs {forecast.ToString(".00")}";
+            var formatForcast = $"Expense forecast of the {view.ForecastDate.Value.ToShortDateString()} will be Rs {forecast.ToString("0.00")}";
             view.Forecast.Text = formatForcast;
         }
 
