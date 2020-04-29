@@ -171,10 +171,10 @@ namespace Finance.Service
             evnt.Name = recurringEvent.Event.Name;
             evnt.Description = recurringEvent.Event.Description;
             evnt.EventType = recurringEvent.Event.EventType;
-            evnt.EventStartDate = DateTime.Now;
-            evnt.EventEndDate = DateTime.Now;
-            evnt.EventStartTime = DateTime.Now;
-            evnt.EventEndTime = DateTime.Now;
+            //evnt.EventStartDate = DateTime.Now;
+            //evnt.EventEndDate = DateTime.Now;
+            //evnt.EventStartTime = DateTime.Now;
+            //evnt.EventEndTime = DateTime.Now;
             evnt.IsRecurring = true;
             evnt.ContactId = recurringEvent.Event.ContactId;
             evnt.EventRecId = recurringEvent.Event.EventRecId;

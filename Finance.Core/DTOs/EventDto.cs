@@ -11,8 +11,8 @@ namespace Finance.Core.DTOs
         public EventType EventType { get; set; }
         public DateTime EventStartDate { get; set; }
         public DateTime EventEndDate { get; set; }
-        public DateTime EventStartTime { get; set; }
-        public DateTime EventEndTime { get; set; }
+        public TimeSpan EventStartTime { get; set; }
+        public TimeSpan EventEndTime { get; set; }
         public bool IsRecurring { get; set; }
         public int ContactId { get; set; }
         public string ContactName { get; set; }
