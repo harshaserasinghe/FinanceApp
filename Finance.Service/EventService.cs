@@ -50,7 +50,7 @@ namespace Finance.Service
                 .Include(t => t.RecurringEvent)
                 .AsQueryable();
 
-            if (EventType.All != evntType)
+            if (EventType.Appointment == evntType || EventType.Task == evntType)
             {
                 evntQuery = evntQuery.Where(t => t.EventType == evntType).AsQueryable();
             }

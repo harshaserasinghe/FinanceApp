@@ -82,7 +82,7 @@ namespace Finance.UI.Controllers
             {
                 ClearTable();
                 var evntDtos = eventService.GetEvntsByDate(loggedUser.UserId,
-                    (EventType)Enum.Parse(typeof(EventType), view.EvntType.SelectedValue.ToString()),
+                    (EventType)Enum.Parse(typeof(EventType), view.EvntTypeSearch.SelectedValue.ToString()),
                     view.EvntFrom.Value, view.EvntTo.Value);
                 var bindingSource = new BindingSource(evntDtos, null);
                 view.EvntTable.DataSource = bindingSource;

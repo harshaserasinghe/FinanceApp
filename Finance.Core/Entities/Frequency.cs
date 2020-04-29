@@ -3,8 +3,8 @@
     public enum Frequency
     {
         Daliy = 1,
-        Monthly = 2,
-        Weekly = 3,
+        Weekly = 2,
+        Monthly = 3,
         Yearly = 4,
     }
 }

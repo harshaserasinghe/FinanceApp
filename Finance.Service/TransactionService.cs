@@ -51,7 +51,7 @@ namespace Finance.Service
                 .Include(t => t.RecurringTransaction)
                 .AsQueryable();
 
-            if (TranType.All != tranType)
+            if (TranType.Credit == tranType || TranType.Debit == tranType)
             {
                 tranQuery = tranQuery.Where(t => t.TranType == tranType).AsQueryable();
             }
