@@ -15,9 +15,9 @@ namespace Finance.Core.Entities
         public EventType EventType { get; set; }
         public string Description { get; set; }
         public DateTime EventStartDate { get; set; }
-        public DateTime EventStartTime { get; set; }
+        public TimeSpan EventStartTime { get; set; }
         public DateTime EventEndDate { get; set; }
-        public DateTime EventEndTime { get; set; }
+        public TimeSpan EventEndTime { get; set; }
         public bool IsActive { get; set; }
         public bool IsRecurring { get; set; }
         public int UserId { get; set; }

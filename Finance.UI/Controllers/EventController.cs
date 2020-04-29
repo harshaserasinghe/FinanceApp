@@ -128,10 +128,10 @@ namespace Finance.UI.Controllers
                     Name = view.EvntName.Text,
                     Description = view.EvntDescription.Text,
                     EventType = (EventType)Enum.Parse(typeof(EventType), view.EvntType.SelectedValue.ToString()),
-                    EventStartDate = view.EvntStartDate.Value,
-                    EventEndDate = view.EvntEndDate.Value,
-                    EventStartTime = view.EvntStartTime.Value,
-                    EventEndTime = view.EvntEndTime.Value,
+                    EventStartDate = view.EvntStartDate.Value.Date,
+                    EventEndDate = view.EvntEndDate.Value.Date,
+                    EventStartTime = view.EvntStartTime.Value.TimeOfDay,
+                    EventEndTime = view.EvntEndTime.Value.TimeOfDay,
                     ContactId = GetContId(),
                     IsRecurring = view.IsRecurring.Checked,
                     Frequency = (Frequency)Enum.Parse(typeof(Frequency), view.EvntOccourence.SelectedValue.ToString()),
@@ -171,10 +171,10 @@ namespace Finance.UI.Controllers
                     Name = view.EvntName.Text,
                     Description = view.EvntDescription.Text,
                     EventType = (EventType)Enum.Parse(typeof(EventType), view.EvntType.SelectedValue.ToString()),
-                    EventStartDate = view.EvntStartDate.Value,
-                    EventEndDate = view.EvntEndDate.Value,
-                    EventStartTime = view.EvntStartTime.Value,
-                    EventEndTime = view.EvntEndTime.Value,
+                    EventStartDate = view.EvntStartDate.Value.Date,
+                    EventEndDate = view.EvntEndDate.Value.Date,
+                    EventStartTime = view.EvntStartTime.Value.TimeOfDay,
+                    EventEndTime = view.EvntEndTime.Value.TimeOfDay,
                     ContactId = GetContId(),
                     IsRecurring = view.IsRecurring.Checked,
                     EventRecId = SelectedEvntDto.EventRecId,
@@ -256,8 +256,8 @@ namespace Finance.UI.Controllers
             view.EvntType.SelectedItem = SelectedEvntDto.EventType;
             view.EvntStartDate.Value = SelectedEvntDto.EventStartDate;
             view.EvntEndDate.Value = SelectedEvntDto.EventEndDate;
-            view.EvntStartTime.Value = SelectedEvntDto.EventStartTime;
-            view.EvntEndTime.Value = SelectedEvntDto.EventEndTime;
+            view.EvntStartTime.Value = DateTime.Parse(SelectedEvntDto.EventStartTime.ToString());
+            view.EvntEndTime.Value = DateTime.Parse(SelectedEvntDto.EventEndTime.ToString());
             view.EvntContact.SelectedValue = SelectedEvntDto.ContactId;
             view.IsRecurring.Checked = SelectedEvntDto.IsRecurring;
 
