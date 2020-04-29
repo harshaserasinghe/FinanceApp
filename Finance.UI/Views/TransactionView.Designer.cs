@@ -157,7 +157,7 @@ namespace Finance.UI.Views
             this.btnClearTable.Location = new System.Drawing.Point(784, 27);
             this.btnClearTable.Margin = new System.Windows.Forms.Padding(2);
             this.btnClearTable.Name = "btnClearTable";
-            this.btnClearTable.Size = new System.Drawing.Size(56, 19);
+            this.btnClearTable.Size = new System.Drawing.Size(56, 21);
             this.btnClearTable.TabIndex = 93;
             this.btnClearTable.Text = "Clear";
             this.btnClearTable.UseVisualStyleBackColor = true;
@@ -168,7 +168,7 @@ namespace Finance.UI.Views
             this.btnSearch.Location = new System.Drawing.Point(724, 27);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(56, 19);
+            this.btnSearch.Size = new System.Drawing.Size(56, 21);
             this.btnSearch.TabIndex = 92;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;

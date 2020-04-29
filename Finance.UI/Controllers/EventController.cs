@@ -11,6 +11,8 @@ using LiveCharts.WinForms;
 using System.Collections.Generic;
 using System.Windows.Media;
 using System.Windows;
+using FluentValidation;
+using System.Diagnostics;
 
 namespace Finance.UI.Controllers
 {
@@ -143,9 +145,15 @@ namespace Finance.UI.Controllers
                 ClearForm();
                 view.ShowMessage("Event added successfully!", "Information");
             }
-            catch (Exception)
+            catch (ValidationException ex)
             {
-                view.ShowMessage("Event add failed!", "Error");
+                Debug.WriteLine(ex);
+                view.ShowMessage("Invalid user input", "Error");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                view.ShowMessage("Event adding failed!", "Error");
             }
         }
 
@@ -165,6 +173,12 @@ namespace Finance.UI.Controllers
         {
             try
             {
+
+                if (SelectedEvntDto == null)
+                {
+                    throw new InvalidOperationException();
+                }
+
                 var updateEvntDto = new UpdateEventDto
                 {
                     EventId = SelectedEvntDto.EventId,
@@ -186,9 +200,19 @@ namespace Finance.UI.Controllers
                 ClearForm();
                 view.ShowMessage("Event update success!", "Information");
             }
-            catch (Exception)
+            catch (InvalidOperationException ex)
             {
-
+                Debug.WriteLine(ex);
+                view.ShowMessage("Please select an event!", "Warning");
+            }
+            catch (ValidationException ex)
+            {
+                Debug.WriteLine(ex);
+                view.ShowMessage("Invalid user input", "Error");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
                 view.ShowMessage("Event update failed!", "Error");
             }
         }
@@ -197,6 +221,11 @@ namespace Finance.UI.Controllers
         {
             try
             {
+                if (SelectedEvntDto == null)
+                {
+                    throw new InvalidOperationException();
+                }
+
                 if (view.ConfirmDelete())
                 {
                     var evntId = SelectedEvntDto.EventId;
@@ -206,8 +235,15 @@ namespace Finance.UI.Controllers
                     view.ShowMessage("Event successfully deleted!", "Information");
                 }
             }
-            catch (Exception)
+            
+            catch (InvalidOperationException ex)
             {
+                Debug.WriteLine(ex);
+                view.ShowMessage("Please select an event", "Warning");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
                 view.ShowMessage("Event deletion failed!", "Error");
             }
         }

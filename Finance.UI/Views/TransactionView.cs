@@ -101,9 +101,35 @@ namespace Finance.UI.Views
             set { dtpForecast = value; }
         }
 
-        public void ShowMessage(string msg)
+        public void ShowMessage(string msg, string type)
         {
-            MessageBox.Show(msg);
+            if (type.Equals("Error"))
+            {
+                MessageBox.Show(msg, type, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            else if (type.Equals("Information"))
+            {
+                MessageBox.Show(msg, type, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            else if (type.Equals("Warning"))
+            {
+                MessageBox.Show(msg, type, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            }
+        }
+
+        public bool ConfirmDelete()
+        {
+            if (MessageBox.Show("Are you sure you want to delete this transaction?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         private void btnSearchClick(object sender, System.EventArgs e)

@@ -39,10 +39,11 @@ namespace Finance.UI.Views
             // 
             // btnTran
             // 
+            this.btnTran.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTran.Location = new System.Drawing.Point(82, 58);
             this.btnTran.Margin = new System.Windows.Forms.Padding(2);
             this.btnTran.Name = "btnTran";
-            this.btnTran.Size = new System.Drawing.Size(85, 38);
+            this.btnTran.Size = new System.Drawing.Size(97, 38);
             this.btnTran.TabIndex = 0;
             this.btnTran.Text = "Transactions";
             this.btnTran.UseVisualStyleBackColor = true;
@@ -50,6 +51,7 @@ namespace Finance.UI.Views
             // 
             // btnCont
             // 
+            this.btnCont.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCont.Location = new System.Drawing.Point(200, 58);
             this.btnCont.Margin = new System.Windows.Forms.Padding(2);
             this.btnCont.Name = "btnCont";
@@ -61,10 +63,11 @@ namespace Finance.UI.Views
             // 
             // btnEvnt
             // 
+            this.btnEvnt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEvnt.Location = new System.Drawing.Point(82, 115);
             this.btnEvnt.Margin = new System.Windows.Forms.Padding(2);
             this.btnEvnt.Name = "btnEvnt";
-            this.btnEvnt.Size = new System.Drawing.Size(85, 38);
+            this.btnEvnt.Size = new System.Drawing.Size(97, 38);
             this.btnEvnt.TabIndex = 2;
             this.btnEvnt.Text = "Events";
             this.btnEvnt.UseVisualStyleBackColor = true;
@@ -72,12 +75,13 @@ namespace Finance.UI.Views
             // 
             // btnRpt
             // 
+            this.btnRpt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRpt.Location = new System.Drawing.Point(200, 115);
             this.btnRpt.Margin = new System.Windows.Forms.Padding(2);
             this.btnRpt.Name = "btnRpt";
             this.btnRpt.Size = new System.Drawing.Size(85, 38);
             this.btnRpt.TabIndex = 3;
-            this.btnRpt.Text = "Report";
+            this.btnRpt.Text = "Reports";
             this.btnRpt.UseVisualStyleBackColor = true;
             this.btnRpt.Click += new System.EventHandler(this.btnClickOpenReportForm);
             // 
