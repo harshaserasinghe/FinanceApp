@@ -39,7 +39,8 @@ namespace Finance.UI.Controllers
             view.EvntContact.DataSource = contactService.GetConts();
             view.EvntContact.DisplayMember = nameof(ContactDto.Name);
             view.EvntContact.ValueMember = nameof(ContactDto.ContactId);
-            view.EvntTypeSearch.DataSource = Enum.GetValues(typeof(EventType));
+            //view.EvntTypeSearch.DataSource = Enum.GetValues(typeof(EventType));
+            SetEvntTypeSerach();
             view.EvntType.DataSource = Enum.GetValues(typeof(EventType));
             view.EvntOccourence.DataSource = Enum.GetValues(typeof(Frequency));
 
@@ -82,7 +83,7 @@ namespace Finance.UI.Controllers
             {
                 ClearTable();
                 var evntDtos = eventService.GetEvntsByDate(loggedUser.UserId,
-                    (EventType)Enum.Parse(typeof(EventType), view.EvntTypeSearch.SelectedValue.ToString()),
+                    GetEvntTypeSearch(),
                     view.EvntFrom.Value, view.EvntTo.Value);
                 var bindingSource = new BindingSource(evntDtos, null);
                 view.EvntTable.DataSource = bindingSource;
@@ -93,7 +94,25 @@ namespace Finance.UI.Controllers
             }
         }
 
+        private void SetEvntTypeSerach()
+        {
+            view.EvntTypeSearch.DisplayMember = "Text";
+            view.EvntTypeSearch.ValueMember = "Value";
 
+            var evntTypeSearch = new[]
+            {
+                new { Text = "All", Value = "0" },
+                new { Text = EventType.Appointment.ToString(), Value = ((int)EventType.Appointment).ToString()},
+                new { Text = EventType.Task.ToString(), Value = ((int)EventType.Task).ToString() },
+            };
+
+            view.EvntTypeSearch.DataSource = evntTypeSearch;
+        }
+        private EventType GetEvntTypeSearch()
+        {
+            Enum.TryParse(view.EvntTypeSearch.SelectedValue.ToString(), out EventType evntTypeSearch);
+            return evntTypeSearch;
+        }
 
         public void AddEvent()
         {
