@@ -16,7 +16,7 @@ namespace Finance.UI.Controllers
         private readonly TransactionService tranService;
         private readonly UserService userService;
         private readonly UserDto loggedUser;
-
+        Label labForcast = null;
         public TransactionDto SelectedTranDto { get; set; }
 
         public TransactionController(TransactionView view)
@@ -223,18 +223,24 @@ namespace Finance.UI.Controllers
         public void GetForecast()
         {
             var forecast = tranService.GetForecast(loggedUser.UserId, view.ForecastDate.Value);
-            var formatForcast = $"Expense forecast of the {view.ForecastDate.Value.ToShortDateString()} will be Rs {forecast.ToString(".00")}";
+            var formatForecast = $"Expense forecast of the {view.ForecastDate.Value.ToShortDateString()} will be Rs {forecast.ToString("0.00")}";
 
+            view.Controls.Remove(labForcast);
+       
             //create dynamic label
-            Label labForcast = new Label();
-            labForcast.Location = new System.Drawing.Point(866, 45);
+            
+            labForcast = new Label();
+            labForcast.Location = new System.Drawing.Point(866,45);
             labForcast.Name = "labForcast";
             labForcast.Size = new System.Drawing.Size(300, 21);
             labForcast.TabIndex = 102;
             //add text
-            labForcast.Text = formatForcast;
+            labForcast.Text = formatForecast;
             //add to view
+
             view.Controls.Add(labForcast);
+
+            //view.ForecastSec.Refresh();
         }
 
         private void RefreshTable()
@@ -287,6 +293,7 @@ namespace Finance.UI.Controllers
             view.IsRecurring.Checked = false;
             view.Frequency.SelectedIndex = 0;
             SelectedTranDto = null;
+            view.Controls.Remove(labForcast);
         }
 
         private void AddTexBoxColumn(string propName, string colName, bool isReadOnly, bool isVisible)

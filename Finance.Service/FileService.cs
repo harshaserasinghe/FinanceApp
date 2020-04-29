@@ -39,7 +39,7 @@ namespace Finance.Service
             }
         }
 
-        public static void SaveOrUpdateEntityToFile<T>(T entity, string path)
+        public static void SaveOrUpdateEntityToFile <T>(T entity, string path)
         {
             if (!File.Exists(path))
             {
