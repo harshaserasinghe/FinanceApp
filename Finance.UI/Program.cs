@@ -1,22 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Finance.UI.Controllers;
+using Finance.UI.Views;
+using System;
 using System.Windows.Forms;
 
 namespace Finance.UI
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            var mainView = new MainView();
+            var mainController = new MainController(mainView);
+            mainController.LoadView();
+            Application.Run();
         }
     }
 }

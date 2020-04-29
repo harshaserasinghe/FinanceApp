@@ -31,7 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.8.6.2\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.4.1\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,7 +51,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\ContactDto.cs" />
+    <Compile Include="DTOs\ExpenseByContactDto.cs" />
+    <Compile Include="DTOs\CreateContactDto.cs" />
+    <Compile Include="DTOs\CreateEventDto.cs" />
+    <Compile Include="DTOs\CreateTransactionDto.cs" />
+    <Compile Include="DTOs\RecurringEventDto.cs" />
+    <Compile Include="DTOs\ForecastDto.cs" />
+    <Compile Include="DTOs\RecurringTransactionDto.cs" />
+    <Compile Include="DTOs\TransactionByDateDto.cs" />
+    <Compile Include="DTOs\EventDto.cs" />
+    <Compile Include="DTOs\TransactionDto.cs" />
+    <Compile Include="DTOs\TransactionSummaryDto.cs" />
+    <Compile Include="DTOs\UpdateContactDto.cs" />
+    <Compile Include="DTOs\UpdateEventDto.cs" />
+    <Compile Include="DTOs\UpdateTransactionDto.cs" />
+    <Compile Include="DTOs\UserDto.cs" />
+    <Compile Include="Entities\Contact.cs" />
+    <Compile Include="Entities\Event.cs" />
+    <Compile Include="Entities\Frequency.cs" />
+    <Compile Include="Entities\RecurringEvent.cs" />
+    <Compile Include="Entities\RecurringTransaction.cs" />
+    <Compile Include="Entities\Transaction.cs" />
+    <Compile Include="Entities\EventType.cs" />
+    <Compile Include="Entities\TranType.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Mappers\EntityMappingConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\CreateContactValidator.cs" />
+    <Compile Include="Validators\CreateTransactionValidator.cs" />
+    <Compile Include="Validators\UpdateContactValidator.cs" />
+    <Compile Include="Validators\UpdateTransactionValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
