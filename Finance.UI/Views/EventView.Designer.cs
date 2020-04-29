@@ -35,6 +35,7 @@
             this.dtpEvntStartSearch = new System.Windows.Forms.DateTimePicker();
             this.dtpEvntEndSearch = new System.Windows.Forms.DateTimePicker();
             this.pnlEvntParent = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
             this.pnlEvntFormItems = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.dtpEvntEndTime = new System.Windows.Forms.DateTimePicker();
@@ -67,7 +68,6 @@
             this.dgvEvntTable = new System.Windows.Forms.DataGridView();
             this.btnEvntSearchClear = new System.Windows.Forms.Button();
             this.btnEvntSearch = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
             this.pnlEvntParent.SuspendLayout();
             this.pnlEvntFormItems.SuspendLayout();
             this.pnlEvntContact.SuspendLayout();
@@ -141,8 +141,18 @@
             this.pnlEvntParent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlEvntParent.Location = new System.Drawing.Point(0, 0);
             this.pnlEvntParent.Name = "pnlEvntParent";
-            this.pnlEvntParent.Size = new System.Drawing.Size(1483, 528);
+            this.pnlEvntParent.Size = new System.Drawing.Size(1372, 503);
             this.pnlEvntParent.TabIndex = 6;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(15, 4);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(66, 13);
+            this.label13.TabIndex = 33;
+            this.label13.Text = "My Events";
             // 
             // pnlEvntFormItems
             // 
@@ -169,15 +179,15 @@
             this.pnlEvntFormItems.Controls.Add(this.dtpEvntEndDate);
             this.pnlEvntFormItems.Controls.Add(this.pnlEvntOccourence);
             this.pnlEvntFormItems.Controls.Add(this.chbIsEvntRecurring);
-            this.pnlEvntFormItems.Location = new System.Drawing.Point(1130, 48);
+            this.pnlEvntFormItems.Location = new System.Drawing.Point(1055, 48);
             this.pnlEvntFormItems.Name = "pnlEvntFormItems";
-            this.pnlEvntFormItems.Size = new System.Drawing.Size(337, 406);
+            this.pnlEvntFormItems.Size = new System.Drawing.Size(298, 406);
             this.pnlEvntFormItems.TabIndex = 32;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(42, 17);
+            this.label3.Location = new System.Drawing.Point(20, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 9;
@@ -187,7 +197,7 @@
             // 
             this.dtpEvntEndTime.CustomFormat = "HH:mm";
             this.dtpEvntEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpEvntEndTime.Location = new System.Drawing.Point(244, 249);
+            this.dtpEvntEndTime.Location = new System.Drawing.Point(222, 249);
             this.dtpEvntEndTime.Name = "dtpEvntEndTime";
             this.dtpEvntEndTime.ShowUpDown = true;
             this.dtpEvntEndTime.Size = new System.Drawing.Size(52, 20);
@@ -197,7 +207,7 @@
             // 
             this.pnlEvntContact.Controls.Add(this.cmbEvntContact);
             this.pnlEvntContact.Controls.Add(this.lblEvntContact);
-            this.pnlEvntContact.Location = new System.Drawing.Point(38, 40);
+            this.pnlEvntContact.Location = new System.Drawing.Point(16, 40);
             this.pnlEvntContact.Name = "pnlEvntContact";
             this.pnlEvntContact.Size = new System.Drawing.Size(258, 31);
             this.pnlEvntContact.TabIndex = 10;
@@ -223,7 +233,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(209, 253);
+            this.label12.Location = new System.Drawing.Point(187, 253);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(30, 13);
             this.label12.TabIndex = 30;
@@ -232,7 +242,7 @@
             // cmbEvntType
             // 
             this.cmbEvntType.FormattingEnabled = true;
-            this.cmbEvntType.Location = new System.Drawing.Point(110, 9);
+            this.cmbEvntType.Location = new System.Drawing.Point(88, 9);
             this.cmbEvntType.Name = "cmbEvntType";
             this.cmbEvntType.Size = new System.Drawing.Size(186, 21);
             this.cmbEvntType.TabIndex = 11;
@@ -241,7 +251,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(74, 252);
+            this.label11.Location = new System.Drawing.Point(52, 252);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(30, 13);
             this.label11.TabIndex = 29;
@@ -250,7 +260,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(42, 86);
+            this.label4.Location = new System.Drawing.Point(20, 86);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 12;
@@ -259,7 +269,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(74, 207);
+            this.label10.Location = new System.Drawing.Point(52, 207);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(30, 13);
             this.label10.TabIndex = 28;
@@ -267,7 +277,7 @@
             // 
             // txbEvntName
             // 
-            this.txbEvntName.Location = new System.Drawing.Point(110, 83);
+            this.txbEvntName.Location = new System.Drawing.Point(88, 83);
             this.txbEvntName.Name = "txbEvntName";
             this.txbEvntName.Size = new System.Drawing.Size(186, 20);
             this.txbEvntName.TabIndex = 13;
@@ -276,7 +286,7 @@
             // 
             this.dtpEvntStartTime.CustomFormat = "HH:mm";
             this.dtpEvntStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpEvntStartTime.Location = new System.Drawing.Point(244, 202);
+            this.dtpEvntStartTime.Location = new System.Drawing.Point(222, 202);
             this.dtpEvntStartTime.Name = "dtpEvntStartTime";
             this.dtpEvntStartTime.ShowUpDown = true;
             this.dtpEvntStartTime.Size = new System.Drawing.Size(52, 20);
@@ -285,7 +295,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(39, 123);
+            this.label5.Location = new System.Drawing.Point(17, 123);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 13);
             this.label5.TabIndex = 14;
@@ -294,7 +304,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(209, 206);
+            this.label9.Location = new System.Drawing.Point(187, 206);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(30, 13);
             this.label9.TabIndex = 26;
@@ -302,7 +312,7 @@
             // 
             // txbEvntDescription
             // 
-            this.txbEvntDescription.Location = new System.Drawing.Point(110, 123);
+            this.txbEvntDescription.Location = new System.Drawing.Point(88, 123);
             this.txbEvntDescription.Multiline = true;
             this.txbEvntDescription.Name = "txbEvntDescription";
             this.txbEvntDescription.Size = new System.Drawing.Size(186, 61);
@@ -310,7 +320,7 @@
             // 
             // btnEvntClear
             // 
-            this.btnEvntClear.Location = new System.Drawing.Point(255, 371);
+            this.btnEvntClear.Location = new System.Drawing.Point(233, 371);
             this.btnEvntClear.Name = "btnEvntClear";
             this.btnEvntClear.Size = new System.Drawing.Size(53, 24);
             this.btnEvntClear.TabIndex = 25;
@@ -321,7 +331,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(42, 207);
+            this.label6.Location = new System.Drawing.Point(20, 207);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(32, 13);
             this.label6.TabIndex = 16;
@@ -329,7 +339,7 @@
             // 
             // btnEvntDelete
             // 
-            this.btnEvntDelete.Location = new System.Drawing.Point(186, 371);
+            this.btnEvntDelete.Location = new System.Drawing.Point(164, 371);
             this.btnEvntDelete.Name = "btnEvntDelete";
             this.btnEvntDelete.Size = new System.Drawing.Size(62, 24);
             this.btnEvntDelete.TabIndex = 24;
@@ -340,7 +350,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(42, 252);
+            this.label7.Location = new System.Drawing.Point(20, 252);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(29, 13);
             this.label7.TabIndex = 17;
@@ -348,7 +358,7 @@
             // 
             // btnEvntUpdate
             // 
-            this.btnEvntUpdate.Location = new System.Drawing.Point(110, 371);
+            this.btnEvntUpdate.Location = new System.Drawing.Point(88, 371);
             this.btnEvntUpdate.Name = "btnEvntUpdate";
             this.btnEvntUpdate.Size = new System.Drawing.Size(69, 24);
             this.btnEvntUpdate.TabIndex = 23;
@@ -360,7 +370,7 @@
             // 
             this.dtpEventStartDate.CustomFormat = "";
             this.dtpEventStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEventStartDate.Location = new System.Drawing.Point(110, 203);
+            this.dtpEventStartDate.Location = new System.Drawing.Point(88, 203);
             this.dtpEventStartDate.Name = "dtpEventStartDate";
             this.dtpEventStartDate.RightToLeftLayout = true;
             this.dtpEventStartDate.Size = new System.Drawing.Size(89, 20);
@@ -368,7 +378,7 @@
             // 
             // btnEvntAdd
             // 
-            this.btnEvntAdd.Location = new System.Drawing.Point(36, 371);
+            this.btnEvntAdd.Location = new System.Drawing.Point(14, 371);
             this.btnEvntAdd.Name = "btnEvntAdd";
             this.btnEvntAdd.Size = new System.Drawing.Size(67, 24);
             this.btnEvntAdd.TabIndex = 22;
@@ -379,7 +389,7 @@
             // dtpEvntEndDate
             // 
             this.dtpEvntEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEvntEndDate.Location = new System.Drawing.Point(108, 249);
+            this.dtpEvntEndDate.Location = new System.Drawing.Point(86, 249);
             this.dtpEvntEndDate.Name = "dtpEvntEndDate";
             this.dtpEvntEndDate.Size = new System.Drawing.Size(91, 20);
             this.dtpEvntEndDate.TabIndex = 19;
@@ -388,7 +398,7 @@
             // 
             this.pnlEvntOccourence.Controls.Add(this.cmbEvntOccurrence);
             this.pnlEvntOccourence.Controls.Add(this.label8);
-            this.pnlEvntOccourence.Location = new System.Drawing.Point(38, 300);
+            this.pnlEvntOccourence.Location = new System.Drawing.Point(16, 300);
             this.pnlEvntOccourence.Name = "pnlEvntOccourence";
             this.pnlEvntOccourence.Size = new System.Drawing.Size(258, 51);
             this.pnlEvntOccourence.TabIndex = 21;
@@ -413,7 +423,7 @@
             // 
             // chbIsEvntRecurring
             // 
-            this.chbIsEvntRecurring.Location = new System.Drawing.Point(40, 278);
+            this.chbIsEvntRecurring.Location = new System.Drawing.Point(18, 278);
             this.chbIsEvntRecurring.Name = "chbIsEvntRecurring";
             this.chbIsEvntRecurring.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chbIsEvntRecurring.Size = new System.Drawing.Size(83, 27);
@@ -428,16 +438,15 @@
             this.panel1.Controls.Add(this.dgvEvntTable);
             this.panel1.Location = new System.Drawing.Point(15, 48);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1087, 406);
+            this.panel1.Size = new System.Drawing.Size(1033, 406);
             this.panel1.TabIndex = 8;
             // 
             // dgvEvntTable
             // 
             this.dgvEvntTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEvntTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEvntTable.Location = new System.Drawing.Point(0, 0);
             this.dgvEvntTable.Name = "dgvEvntTable";
-            this.dgvEvntTable.Size = new System.Drawing.Size(1087, 406);
+            this.dgvEvntTable.Size = new System.Drawing.Size(1034, 403);
             this.dgvEvntTable.TabIndex = 0;
             this.dgvEvntTable.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEvntTable_RowHeaderMouseClick);
             // 
@@ -461,21 +470,11 @@
             this.btnEvntSearch.UseVisualStyleBackColor = true;
             this.btnEvntSearch.Click += new System.EventHandler(this.btnEvntSearch_Click);
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(15, 4);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(66, 13);
-            this.label13.TabIndex = 33;
-            this.label13.Text = "My Events";
-            // 
             // EventView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1483, 528);
+            this.ClientSize = new System.Drawing.Size(1372, 503);
             this.Controls.Add(this.pnlEvntParent);
             this.Name = "EventView";
             this.Text = "EventForm";

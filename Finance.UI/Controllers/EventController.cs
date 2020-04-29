@@ -51,10 +51,11 @@ namespace Finance.UI.Controllers
             view.EvntTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
 
-            //String eventEndTime;
+           
             //String eventStartDate;
             //String eventEndTime;
 
+            
 
             AddTexBoxColumn(nameof(EventDto.EventId), "Id", true, false);
             AddTexBoxColumn(nameof(EventDto.Name), "Name", true, true);
@@ -69,7 +70,11 @@ namespace Finance.UI.Controllers
             AddTexBoxColumn(nameof(EventDto.IsRecurring), "Recurring", true, true);
             AddTexBoxColumn(nameof(EventDto.EventRecId), "TranRecId", true, false);
             AddTexBoxColumn(nameof(EventDto.Frequency), "Occurrence", true, true);
+
+           
+
             IsReCurringEvnt();
+          
         }
 
         public void Show()
@@ -192,20 +197,21 @@ namespace Finance.UI.Controllers
         {
             try
             {
-                //view.ShowMessage("Are you sure you want to delete this transaction?", "Warning");
-
-                //  view.ShowDialog(("Are you sure you want to delete this transaction?", "Warning"));
-                var evntId = SelectedEvntDto.EventId;
-                eventService.DeleteEvnt(evntId);
-                GetEvents();
-                ClearForm();
-                view.ShowMessage("Event successfully deleted!", "Information");
+                if (view.ConfirmDelete())
+                {
+                    var evntId = SelectedEvntDto.EventId;
+                    eventService.DeleteEvnt(evntId);
+                    GetEvents();
+                    ClearForm();
+                    view.ShowMessage("Event successfully deleted!", "Information");
+                }
             }
             catch (Exception)
             {
                 view.ShowMessage("Event deletion failed!", "Error");
             }
         }
+
 
         private void RefreshTable()
         {

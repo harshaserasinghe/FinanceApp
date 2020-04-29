@@ -369,7 +369,7 @@ namespace Finance.UI.Views
             this.dgvTranTable.Name = "dgvTranTable";
             this.dgvTranTable.RowHeadersWidth = 51;
             this.dgvTranTable.RowTemplate.Height = 24;
-            this.dgvTranTable.Size = new System.Drawing.Size(827, 282);
+            this.dgvTranTable.Size = new System.Drawing.Size(848, 307);
             this.dgvTranTable.TabIndex = 77;
             this.dgvTranTable.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTranTableRowHeaderMouseClick);
             // 
@@ -383,7 +383,7 @@ namespace Finance.UI.Views
             this.tabLayPanTran.Name = "tabLayPanTran";
             this.tabLayPanTran.RowCount = 1;
             this.tabLayPanTran.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tabLayPanTran.Size = new System.Drawing.Size(832, 286);
+            this.tabLayPanTran.Size = new System.Drawing.Size(852, 311);
             this.tabLayPanTran.TabIndex = 99;
             // 
             // dtpForecast
