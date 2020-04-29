@@ -35,7 +35,8 @@ namespace Finance.UI.Controllers
             view.Contact.DisplayMember = nameof(ContactDto.Name);
             view.Contact.ValueMember = nameof(ContactDto.ContactId);
             view.TranType.DataSource = Enum.GetValues(typeof(TranType));
-            view.TranTypeSearch.DataSource = Enum.GetValues(typeof(TranType));
+            //view.TranTypeSearch.DataSource = Enum.GetValues(typeof(TranType));
+            SetTranTypeSerach();
             view.Frequency.DataSource = Enum.GetValues(typeof(Frequency));
 
             view.TranTable.AutoGenerateColumns = false;
@@ -69,7 +70,7 @@ namespace Finance.UI.Controllers
             {
                 ClearTable();
                 var tranDtos = tranService.GetTransByDate(loggedUser.UserId,
-                    (TranType)Enum.Parse(typeof(TranType), view.TranTypeSearch.SelectedValue.ToString()),
+                    GetTranTypeSearch(),
                     view.FromDate.Value, view.ToDate.Value);
                 var bindingSource = new BindingSource(tranDtos, null);
                 view.TranTable.DataSource = bindingSource;
@@ -78,6 +79,27 @@ namespace Finance.UI.Controllers
             {
                 view.ShowMessage("Transaction get failed.");
             }
+        }
+
+        private void SetTranTypeSerach()
+        {
+            view.TranTypeSearch.DisplayMember = "Text";
+            view.TranTypeSearch.ValueMember = "Value";
+
+            var tranTypeSearch = new[]
+            {
+                new { Text = "All", Value = "0" },
+                new { Text = TranType.Credit.ToString(), Value = ((int)TranType.Credit).ToString()},
+                new { Text = TranType.Debit.ToString(), Value = ((int)TranType.Debit).ToString() },
+            };
+
+            view.TranTypeSearch.DataSource = tranTypeSearch;
+        }
+
+        private TranType GetTranTypeSearch()
+        {
+            Enum.TryParse(view.TranTypeSearch.SelectedValue.ToString(), out TranType tranTypeSearch);
+            return tranTypeSearch;
         }
 
         public void AddTran()
@@ -205,9 +227,9 @@ namespace Finance.UI.Controllers
 
             //create dynamic label
             Label labForcast = new Label();
-            labForcast.Location = new System.Drawing.Point(866,45);
+            labForcast.Location = new System.Drawing.Point(866, 45);
             labForcast.Name = "labForcast";
-            labForcast.Size = new System.Drawing.Size(300, 21); 
+            labForcast.Size = new System.Drawing.Size(300, 21);
             labForcast.TabIndex = 102;
             //add text
             labForcast.Text = formatForcast;
