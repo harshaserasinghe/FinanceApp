@@ -161,7 +161,7 @@ namespace Finance.Service
               })
               .ToList();
 
-            foreCastDtos = foreCastDtos.Where(t => t.TranDate.Day == forecastDate.Day).ToList();
+            foreCastDtos = foreCastDtos.Where(t => t.TranDate.Day == forecastDate.Day && t.Amount>0).ToList();
 
             if (foreCastDtos.Count < 1)
             {

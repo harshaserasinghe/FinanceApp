@@ -140,6 +140,19 @@ namespace Finance.UI.Views
             }
         }
 
+        public bool ConfirmDelete()
+        {
+            if (MessageBox.Show("Are you sure you want to delete this event?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
         private void btnEvntSearch_Click(object sender, System.EventArgs e)
         {
             controller.GetEvents();

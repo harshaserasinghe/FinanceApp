@@ -77,7 +77,7 @@ namespace Finance.UI.Controllers
             }
             catch (Exception)
             {
-                view.ShowMessage("Transaction get failed.");
+                view.ShowMessage("Get Transactions Failed!","Error");
             }
         }
 
@@ -122,17 +122,17 @@ namespace Finance.UI.Controllers
                 tranService.AddTran(createTranDto);
                 GetTrans();
                 ClearForm();
-                view.ShowMessage("Transaction add success.");
+                view.ShowMessage("Transaction added successfully!","Information");
             }
             catch (ValidationException ex)
             {
                 Debug.WriteLine(ex);
-                view.ShowMessage("Invalid user input.");
+                view.ShowMessage("Invalid user input.","Error");
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
-                view.ShowMessage("Transaction add failed.");
+                view.ShowMessage("Transaction adding failed!","Error");
             }
         }
 
@@ -174,22 +174,22 @@ namespace Finance.UI.Controllers
                 tranService.UpdateTran(updateTranDto);
                 GetTrans();
                 ClearForm();
-                view.ShowMessage("Transaction update success.");
+                view.ShowMessage("Transaction successfully updated!","Error");
             }
             catch (InvalidOperationException ex)
             {
                 Debug.WriteLine(ex);
-                view.ShowMessage("Please select a transaction");
+                view.ShowMessage("Please select a transaction","Warning");
             }
             catch (ValidationException ex)
             {
                 Debug.WriteLine(ex);
-                view.ShowMessage("Invalid user input.");
+                view.ShowMessage("Invalid user input.","Error");
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
-                view.ShowMessage("Transaction update failed.");
+                view.ShowMessage("Transaction update failed!","Error");
             }
         }
 
@@ -197,26 +197,30 @@ namespace Finance.UI.Controllers
         {
             try
             {
-                if (SelectedTranDto == null)
-                {
-                    throw new InvalidOperationException();
-                }
+                    if (SelectedTranDto == null)
+                    {
+                        throw new InvalidOperationException();
+                    }
 
-                var tranId = SelectedTranDto.TranId;
-                tranService.DeleteTran(tranId);
-                GetTrans();
-                ClearForm();
-                view.ShowMessage("Transaction delete success.");
+                    if (view.ConfirmDelete())
+                    {
+                        var tranId = SelectedTranDto.TranId;
+                        tranService.DeleteTran(tranId);
+                        GetTrans();
+                        ClearForm();
+                        view.ShowMessage("Transaction successfully deleted!", "Information");
+                    }
+                
             }
             catch (InvalidOperationException ex)
             {
                 Debug.WriteLine(ex);
-                view.ShowMessage("Please select a transaction");
+                view.ShowMessage("Please select a transaction!","Warning");
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
-                view.ShowMessage("Transaction delete failed.");
+                view.ShowMessage("Transaction delete failed!","Error");
             }
         }
 

@@ -11,6 +11,8 @@ using LiveCharts.WinForms;
 using System.Collections.Generic;
 using System.Windows.Media;
 using System.Windows;
+using FluentValidation;
+using System.Diagnostics;
 
 namespace Finance.UI.Controllers
 {
@@ -51,10 +53,11 @@ namespace Finance.UI.Controllers
             view.EvntTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
 
-            //String eventEndTime;
+           
             //String eventStartDate;
             //String eventEndTime;
 
+            
 
             AddTexBoxColumn(nameof(EventDto.EventId), "Id", true, false);
             AddTexBoxColumn(nameof(EventDto.Name), "Name", true, true);
@@ -69,7 +72,11 @@ namespace Finance.UI.Controllers
             AddTexBoxColumn(nameof(EventDto.IsRecurring), "Recurring", true, true);
             AddTexBoxColumn(nameof(EventDto.EventRecId), "TranRecId", true, false);
             AddTexBoxColumn(nameof(EventDto.Frequency), "Occurrence", true, true);
+
+           
+
             IsReCurringEvnt();
+          
         }
 
         public void Show()
@@ -123,10 +130,10 @@ namespace Finance.UI.Controllers
                     Name = view.EvntName.Text,
                     Description = view.EvntDescription.Text,
                     EventType = (EventType)Enum.Parse(typeof(EventType), view.EvntType.SelectedValue.ToString()),
-                    EventStartDate = view.EvntStartDate.Value,
-                    EventEndDate = view.EvntEndDate.Value,
-                    EventStartTime = view.EvntStartTime.Value,
-                    EventEndTime = view.EvntEndTime.Value,
+                    EventStartDate = view.EvntStartDate.Value.Date,
+                    EventEndDate = view.EvntEndDate.Value.Date,
+                    EventStartTime = view.EvntStartTime.Value.TimeOfDay,
+                    EventEndTime = view.EvntEndTime.Value.TimeOfDay,
                     ContactId = GetContId(),
                     IsRecurring = view.IsRecurring.Checked,
                     Frequency = (Frequency)Enum.Parse(typeof(Frequency), view.EvntOccourence.SelectedValue.ToString()),
@@ -138,9 +145,15 @@ namespace Finance.UI.Controllers
                 ClearForm();
                 view.ShowMessage("Event added successfully!", "Information");
             }
-            catch (Exception)
+            catch (ValidationException ex)
             {
-                view.ShowMessage("Event add failed!", "Error");
+                Debug.WriteLine(ex);
+                view.ShowMessage("Invalid user input", "Error");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                view.ShowMessage("Event adding failed!", "Error");
             }
         }
 
@@ -160,16 +173,22 @@ namespace Finance.UI.Controllers
         {
             try
             {
+
+                if (SelectedEvntDto == null)
+                {
+                    throw new InvalidOperationException();
+                }
+
                 var updateEvntDto = new UpdateEventDto
                 {
                     EventId = SelectedEvntDto.EventId,
                     Name = view.EvntName.Text,
                     Description = view.EvntDescription.Text,
                     EventType = (EventType)Enum.Parse(typeof(EventType), view.EvntType.SelectedValue.ToString()),
-                    EventStartDate = view.EvntStartDate.Value,
-                    EventEndDate = view.EvntEndDate.Value,
-                    EventStartTime = view.EvntStartTime.Value,
-                    EventEndTime = view.EvntEndTime.Value,
+                    EventStartDate = view.EvntStartDate.Value.Date,
+                    EventEndDate = view.EvntEndDate.Value.Date,
+                    EventStartTime = view.EvntStartTime.Value.TimeOfDay,
+                    EventEndTime = view.EvntEndTime.Value.TimeOfDay,
                     ContactId = GetContId(),
                     IsRecurring = view.IsRecurring.Checked,
                     EventRecId = SelectedEvntDto.EventRecId,
@@ -181,9 +200,19 @@ namespace Finance.UI.Controllers
                 ClearForm();
                 view.ShowMessage("Event update success!", "Information");
             }
-            catch (Exception)
+            catch (InvalidOperationException ex)
             {
-
+                Debug.WriteLine(ex);
+                view.ShowMessage("Please select an event!", "Warning");
+            }
+            catch (ValidationException ex)
+            {
+                Debug.WriteLine(ex);
+                view.ShowMessage("Invalid user input", "Error");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
                 view.ShowMessage("Event update failed!", "Error");
             }
         }
@@ -192,20 +221,33 @@ namespace Finance.UI.Controllers
         {
             try
             {
-                //view.ShowMessage("Are you sure you want to delete this transaction?", "Warning");
+                if (SelectedEvntDto == null)
+                {
+                    throw new InvalidOperationException();
+                }
 
-                //  view.ShowDialog(("Are you sure you want to delete this transaction?", "Warning"));
-                var evntId = SelectedEvntDto.EventId;
-                eventService.DeleteEvnt(evntId);
-                GetEvents();
-                ClearForm();
-                view.ShowMessage("Event successfully deleted!", "Information");
+                if (view.ConfirmDelete())
+                {
+                    var evntId = SelectedEvntDto.EventId;
+                    eventService.DeleteEvnt(evntId);
+                    GetEvents();
+                    ClearForm();
+                    view.ShowMessage("Event successfully deleted!", "Information");
+                }
             }
-            catch (Exception)
+            
+            catch (InvalidOperationException ex)
             {
+                Debug.WriteLine(ex);
+                view.ShowMessage("Please select an event", "Warning");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
                 view.ShowMessage("Event deletion failed!", "Error");
             }
         }
+
 
         private void RefreshTable()
         {
@@ -250,8 +292,8 @@ namespace Finance.UI.Controllers
             view.EvntType.SelectedItem = SelectedEvntDto.EventType;
             view.EvntStartDate.Value = SelectedEvntDto.EventStartDate;
             view.EvntEndDate.Value = SelectedEvntDto.EventEndDate;
-            view.EvntStartTime.Value = SelectedEvntDto.EventStartTime;
-            view.EvntEndTime.Value = SelectedEvntDto.EventEndTime;
+            view.EvntStartTime.Value = DateTime.Parse(SelectedEvntDto.EventStartTime.ToString());
+            view.EvntEndTime.Value = DateTime.Parse(SelectedEvntDto.EventEndTime.ToString());
             view.EvntContact.SelectedValue = SelectedEvntDto.ContactId;
             view.IsRecurring.Checked = SelectedEvntDto.IsRecurring;
 

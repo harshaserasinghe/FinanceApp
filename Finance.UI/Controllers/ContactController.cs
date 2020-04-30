@@ -56,7 +56,7 @@ namespace Finance.UI.Controllers
             }
             catch (Exception)
             {
-                view.ShowMessage("Contact get failed.");
+                view.ShowMessage("Get contacts failed!","Error");
             }
         }
 
@@ -75,17 +75,17 @@ namespace Finance.UI.Controllers
                 contService.AddCont(createContDto);
                 GetConts();
                 ClearForm();
-                view.ShowMessage("Contact add success.");
+                view.ShowMessage("Contact successfully created!","Information");
             }
             catch (ValidationException ex)
             {
                 Debug.WriteLine(ex);
-                view.ShowMessage("Invalid user input.");
+                view.ShowMessage("Invalid user input","Error");
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
-                view.ShowMessage("Contact add failed.");
+                view.ShowMessage("Contact cretion failed!","Error");
             }
         }
 
@@ -110,22 +110,22 @@ namespace Finance.UI.Controllers
                 contService.UpdateContact(updateContDto);
                 GetConts();
                 ClearForm();
-                view.ShowMessage("Contact update success.");
+                view.ShowMessage("Contact successfully updated!","Information");
             }
             catch (InvalidOperationException ex)
             {
                 Debug.WriteLine(ex);
-                view.ShowMessage("Please select a contact");
+                view.ShowMessage("Please select a contact!","Warning");
             }
             catch (ValidationException ex)
             {
                 Debug.WriteLine(ex);
-                view.ShowMessage("Invalid user input.");
+                view.ShowMessage("Invalid user input","Error");
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
-                view.ShowMessage("Contact update failed.");
+                view.ShowMessage("Contact update failed!","Error");
             }
         }
 
@@ -138,21 +138,26 @@ namespace Finance.UI.Controllers
                     throw new InvalidOperationException();
                 }
 
-                var contId = SelectedContDto.ContactId;
-                contService.DeleteCont(contId);
-                GetConts();
-                ClearForm();
-                view.ShowMessage("Contact delete success.");
+                if (view.ConfirmDelete())
+                {
+                    var contId = SelectedContDto.ContactId;
+                    contService.DeleteCont(contId);
+                    GetConts();
+                    ClearForm();
+                    view.ShowMessage("Contact successfully deleted!", "Information");
+
+                }
+               
             }
             catch (InvalidOperationException ex)
             {
                 Debug.WriteLine(ex);
-                view.ShowMessage("Please select a contact");
+                view.ShowMessage("Please select a contact!","Warning");
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
-                view.ShowMessage("Contact delete failed.");
+                view.ShowMessage("Contact delete failed!","Error");
             }
         }
 

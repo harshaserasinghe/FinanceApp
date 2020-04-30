@@ -157,7 +157,7 @@ namespace Finance.UI.Views
             this.btnClearTable.Location = new System.Drawing.Point(784, 27);
             this.btnClearTable.Margin = new System.Windows.Forms.Padding(2);
             this.btnClearTable.Name = "btnClearTable";
-            this.btnClearTable.Size = new System.Drawing.Size(56, 19);
+            this.btnClearTable.Size = new System.Drawing.Size(56, 21);
             this.btnClearTable.TabIndex = 93;
             this.btnClearTable.Text = "Clear";
             this.btnClearTable.UseVisualStyleBackColor = true;
@@ -168,7 +168,7 @@ namespace Finance.UI.Views
             this.btnSearch.Location = new System.Drawing.Point(724, 27);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(56, 19);
+            this.btnSearch.Size = new System.Drawing.Size(56, 21);
             this.btnSearch.TabIndex = 92;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -369,7 +369,7 @@ namespace Finance.UI.Views
             this.dgvTranTable.Name = "dgvTranTable";
             this.dgvTranTable.RowHeadersWidth = 51;
             this.dgvTranTable.RowTemplate.Height = 24;
-            this.dgvTranTable.Size = new System.Drawing.Size(827, 282);
+            this.dgvTranTable.Size = new System.Drawing.Size(848, 307);
             this.dgvTranTable.TabIndex = 77;
             this.dgvTranTable.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTranTableRowHeaderMouseClick);
             // 
@@ -383,7 +383,7 @@ namespace Finance.UI.Views
             this.tabLayPanTran.Name = "tabLayPanTran";
             this.tabLayPanTran.RowCount = 1;
             this.tabLayPanTran.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tabLayPanTran.Size = new System.Drawing.Size(832, 286);
+            this.tabLayPanTran.Size = new System.Drawing.Size(852, 311);
             this.tabLayPanTran.TabIndex = 99;
             // 
             // dtpForecast
